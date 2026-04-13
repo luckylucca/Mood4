@@ -172,7 +172,7 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
       <CodeComponent name="initialize_variables" plugin="None">
-        <Param val="import numpy as np # Keep in mind that by default, numpy version is 1.26&amp;#10;import time&amp;#10;import sys&amp;#10;&amp;#10;# Set happiness trials&amp;#10;# numBlocks = 4&amp;#10;# happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))&amp;#10;# print(sys.version)&amp;#10;&amp;#10;start_money = 5 # Start amount&amp;#10;option_size = 0.2&amp;#10;width = 0.2 # TO REMOVE&amp;#10;time_first_delay = 2&amp;#10;time_gamble_show = 1 # in seconds&amp;#10;time_gamble_delay = 0.5&amp;#10;time_chosen_gamble = 1&amp;#10;time_gamble_result = 2 # time after which they go to the next trial&amp;#10;time_iti = 1&amp;#10;&amp;#10;numBlocks = 4&amp;#10;happyTrialIdx = np.hstack((3*np.ones(10*numBlocks), 2*np.ones(10*numBlocks)))&amp;#10;happyTrialIdx = happyTrialIdx[np.random.permutation(len(happyTrialIdx))]&amp;#10;happyTrialIdx = np.cumsum(happyTrialIdx)-1&amp;#10;&amp;#10;happyTrial = np.zeros(50*numBlocks)&amp;#10;for i in happyTrialIdx:&amp;#10;    happyTrial[int(i)] = 1&amp;#10;&amp;#10;happyTrial = (happyTrial != 0)&amp;#10;&amp;#10;&amp;#10;#happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))&amp;#10;happyTrialIdx_prac = np.hstack((3*np.ones(2*10), 2*np.ones(2*10)))&amp;#10;happyTrialIdx_prac = happyTrialIdx_prac[np.random.permutation(len(happyTrialIdx_prac))]&amp;#10;happyTrialIdx_prac = np.cumsum(happyTrialIdx_prac)-1&amp;#10;&amp;#10;happyTrial_prac = np.zeros(100)&amp;#10;for i in happyTrialIdx_prac:&amp;#10;    happyTrial_prac[int(i)] = 1&amp;#10;&amp;#10;happyTrial_prac = (happyTrial_prac != 0)&amp;#10;&amp;#10;&amp;#10;npractice_trials = 10   # Number of practice trails&amp;#10;ntrials        = 200    # Number of trails&amp;#10;ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials&amp;#10;reward         = np.linspace(0, 0.5, 11) # All possible reward amounts&amp;#10;proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials&amp;#10;divider        = np.ceil(ntotal_trials*2/len(reward))&amp;#10;reward_vec     = np.repeat(reward, divider).reshape(-1,1)&amp;#10;reward_vec     = np.random.permutation(reward_vec)&amp;#10;sure_option    = reward_vec[0:ntotal_trials]&amp;#10;gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)&amp;#10;gamble_result  = np.random.randint(101, size=(ntotal_trials,1))&amp;#10;sure_side      = np.random.randint(2, size=(ntotal_trials,1))&amp;#10;&amp;#10;#gambles_txt = []&amp;#10;#for n in range(ntotal_trials):&amp;#10;#    gamble1 = f&quot;{gambles[n, 0]:.0f}%&quot;  # Gamble1&amp;#10;#    if gambles[n, 1] == reward[2]:&amp;#10;#        gamble2 = f&quot;BIG&quot;&amp;#10;##        gamble2 = f&quot;BIG (${gambles[n, 1]:.2f})&quot;&amp;#10;#    elif gambles[n, 1] == reward[1]:&amp;#10;#        gamble2 = f&quot;MEDIUM&quot;&amp;#10;##        gamble2 = f&quot;MEDIUM (${gambles[n, 1]:.2f})&quot;&amp;#10;#    else:&amp;#10;#        gamble2 = f&quot;SMALL&quot;&amp;#10;##        gamble2 = f&quot;SMALL (${gambles[n, 1]:.2f})&quot;&amp;#10;#        &amp;#10;#    gamble3 = f&quot;{gambles[n, 2]:.0f}%&quot;  # Gamble2&amp;#10;#    if gambles[n, 3] == reward[2]:&amp;#10;#        gamble4 = f&quot;BIG&quot;&amp;#10;##        gamble4 = f&quot;BIG (${gambles[n, 3]:.2f})&quot;&amp;#10;#    elif gambles[n, 3] == reward[1]:&amp;#10;#        gamble4 = f&quot;MEDIUM&quot;&amp;#10;#        gamble4 = f&quot;MEDIUM (${gambles[n, 3]:.2f})&quot;&amp;#10;#    else:&amp;#10;#        gamble4 = f&quot;SMALL&quot;&amp;#10;##        gamble4 = f&quot;SMALL (${gambles[n, 3]:.2f})&quot;&amp;#10;#    &amp;#10;#    gambles_txt.append([gamble1, gamble2, gamble3, gamble4])&amp;#10;    &amp;#10;current_money = start_money&amp;#10;&amp;#10;#thisExp.addData(&quot;Gambles&quot;, gambles[3*npractice_trials:][:]) No need: each gamble is saved to the exp on each trial loop&amp;#10;#thisExp.addData(&quot;Practice gamble&quot;, gambles[0:3*npractice_trials][:])" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="import numpy as np # Keep in mind that by default, numpy version is 1.26&amp;#10;import time&amp;#10;import sys&amp;#10;&amp;#10;# Set happiness trials&amp;#10;# numBlocks = 4&amp;#10;# happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))&amp;#10;# print(sys.version)&amp;#10;&amp;#10;start_money = 5 # Start amount&amp;#10;option_size = 0.2&amp;#10;width = 0.335&amp;#10;height = 0.2&amp;#10;time_first_delay = 2&amp;#10;time_gamble_show = 1 # in seconds&amp;#10;time_gamble_delay = 0.5&amp;#10;time_chosen_gamble = 1&amp;#10;time_gamble_result = 2 # time after which they go to the next trial&amp;#10;time_iti = 1&amp;#10;&amp;#10;numBlocks = 4&amp;#10;happyTrialIdx = np.hstack((3*np.ones(10*numBlocks), 2*np.ones(10*numBlocks)))&amp;#10;happyTrialIdx = happyTrialIdx[np.random.permutation(len(happyTrialIdx))]&amp;#10;happyTrialIdx = np.cumsum(happyTrialIdx)-1&amp;#10;&amp;#10;happyTrial = np.zeros(50*numBlocks)&amp;#10;for i in happyTrialIdx:&amp;#10;    happyTrial[int(i)] = 1&amp;#10;&amp;#10;happyTrial = (happyTrial != 0)&amp;#10;&amp;#10;&amp;#10;#happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))&amp;#10;happyTrialIdx_prac = np.hstack((3*np.ones(2*10), 2*np.ones(2*10)))&amp;#10;happyTrialIdx_prac = happyTrialIdx_prac[np.random.permutation(len(happyTrialIdx_prac))]&amp;#10;happyTrialIdx_prac = np.cumsum(happyTrialIdx_prac)-1&amp;#10;&amp;#10;happyTrial_prac = np.zeros(100)&amp;#10;for i in happyTrialIdx_prac:&amp;#10;    happyTrial_prac[int(i)] = 1&amp;#10;&amp;#10;happyTrial_prac = (happyTrial_prac != 0)&amp;#10;&amp;#10;&amp;#10;npractice_trials = 10   # Number of practice trails&amp;#10;ntrials        = 192    # Number of trails&amp;#10;#ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials&amp;#10;#reward         = np.linspace(0, 0.5, 11) # All possible reward amounts&amp;#10;#proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials&amp;#10;#divider        = np.ceil(ntotal_trials*2/len(reward))&amp;#10;#reward_vec     = np.repeat(reward, divider).reshape(-1,1)&amp;#10;#reward_vec     = np.random.permutation(reward_vec)&amp;#10;#sure_option    = reward_vec[0:ntotal_trials]&amp;#10;#gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)&amp;#10;#gamble_result  = np.random.randint(101, size=(ntotal_trials,1))&amp;#10;#sure_side      = np.random.randint(2, size=(ntotal_trials,1))&amp;#10;&amp;#10;reward_vec = np.array([[0.15, 1.  , 0.5 , 0.7 ],&amp;#10; [0.15, 1.  , 0.3 , 0.6 ],&amp;#10; [0.15, 1.  , 0.25, 0.5 ],&amp;#10; [0.15, 1.  , 0.5 , 0.5 ],&amp;#10; [0.15, 1.  , 0.3 , 0.4 ],&amp;#10; [0.15, 1.  , 0.5 , 0.4 ],&amp;#10; [0.15, 1.  , 0.25, 0.3 ],&amp;#10; [0.15, 1.  , 0.5 , 0.3 ],&amp;#10; [0.15, 1.  , 0.25, 0.2 ],&amp;#10; [0.15, 1.  , 0.3 , 0.2 ],&amp;#10; [0.15, 1.  , 0.5 , 0.2 ],&amp;#10; [0.15, 1.  , 0.5 , 0.1 ],&amp;#10; [0.25, 1.  , 0.5 , 0.9 ],&amp;#10; [0.25, 1.  , 0.3 , 0.7 ],&amp;#10; [0.25, 1.  , 0.35, 0.7 ],&amp;#10; [0.25, 1.  , 0.5 , 0.7 ],&amp;#10; [0.25, 1.  , 0.3 , 0.5 ],&amp;#10; [0.25, 1.  , 0.35, 0.5 ],&amp;#10; [0.25, 1.  , 0.5 , 0.5 ],&amp;#10; [0.25, 1.  , 0.5 , 0.4 ],&amp;#10; [0.25, 1.  , 0.3 , 0.3 ],&amp;#10; [0.25, 1.  , 0.35, 0.3 ],&amp;#10; [0.25, 1.  , 0.5 , 0.3 ],&amp;#10; [0.25, 1.  , 0.5 , 0.2 ],&amp;#10; [0.25, 1.  , 0.5 , 0.1 ],&amp;#10; [0.35, 1.  , 0.5 , 0.9 ],&amp;#10; [0.35, 1.  , 0.4 , 0.8 ],&amp;#10; [0.35, 1.  , 0.4 , 0.7 ],&amp;#10; [0.35, 1.  , 0.5 , 0.7 ],&amp;#10; [0.35, 1.  , 0.4 , 0.5 ],&amp;#10; [0.35, 1.  , 0.5 , 0.5 ],&amp;#10; [0.35, 1.  , 0.5 , 0.3 ]])&amp;#10;&amp;#10;options_vec_reversed = reward_vec[:,[2, 3, 0, 1]]&amp;#10;options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options2 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options3 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:30]&amp;#10;options = np.vstack((options1, options2, options3)) # All this is done to respect the randomization of the task&amp;#10;&amp;#10;#gambles_txt = []&amp;#10;#for n in range(ntotal_trials):&amp;#10;#    gamble1 = f&quot;{gambles[n, 0]:.0f}%&quot;  # Gamble1&amp;#10;#    if gambles[n, 1] == reward[2]:&amp;#10;#        gamble2 = f&quot;BIG&quot;&amp;#10;##        gamble2 = f&quot;BIG (${gambles[n, 1]:.2f})&quot;&amp;#10;#    elif gambles[n, 1] == reward[1]:&amp;#10;#        gamble2 = f&quot;MEDIUM&quot;&amp;#10;##        gamble2 = f&quot;MEDIUM (${gambles[n, 1]:.2f})&quot;&amp;#10;#    else:&amp;#10;#        gamble2 = f&quot;SMALL&quot;&amp;#10;##        gamble2 = f&quot;SMALL (${gambles[n, 1]:.2f})&quot;&amp;#10;#        &amp;#10;#    gamble3 = f&quot;{gambles[n, 2]:.0f}%&quot;  # Gamble2&amp;#10;#    if gambles[n, 3] == reward[2]:&amp;#10;#        gamble4 = f&quot;BIG&quot;&amp;#10;##        gamble4 = f&quot;BIG (${gambles[n, 3]:.2f})&quot;&amp;#10;#    elif gambles[n, 3] == reward[1]:&amp;#10;#        gamble4 = f&quot;MEDIUM&quot;&amp;#10;#        gamble4 = f&quot;MEDIUM (${gambles[n, 3]:.2f})&quot;&amp;#10;#    else:&amp;#10;#        gamble4 = f&quot;SMALL&quot;&amp;#10;##        gamble4 = f&quot;SMALL (${gambles[n, 3]:.2f})&quot;&amp;#10;#    &amp;#10;#    gambles_txt.append([gamble1, gamble2, gamble3, gamble4])&amp;#10;    &amp;#10;current_money = start_money&amp;#10;&amp;#10;#thisExp.addData(&quot;Gambles&quot;, gambles[3*npractice_trials:][:]) No need: each gamble is saved to the exp on each trial loop&amp;#10;#thisExp.addData(&quot;Practice gamble&quot;, gambles[0:3*npractice_trials][:])" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="// Import necessary modules&amp;#10;import * as lodash from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.js';&amp;#10;// Note: Javascript works with scopes for the variables, if your variable is defined within a scope,&amp;#10;//you won't be able to use it in another scope. This is why this code is in the before experiment section:&amp;#10;//the variables defined here will be usable in the rest of the experiment code&amp;#10;&amp;#10;// Initiate variables&amp;#10;let start_money = 5;    // Start amount&amp;#10;let pie_size = 3.36;&amp;#10;let width = 0.3;&amp;#10;let rew_txt_margin = 0.17;&amp;#10;let time_first_delay = 2;&amp;#10;let time_gamble_show = 1;    // in seconds&amp;#10;let time_gamble_delay = 0.5;&amp;#10;let time_chosen_gamble = 1;&amp;#10;let time_gamble_result = 2;    // time after which they go to the next trial&amp;#10;let time_iti = 1;&amp;#10;let nedges = 100;    //The resolution of the gamble pies: number of flat edges of the pie&amp;#10;let numBlocks = 4;    // Number of breaks during the real trial, blocks of 37 trials (changing it might break some stuff)&amp;#10;let npractice_trials = 3*10;    // Number of practice trials (Participant can repeat practice 3 times)&amp;#10;let ntrials = 148;    // Number of trials&amp;#10;let reward = [0.03, 0.04, 0.06];    // All possible reward amounts&amp;#10;&amp;#10;// Practice trials:&amp;#10;&amp;#10;// happiness trials&amp;#10;let happyTrialIdx_prac = lodash.concat(&amp;#10;  Array(2 * 10).fill(3),&amp;#10;  Array(2 * 10).fill(2)&amp;#10;);&amp;#10;happyTrialIdx_prac = lodash.shuffle(happyTrialIdx_prac);    // Randomly permute the array&amp;#10;happyTrialIdx_prac = lodash.reduce(happyTrialIdx_prac, (result, val, index) =&gt; {&amp;#10;  result.push((result[index - 1] || 0) + val);    // Add current value to previous sum&amp;#10;  return result;&amp;#10;}, []);&amp;#10;let happyTrial_prac = new Array(100).fill(0);&amp;#10;happyTrialIdx_prac.forEach(i =&gt; {&amp;#10;  happyTrial_prac[i] = 1;&amp;#10;});&amp;#10;happyTrial_prac = happyTrial_prac.map(val =&gt; val !== 0);&amp;#10;&amp;#10;let p_reward_propor = [ // Represents the total number of occurrences when each reward should appear&amp;#10;  Math.round(npractice_trials * 2 * 0.125), // Changed from 12.5% to 12% in order to respect the total number of trials&amp;#10;  Math.round(npractice_trials * 2 * 0.4375),&amp;#10;  Math.round(npractice_trials * 2 * 0.4375)&amp;#10;];&amp;#10;&amp;#10;// Generate probabilities and rewards&amp;#10;let p_proba_vec = lodash.times(2 * npractice_trials - p_reward_propor[0], () =&gt; (Math.floor(Math.random() * 18)+1))  // Generate random probabilities&amp;#10;  .map(val =&gt; (val * 5));&amp;#10;let p_reward_vec = lodash.concat(&amp;#10;  Array(p_reward_propor[1]).fill(reward[1]),&amp;#10;  Array(p_reward_propor[2]).fill(reward[2])&amp;#10;);&amp;#10;p_proba_vec = lodash.concat(p_proba_vec, Array(p_reward_propor[0]).fill(100));&amp;#10;p_reward_vec = lodash.concat(p_reward_vec, Array(p_reward_propor[0]).fill(reward[0]));&amp;#10;let p_gambles = lodash.shuffle(lodash.zip(p_proba_vec, p_reward_vec));&amp;#10;p_gambles = lodash.zip(p_gambles.map(row =&gt; row[0]).slice(0, npractice_trials), p_gambles.map(row =&gt; row[1]).&amp;#10;slice(0, npractice_trials), p_gambles.map(row =&gt; row[0]).slice(npractice_trials , p_proba_vec.length+1), p_gambles.map(row =&gt; row[1]).slice(npractice_trials, p_proba_vec.length+1));  // Combine probabilities and rewards&amp;#10;console.log(p_gambles)&amp;#10;let p_gamble_result = lodash.times(npractice_trials, () =&gt; Math.floor(Math.random() * 101));&amp;#10;console.log(p_gamble_result)&amp;#10;let p_gambles_txt = []; // CAREFULL: here indicies 0 to 2 are for gamble 1 and indices 3 to 5 are for gamble 2 (different from gambles indices)&amp;#10;for (let n = 0; n &lt; npractice_trials; n++) {&amp;#10;  let gamble1 = `${p_gambles[n][0]}%`;  // Gamble1&amp;#10;  let gamble2 = p_gambles[n][1] === reward[2] ? 'BIG' :&amp;#10;                p_gambles[n][1] === reward[1] ? 'MEDIUM' : 'SMALL';&amp;#10;  let gamble3 = p_gambles[n][1] === reward[2] ? `($${p_gambles[n][1].toFixed(2)})` :&amp;#10;                p_gambles[n][1] === reward[1] ? `($${p_gambles[n][1].toFixed(2)})` : `($${p_gambles[n][1].toFixed(2)})`;&amp;#10;  let gamble4 = `${p_gambles[n][2]}%`;  // Gamble2&amp;#10;  let gamble5 = p_gambles[n][3] === reward[2] ? 'BIG' :&amp;#10;                p_gambles[n][3] === reward[1] ? 'MEDIUM' : 'SMALL';&amp;#10;  let gamble6 = p_gambles[n][3] === reward[2] ? `($${p_gambles[n][3].toFixed(2)})` :&amp;#10;                p_gambles[n][3] === reward[1] ? `($${p_gambles[n][3].toFixed(2)})` : `($${p_gambles[n][3].toFixed(2)})`;&amp;#10;  p_gambles_txt.push([gamble1, gamble2, gamble3, gamble4, gamble5, gamble6]);&amp;#10;}&amp;#10;console.log(p_gambles_txt)&amp;#10;&amp;#10;// Real trials:&amp;#10;&amp;#10;// happiness trials&amp;#10;let happyTrialIdx = lodash.concat(&amp;#10;  Array(7 * numBlocks).fill(3),&amp;#10;  Array(8 * numBlocks).fill(2)&amp;#10;);&amp;#10;happyTrialIdx = lodash.shuffle(happyTrialIdx);    // Randomly permute the array&amp;#10;happyTrialIdx = lodash.reduce(happyTrialIdx, (result, val, index) =&gt; {&amp;#10;  result.push((result[index - 1] || 0) + val);    // Add current value to previous sum&amp;#10;  return result;&amp;#10;}, []);&amp;#10;let happyTrial = new Array(37 * numBlocks).fill(0);&amp;#10;happyTrialIdx.forEach(i =&gt; {&amp;#10;  happyTrial[i] = 1;&amp;#10;});&amp;#10;happyTrial = happyTrial.map(val =&gt; val !== 0);&amp;#10;&amp;#10;// Storing the number of occurrences of each reward&amp;#10;let reward_propor = [ // Represents the total number of occurrences when each reward should appear&amp;#10;  Math.round(ntrials * 2 * 0.12), // Changed from 12.5% to 12% in order to respect the total number of trials&amp;#10;  Math.round(ntrials * 2 * 0.4375),&amp;#10;  Math.round(ntrials * 2 * 0.4375)&amp;#10;];&amp;#10;&amp;#10;// Generate probabilities and rewards&amp;#10;let proba_vec = lodash.times(2 * ntrials - reward_propor[0], () =&gt; (Math.floor(Math.random() * 18)+1))  // Generate random probabilities&amp;#10;  .map(val =&gt; (val * 5));&amp;#10;let reward_vec = lodash.concat(&amp;#10;  Array(reward_propor[1]).fill(reward[1]),&amp;#10;  Array(reward_propor[2]).fill(reward[2])&amp;#10;);&amp;#10;proba_vec = lodash.concat(proba_vec, Array(reward_propor[0]).fill(100));&amp;#10;reward_vec = lodash.concat(reward_vec, Array(reward_propor[0]).fill(reward[0]));&amp;#10;let gambles = lodash.shuffle(lodash.zip(proba_vec, reward_vec));&amp;#10;gambles = lodash.zip(gambles.map(row =&gt; row[0]).slice(0, ntrials), gambles.map(row =&gt; row[1]).slice(0, ntrials), gambles.map(row =&gt; row[0]).slice(ntrials, proba_vec.length+1), gambles.map(row =&gt; row[1]).slice(ntrials, proba_vec.length+1));  // Combine probabilities and rewards&amp;#10;console.log(gambles)&amp;#10;let gamble_result = lodash.times(ntrials, () =&gt; Math.floor(Math.random() * 101));&amp;#10;console.log(gamble_result)&amp;#10;let gambles_txt = [];&amp;#10;for (let n = 0; n &lt; ntrials; n++) {&amp;#10;  let gamble1 = `${gambles[n][0]}%`;  // Gamble1&amp;#10;  let gamble2 = gambles[n][1] === reward[2] ? 'BIG' :&amp;#10;                gambles[n][1] === reward[1] ? 'MEDIUM' : 'SMALL';&amp;#10;  let gamble3 = gambles[n][1] === reward[2] ? `($${gambles[n][1].toFixed(2)})` :&amp;#10;                gambles[n][1] === reward[1] ? `($${gambles[n][1].toFixed(2)})` : `($${gambles[n][1].toFixed(2)})`;&amp;#10;  let gamble4 = `${gambles[n][2]}%`;  // Gamble2&amp;#10;  let gamble5 = gambles[n][3] === reward[2] ? 'BIG' :&amp;#10;                gambles[n][3] === reward[1] ? 'MEDIUM' : 'SMALL';&amp;#10;  let gamble6 = gambles[n][3] === reward[2] ? `($${gambles[n][3].toFixed(2)})` :&amp;#10;                gambles[n][3] === reward[1] ? `($${gambles[n][3].toFixed(2)})` : `($${gambles[n][3].toFixed(2)})`;&amp;#10;  gambles_txt.push([gamble1, gamble2, gamble3, gamble4, gamble5, gamble6]);&amp;#10;}&amp;#10;&amp;#10;let p_current_money = start_money;&amp;#10;let current_money = start_money;&amp;#10;&amp;#10;// For each trial, the gamble results would be processed here&amp;#10;// e.g., thisExp.addData(&quot;Gambles&quot;, gambles[3 * npractice_trials:][:]);&amp;#10;&amp;#10;console.log(&quot;Gambles Text:&quot;, gambles_txt);" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="startTime = time.strftime(&quot;%Y-%m-%d_%H.%M.%S&quot;)&amp;#10;thisExp.addData(&quot;dateTime&quot;, startTime) " valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="let startTime = new Date().toISOString().replace('T', '_').replace(/:/g, '.').split('.')[0];&amp;#10;console.log(&quot;dateTime:&quot;, startTime);" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
@@ -252,122 +252,6 @@
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="list" updates="constant" name="vertices"/>
       </PolygonComponent>
-      <PolygonComponent name="LL_line" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="LL_line" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.55, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
-      <PolygonComponent name="LR_line" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="LR_line" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.1, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
-      <PolygonComponent name="RL_line" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="RL_line" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.1, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
-      <PolygonComponent name="RR_line" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="RR_line" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.55, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
       <PolygonComponent name="intro_sure" plugin="None">
         <Param val="center" valType="str" updates="constant" name="anchor"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -383,7 +267,7 @@
         <Param val="intro_sure" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.335, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-width, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="rectangle" valType="str" updates="None" name="shape"/>
         <Param val="(option_size, option_size)" valType="list" updates="constant" name="size"/>
@@ -439,7 +323,7 @@
         <Param val="intro_gambletop" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.335, 0.2)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, height)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="rectangle" valType="str" updates="None" name="shape"/>
         <Param val="(option_size, option_size)" valType="list" updates="constant" name="size"/>
@@ -522,7 +406,7 @@
         <Param val="intro_gamblelow" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.335, -0.2)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, -height)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="rectangle" valType="str" updates="None" name="shape"/>
         <Param val="(option_size, option_size)" valType="list" updates="constant" name="size"/>
@@ -5619,122 +5503,6 @@
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="list" updates="constant" name="vertices"/>
       </PolygonComponent>
-      <PolygonComponent name="LL_line_2" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="LL_line_2" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.55, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
-      <PolygonComponent name="LR_line_2" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="LR_line_2" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.1, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
-      <PolygonComponent name="RL_line_2" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="RL_line_2" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.1, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
-      <PolygonComponent name="RR_line_2" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="black" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="black" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="RR_line_2" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.55, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="rectangle" valType="str" updates="None" name="shape"/>
-        <Param val="(0.002, 0.7)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
       <PolygonComponent name="intro_sure_2" plugin="None">
         <Param val="center" valType="str" updates="constant" name="anchor"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
@@ -6247,80 +6015,6 @@
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-    </Routine>
-    <Routine name="gamble_show_iti">
-      <RoutineSettingsComponent name="gamble_show_iti" plugin="None">
-        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
-        <Param val="" valType="str" updates="None" name="backgroundImg"/>
-        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
-        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
-        <Param val="" valType="str" updates="constant" name="desc"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
-        <Param val="gamble_show_iti" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="constant" name="skipIf"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="$time_gamble_delay" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
-      </RoutineSettingsComponent>
-      <TextComponent name="text_8" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Arial" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="text_8" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
-      <PolygonComponent name="p_fixation_cross_4" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="white" valType="color" updates="constant" name="fillColor"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="white" valType="color" updates="constant" name="lineColor"/>
-        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
-        <Param val="4" valType="int" updates="constant" name="nVertices"/>
-        <Param val="p_fixation_cross_4" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="cross" valType="str" updates="None" name="shape"/>
-        <Param val="(0.03, 0.03)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="list" updates="constant" name="vertices"/>
-      </PolygonComponent>
     </Routine>
     <Routine name="consent">
       <RoutineSettingsComponent name="consent" plugin="None">
@@ -6895,6 +6589,70 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
     </Routine>
+    <Routine name="p_options_show">
+      <RoutineSettingsComponent name="p_options_show" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="p_options_show" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="$time_gamble_delay" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <PolygonComponent name="p_fixation_cross_4" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="white" valType="color" updates="constant" name="fillColor"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="white" valType="color" updates="constant" name="lineColor"/>
+        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
+        <Param val="4" valType="int" updates="constant" name="nVertices"/>
+        <Param val="p_fixation_cross_4" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="cross" valType="str" updates="None" name="shape"/>
+        <Param val="(0.03, 0.03)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="list" updates="constant" name="vertices"/>
+      </PolygonComponent>
+      <CodeComponent name="code_9" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="if options[practice_trials.thisN,1]==1 &amp; options[practice_trials.thisN,3]!=0&amp;#10;    sure_left = True&amp;#10;    forced_trial = False&amp;#10;elif options[practice_trials.thisN,3]==1 &amp; options[practice_trials.thisN,1]!=0&amp;#10;    sure_left = False&amp;#10;    forced_trial = False&amp;#10;elif options[practice_trials.thisN,3]==0&amp;#10;    sure_left = True&amp;#10;    forced_trial = True&amp;#10;    if options[practice_trials.thisN,1]!=1&amp;#10;        forced_type_sure = False&amp;#10;    else&amp;#10;        forced_type_sure = True&amp;#10;elif options[practice_trials.thisN,1]==0&amp;#10;    sure_left = False&amp;#10;    forced_trial = True&amp;#10;    if options[practice_trials.thisN,3]!=1&amp;#10;        forced_type_sure = False&amp;#10;    else&amp;#10;        forced_type_sure = True&amp;#10;&amp;#10;if forced_trial[practice_trials.thisN,0] # forced trial&amp;#10;    x1 = 0&amp;#10;    x2 = 0&amp;#10;    x3 = 0&amp;#10;    y3 = 2 # Not showing&amp;#10;    x4 = 0&amp;#10;    y4 = 2 # Not showing&amp;#10;    if forced_trial[practice_trials.thisN,1] # forced sure option&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        if forced_trial[practice_trials.thisN,2]&amp;#10;            Mag1 = options[practice_trials.thisN,0]&amp;#10;            P1 = options[practice_trials.thisN,1]&amp;#10;        else&amp;#10;            Mag1 = options[practice_trials.thisN,2]&amp;#10;            P1 = options[practice_trials.thisN,3]&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = 0&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;    else # forced gamble option&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        if forced_trial[practice_trials.thisN,2]&amp;#10;            Mag1 = options[practice_trials.thisN,0]&amp;#10;            P1 = options[practice_trials.thisN,1]&amp;#10;            Mag2 = 0&amp;#10;            P2 = 1-P1&amp;#10;        else&amp;#10;            Mag1 = options[practice_trials.thisN,2]&amp;#10;            P1 = options[practice_trials.thisN,3]&amp;#10;            Mag2 = 0&amp;#10;            P2 = 1-P1&amp;#10;        Mag3 = 0&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;else&amp;#10;    if options[practice_trials.thisN,1]==1 # sure option on the left&amp;#10;        x1 = 0&amp;#10;        y1 = 0&amp;#10;        x2 = 2&amp;#10;        y2 = 2&amp;#10;        x3 = width&amp;#10;        y3 = height&amp;#10;        x4 = width&amp;#10;        y4 = -height&amp;#10;        Mag1 = options[practice_trials.thisN,0]&amp;#10;        P1 = options[practice_trials.thisN,1]&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = options[practice_trials.thisN,2]&amp;#10;        P3 = options[practice_trials.thisN,3]&amp;#10;        Mag4 = 0&amp;#10;        P4 = 1-P3&amp;#10;    else&amp;#10;        x3 = 0&amp;#10;        y3 = 0&amp;#10;        x4 = 2&amp;#10;        y4 = 2&amp;#10;        x1 = width&amp;#10;        y1 = height&amp;#10;        x2 = width&amp;#10;        y2 = -height&amp;#10;        Mag1 = options[practice_trials.thisN,0]&amp;#10;        P1 = options[practice_trials.thisN,1]&amp;#10;        Mag3 = options[practice_trials.thisN,2]&amp;#10;        P3 = options[practice_trials.thisN,3]&amp;#10;0&amp;#10;if sure_left&amp;#10;    Left_top_x = width&amp;#10;    Left_low_x = 2&amp;#10;else&amp;#10;    Left_top_y = height&amp;#10;    Left_low_y = -height" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_9" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="consent"/>
@@ -6938,11 +6696,7 @@
       <Param name="name" updates="None" val="practice_trials" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="p_gamble1_show"/>
-    <Routine name="gamble_show_iti"/>
-    <Routine name="p_gamble2_show"/>
-    <Routine name="gamble_show_iti"/>
-    <Routine name="p_gamble_choice"/>
+    <Routine name="p_options_show"/>
     <Routine name="p_chosen_gamble"/>
     <Routine name="p_gamble_outcome"/>
     <Routine name="iti"/>
@@ -6965,9 +6719,9 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="gamble1_show"/>
-    <Routine name="gamble_show_iti"/>
+    <Routine name="p_options_show"/>
     <Routine name="gamble2_show"/>
-    <Routine name="gamble_show_iti"/>
+    <Routine name="p_options_show"/>
     <Routine name="gamble_choice"/>
     <Routine name="chosen_gamble"/>
     <Routine name="gamble_outcome"/>
