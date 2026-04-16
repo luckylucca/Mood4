@@ -1,0 +1,90 @@
+4.5027 	DEBUG 	Fullscreen settings ignored as running in pilot mode.
+4.5034 	INFO 	Loaded monitor calibration from ['2025_03_10 10:13']
+4.6982 	EXP 	Created window1 = Window(allowGUI=True, allowStencil=False, autoLog=True, backendConf=UNKNOWN, backgroundFit=<method-wrapper '__getattribute__' of attributeSetter object at 0x7f94c1de8e80>, backgroundImage=<method-wrapper '__getattribute__' of attributeSetter object at 0x7f94c1de8d60>, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([0.3, 0.3, 0.3]), colorSpace='rgb', depthBits=8, fullscr=False, gamma=None, gammaErrorPolicy='raise', infoMsg=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x7f94c1b879a0>, multiSample=False, name='window1', numSamples=2, pos=[880.0, 420.0], screen=0, size=array([1600, 1200]), stencilBits=0, stereo=False, title='PsychoPy', units='height', useFBO=True, useRetina=True, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+4.6982 	EXP 	window1: backgroundImage = ''
+4.6982 	EXP 	window1: backgroundFit = 'none'
+4.7073 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7076 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7081 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7087 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7092 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7098 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7103 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7106 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7107 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7108 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7114 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7119 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7121 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7125 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7129 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7134 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7139 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7142 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7146 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7150 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7156 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7161 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7165 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7171 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7175 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7179 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7185 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7187 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7188 	DEBUG 	Uploading Texture Font fontname to graphics card
+4.7211 	DEBUG 	Upload of Texture Font fontname complete
+4.7252 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7258 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+4.7259 	DEBUG 	Uploading Texture Font fontname to graphics card
+4.7274 	DEBUG 	Upload of Texture Font fontname complete
+4.7353 	WARNING 	launchHubServer: If using the iohub mouse or eyetracker devices, fullScr should be True.
+6.8607 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8607 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8607 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8607 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8608 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8609 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8610 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8610 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8610 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8610 	INFO 	keyboard.Keyboard is using iohub backend.
+6.8610 	EXP 	Mood4: status = STARTED
+6.9204 	EXP 	Created text_9 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=0.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.03, italic=False, languageStyle='LTR', name='text_9', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text=str(...), units='height', win=Window(...), wrapWidth=1)
+6.9241 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9243 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9244 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9246 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9248 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9250 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9252 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9254 	DEBUG 	Uploading Texture Font fontname to graphics card
+6.9275 	DEBUG 	Upload of Texture Font fontname complete
+6.9308 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9310 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9313 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9316 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9317 	DEBUG 	TextBox2 loaded 1 chars with 0 blanks and 1 valid
+6.9319 	DEBUG 	Uploading Texture Font fontname to graphics card
+6.9333 	DEBUG 	Upload of Texture Font fontname complete
+6.9346 	EXP 	Created Intro_text_show = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=0.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.04, italic=False, languageStyle='LTR', name='Intro_text_show', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+6.9383 	EXP 	Created Continue_txt = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.04, italic=False, languageStyle='LTR', name='Continue_txt', opacity=1, ori=0.0, pos=array([ 0. , -0.4]), rgb=UNKNOWN, text='Press <enter> to continue', units='height', win=Window(...), wrapWidth=1)
+6.9410 	EXP 	Created fixation_inst_5a = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, anchor=('center', 'center'), autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=-1.0, draggable=False, fillColor=array([-1, -1, -1]), fillColorSpace='rgb', fillRGB=array([-1, -1, -1]), interpolate=True, lineColor=array([-1., -1., -1.]), lineColorSpace='rgb', lineRGB=array([-1, -1, -1]), lineWidth=1.0, name='fixation_inst_5a', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([0.03, 0.03]), units='height', vertices=ndarray(...), win=Window(...), windingRule=None)
+6.9417 	EXP 	Created intro_sure = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, anchor=('center', 'center'), autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=-2.0, draggable=False, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=array([1, 1, 1]), interpolate=True, lineColor=array([1., 1., 1.]), lineColorSpace='rgb', lineRGB=array([1, 1, 1]), lineWidth=1.0, name='intro_sure', opacity=1, ori=0.0, pos=array([-0.335,  0.   ]), size=array([0.2, 0.2]), units='height', vertices=ndarray(...), win=Window(...))
+6.9423 	EXP 	Created intro_sure_txt = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=-3.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.055, italic=False, languageStyle='LTR', name='intro_sure_txt', opacity=1, ori=0.0, pos=array([-0.335,  0.   ]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+6.9429 	EXP 	Created intro_gambletop = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, anchor=('center', 'center'), autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=-4.0, draggable=False, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=array([1, 1, 1]), interpolate=True, lineColor=array([1., 1., 1.]), lineColorSpace='rgb', lineRGB=array([1, 1, 1]), lineWidth=1.0, name='intro_gambletop', opacity=1, ori=0.0, pos=array([0.335, 0.2  ]), size=array([0.2, 0.2]), units='height', vertices=ndarray(...), win=Window(...))
+6.9534 	DEBUG 	Saving data for Mood4 ExperimentHandler
+6.9539 	INFO 	saved data to /Users/lucas/Documents/Experiments/Mood4/github_Mood4/data/_Mood4_2026-04-16_15h46.24.505.psydat
+6.9540 	INFO 	saved data to '/Users/lucas/Documents/Experiments/Mood4/github_Mood4/data/_Mood4_2026-04-16_15h46.24.505.csv'

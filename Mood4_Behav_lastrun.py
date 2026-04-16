@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.4),
-    on Thu Apr  9 17:03:23 2026
+    on Thu Apr 16 17:01:29 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -45,7 +45,8 @@ import sys
 
 start_money = 5 # Start amount
 option_size = 0.2
-width = 0.2 # TO REMOVE
+width = 0.335
+height = 0.2
 time_first_delay = 2
 time_gamble_show = 1 # in seconds
 time_gamble_delay = 0.5
@@ -78,17 +79,58 @@ happyTrial_prac = (happyTrial_prac != 0)
 
 
 npractice_trials = 10   # Number of practice trails
-ntrials        = 200    # Number of trails
-ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials
-reward         = np.linspace(0, 0.5, 11) # All possible reward amounts
-proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials
-divider        = np.ceil(ntotal_trials*2/len(reward))
-reward_vec     = np.repeat(reward, divider).reshape(-1,1)
-reward_vec     = np.random.permutation(reward_vec)
-sure_option    = reward_vec[0:ntotal_trials]
-gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)
-gamble_result  = np.random.randint(101, size=(ntotal_trials,1))
-sure_side      = np.random.randint(2, size=(ntotal_trials,1))
+ntrials        = 192    # Number of trails
+#ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials
+#reward         = np.linspace(0, 0.5, 11) # All possible reward amounts
+#proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials
+#divider        = np.ceil(ntotal_trials*2/len(reward))
+#reward_vec     = np.repeat(reward, divider).reshape(-1,1)
+#reward_vec     = np.random.permutation(reward_vec)
+#sure_option    = reward_vec[0:ntotal_trials]
+#gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)
+#gamble_result  = np.random.randint(101, size=(ntotal_trials,1))
+#sure_side      = np.random.randint(2, size=(ntotal_trials,1))
+
+reward_vec = np.array([[0.15, 1.00, 0.00, 0.50, 0.25, 0.50],
+ [0.15, 1.00, 0.00, 0.70, 0.25, 0.30],
+ [0.15, 1.00, 0.00, 0.80, 0.25, 0.20],
+ [0.15, 1.00, 0.00, 0.40, 0.30, 0.60],
+ [0.15, 1.00, 0.00, 0.60, 0.30, 0.40],
+ [0.15, 1.00, 0.00, 0.80, 0.30, 0.20],
+ [0.25, 1.00, 0.00, 0.30, 0.35, 0.70],
+ [0.25, 1.00, 0.00, 0.50, 0.35, 0.50],
+ [0.25, 1.00, 0.00, 0.70, 0.35, 0.30],
+ [0.35, 1.00, 0.00, 0.20, 0.40, 0.80],
+ [0.35, 1.00, 0.00, 0.30, 0.40, 0.70],
+ [0.35, 1.00, 0.00, 0.50, 0.40, 0.50],
+ [0.15, 1.00, 0.00, 0.30, 0.50, 0.70],
+ [0.15, 1.00, 0.00, 0.60, 0.50, 0.40],
+ [0.15, 1.00, 0.00, 0.70, 0.50, 0.30],
+ [0.15, 1.00, 0.00, 0.80, 0.50, 0.20],
+ [0.15, 1.00, 0.00, 0.90, 0.50, 0.10],
+ [0.25, 1.00, 0.00, 0.10, 0.50, 0.90],
+ [0.25, 1.00, 0.00, 0.30, 0.50, 0.70],
+ [0.25, 1.00, 0.00, 0.50, 0.50, 0.50],
+ [0.25, 1.00, 0.00, 0.60, 0.50, 0.40],
+ [0.25, 1.00, 0.00, 0.70, 0.50, 0.30],
+ [0.25, 1.00, 0.00, 0.90, 0.50, 0.10],
+ [0.35, 1.00, 0.00, 0.10, 0.50, 0.90],
+ [0.35, 1.00, 0.00, 0.30, 0.50, 0.70],
+ [0.35, 1.00, 0.00, 0.50, 0.50, 0.50],
+ [0.35, 1.00, 0.00, 0.70, 0.50, 0.30],
+ [0.25, 1.00, 0.00, 0.00, 0.00, 0.00],
+ [0.00, 1.00, 0.00, 0.70, 0.25, 0.30],
+ [0.00, 1.00, 0.00, 0.10, 0.30, 0.90],
+ [0.00, 1.00, 0.00, 0.70, 0.40, 0.30],
+ [0.00, 1.00, 0.00, 0.50, 0.35, 0.50],
+ [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]])
+
+options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]
+options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
+options2 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
+options3 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
+options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:30]
+options = np.vstack((options1, options2, options3)) # All this is done to respect the randomization of the task
 
 #gambles_txt = []
 #for n in range(ntotal_trials):
@@ -421,11 +463,11 @@ def setupDevices(expInfo, thisExp, win):
             deviceClass='keyboard',
             deviceName='key_resp_inst_9',
         )
-    if deviceManager.getDevice('choice_prac') is None:
-        # initialise choice_prac
-        choice_prac = deviceManager.addDevice(
+    if deviceManager.getDevice('p_choice') is None:
+        # initialise p_choice
+        p_choice = deviceManager.addDevice(
             deviceClass='keyboard',
-            deviceName='choice_prac',
+            deviceName='p_choice',
         )
     if deviceManager.getDevice('p_next_trial_input') is None:
         # initialise p_next_trial_input
@@ -636,97 +678,69 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='black', fillColor='black',
         opacity=None, depth=-1.0, interpolate=True)
-    LL_line = visual.Rect(
-        win=win, name='LL_line',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(-0.55, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-2.0, interpolate=True)
-    LR_line = visual.Rect(
-        win=win, name='LR_line',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(-0.1, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-3.0, interpolate=True)
-    RL_line = visual.Rect(
-        win=win, name='RL_line',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(0.1, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-4.0, interpolate=True)
-    RR_line = visual.Rect(
-        win=win, name='RR_line',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(0.55, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-5.0, interpolate=True)
     intro_sure = visual.Rect(
         win=win, name='intro_sure',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=(-0.335, 0), draggable=False, anchor='center',
+        ori=0.0, pos=(-width, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-6.0, interpolate=True)
+        opacity=None, depth=-2.0, interpolate=True)
     intro_sure_txt = visual.TextStim(win=win, name='intro_sure_txt',
         text='',
         font='Arial',
-        pos=(-0.335, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=(-width, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-7.0);
+        depth=-3.0);
     intro_gambletop = visual.Rect(
         win=win, name='intro_gambletop',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=(0.335, 0.2), draggable=False, anchor='center',
+        ori=0.0, pos=(width, height), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-8.0, interpolate=True)
+        opacity=None, depth=-4.0, interpolate=True)
     intro_gambletop_txt = visual.TextStim(win=win, name='intro_gambletop_txt',
-        text=Intro_gamble,
+        text='',
         font='Arial',
-        pos=(0.335, 0.23), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=(width, height + 0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-9.0);
+        depth=-5.0);
     intro_gambletop_p = visual.TextStim(win=win, name='intro_gambletop_p',
-        text=[Intro_gamble_p + "%" ],
+        text='',
         font='Arial',
-        pos=(0.335, 0.16), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(width, height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-10.0);
+        depth=-6.0);
     intro_gamblelow = visual.Rect(
         win=win, name='intro_gamblelow',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=(0.335, -0.2), draggable=False, anchor='center',
+        ori=0.0, pos=(width, -height), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-11.0, interpolate=True)
+        opacity=None, depth=-7.0, interpolate=True)
     intro_gamblelow_txt = visual.TextStim(win=win, name='intro_gamblelow_txt',
         text='0',
         font='Arial',
-        pos=(0.335, -0.17), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=(width, -height+0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-12.0);
+        depth=-8.0);
     intro_gamblelow_p = visual.TextStim(win=win, name='intro_gamblelow_p',
         text='20%',
         font='Arial',
-        pos=(0.335, -0.24), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(width, -height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-13.0);
+        depth=-9.0);
     text_inst_5a = visual.TextStim(win=win, name='text_inst_5a',
-        text='On this trial you can either choose a certain reward of 0.5$ or a gamble with a 80% chance of getting a 0.3$ reward.\nPress the <left arrow key> to select the certain reward of 0.5$.',
+        text='On this trial you can either choose a certain reward of 0.5$ or a gamble with a 80% chance of getting a 0.25$ reward.\nPress the <left arrow key> to select the certain reward of 0.5$.',
         font='Arial',
         pos=(0, -0.43), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-14.0);
+        depth=-10.0);
     choice_inst_5a = keyboard.Keyboard(deviceName='choice_inst_5a')
     
     # --- Initialize components for Routine "instructions_t1_chosen_gamble" ---
@@ -736,100 +750,58 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-1.0, interpolate=True)
-    LL_line_2 = visual.Rect(
-        win=win, name='LL_line_2',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(-0.55, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-2.0, interpolate=True)
-    LR_line_2 = visual.Rect(
-        win=win, name='LR_line_2',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(-0.1, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-3.0, interpolate=True)
-    RL_line_2 = visual.Rect(
-        win=win, name='RL_line_2',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(0.1, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-4.0, interpolate=True)
-    RR_line_2 = visual.Rect(
-        win=win, name='RR_line_2',
-        width=(0.002, 0.7)[0], height=(0.002, 0.7)[1],
-        ori=0.0, pos=(0.55, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-5.0, interpolate=True)
+        opacity=None, depth=0.0, interpolate=True)
     intro_sure_2 = visual.Rect(
         win=win, name='intro_sure_2',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=(-0.335, 0), draggable=False, anchor='center',
+        ori=0.0, pos=(-width, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-6.0, interpolate=True)
+        opacity=None, depth=-1.0, interpolate=True)
     intro_sure_txt_2 = visual.TextStim(win=win, name='intro_sure_txt_2',
         text='',
         font='Arial',
-        pos=(-0.335, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=(-width, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-7.0);
+        depth=-2.0);
     
     # --- Initialize components for Routine "instructions_t1_outcome" ---
     total_prompt_inst_5a = visual.TextStim(win=win, name='total_prompt_inst_5a',
         text='Current total: ',
         font='Arial',
         pos=(-0.55, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
     curr_total_inst_5a = visual.TextStim(win=win, name='curr_total_inst_5a',
         text='',
         font='Arial',
         pos=(-0.3, 0.4), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
-        color=[1.0000, 0.6863, -1.0000], colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
-    fixation_inst_5a_4 = visual.ShapeStim(
-        win=win, name='fixation_inst_5a_4', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-2.0, interpolate=True)
     p_outcome_square_2 = visual.Rect(
         win=win, name='p_outcome_square_2',
         width=[1.0, 1.0][0], height=[1.0, 1.0][1],
         ori=0.0, pos=[0,0], draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-3.0, interpolate=True)
+        opacity=None, depth=-2.0, interpolate=True)
     intro_outcome_text = visual.TextStim(win=win, name='intro_outcome_text',
-        text='Win!',
+        text='+0.50$',
         font='Arial',
-        pos=(-width, 0.03), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
+        pos=(-width, 0), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-4.0);
-    intro_outcome_text_2 = visual.TextStim(win=win, name='intro_outcome_text_2',
-        text='BIG\n($0.06)',
-        font='Arial',
-        pos=(-width, -0.03), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-5.0);
+        depth=-3.0);
     intro_next_trial_txt_2 = visual.TextStim(win=win, name='intro_next_trial_txt_2',
         text='Press the <space bar> to do another introductory trial',
         font='Arial',
         pos=(0, -0.35), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-6.0);
+        depth=-4.0);
     intro_next_trial_input_2 = keyboard.Keyboard(deviceName='intro_next_trial_input_2')
     
     # --- Initialize components for Routine "intro_iti" ---
@@ -848,57 +820,71 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=0.0, interpolate=True)
+    intro_sure_3 = visual.Rect(
+        win=win, name='intro_sure_3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=(-width, 0), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-1.0, interpolate=True)
-    gamble1_txt_inst_5a_3 = visual.TextStim(win=win, name='gamble1_txt_inst_5a_3',
-        text='SMALL',
-        font='Arial',
-        pos=(-width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-2.0);
-    gamble1_txt_inst_5a_low_3 = visual.TextStim(win=win, name='gamble1_txt_inst_5a_low_3',
-        text='($0.03)',
-        font='Arial',
-        pos=(-width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-3.0);
-    gamble1_prob_inst_5a_3 = visual.TextStim(win=win, name='gamble1_prob_inst_5a_3',
-        text='100%',
-        font='Arial',
-        pos=(-width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-4.0);
-    gamble2_txt_inst_5a_2 = visual.TextStim(win=win, name='gamble2_txt_inst_5a_2',
-        text='MEDIUM',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-5.0);
-    gamble2_txt_inst_5a_low_2 = visual.TextStim(win=win, name='gamble2_txt_inst_5a_low_2',
-        text='($0.04)',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-6.0);
-    gamble2_prob_inst_5a_2 = visual.TextStim(win=win, name='gamble2_prob_inst_5a_2',
+    intro_gambletop_2 = visual.Rect(
+        win=win, name='intro_gambletop_2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=(width, height), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-2.0, interpolate=True)
+    intro_gamblelow_2 = visual.Rect(
+        win=win, name='intro_gamblelow_2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=(width, -height), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-3.0, interpolate=True)
+    intro_sure_txt_3 = visual.TextStim(win=win, name='intro_sure_txt_3',
         text='',
         font='Arial',
-        pos=(width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=(-width, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-4.0);
+    intro_gambletop_txt_2 = visual.TextStim(win=win, name='intro_gambletop_txt_2',
+        text='',
+        font='Arial',
+        pos=(width, height + 0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-5.0);
+    intro_gambletop_p_2 = visual.TextStim(win=win, name='intro_gambletop_p_2',
+        text='',
+        font='Arial',
+        pos=(width, height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-6.0);
+    intro_gamblelow_txt_2 = visual.TextStim(win=win, name='intro_gamblelow_txt_2',
+        text='0',
+        font='Arial',
+        pos=(width, -height+0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-7.0);
-    choice_inst_5b = keyboard.Keyboard(deviceName='choice_inst_5b')
+    intro_gamblelow_p_2 = visual.TextStim(win=win, name='intro_gamblelow_p_2',
+        text='20%',
+        font='Arial',
+        pos=(width, -height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-8.0);
     text_inst_5b = visual.TextStim(win=win, name='text_inst_5b',
-        text='On this trial you can either choose to win a SMALL ($0.03) reward for certain, or choose a 95% chance of getting a MEDIUM ($0.04) reward.\n\nPress the <right arrow key> to select the MEDIUM gamble.',
+        text='On this trial you can either choose to win a $0.15 reward for certain, or choose a 70% chance of getting a $0.50 reward.\n\nPress the <right arrow key> to select the gamble.',
         font='Arial',
         pos=(0, -0.4), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-9.0);
+    choice_inst_5b = keyboard.Keyboard(deviceName='choice_inst_5b')
     
     # --- Initialize components for Routine "instructions_t2_chosen_gamble" ---
     fixation_inst_5a_3 = visual.ShapeStim(
@@ -907,28 +893,49 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=0.0, interpolate=True)
+    intro_gambletop_3 = visual.Rect(
+        win=win, name='intro_gambletop_3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=(width, height), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-1.0, interpolate=True)
-    gamble1_txt_inst_5a_4 = visual.TextStim(win=win, name='gamble1_txt_inst_5a_4',
-        text='MEDIUM',
+    intro_gamblelow_3 = visual.Rect(
+        win=win, name='intro_gamblelow_3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=(width, -height), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-2.0, interpolate=True)
+    intro_gambletop_txt_3 = visual.TextStim(win=win, name='intro_gambletop_txt_3',
+        text='',
         font='Arial',
-        pos=(width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-2.0);
-    gamble2_txt_inst_5a_low_3 = visual.TextStim(win=win, name='gamble2_txt_inst_5a_low_3',
-        text='($0.04)',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=(width, height + 0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-3.0);
-    gamble1_prob_inst_5a_4 = visual.TextStim(win=win, name='gamble1_prob_inst_5a_4',
-        text='95%',
+    intro_gambletop_p_3 = visual.TextStim(win=win, name='intro_gambletop_p_3',
+        text='',
         font='Arial',
-        pos=(width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=(width, height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
+    intro_gamblelow_txt_3 = visual.TextStim(win=win, name='intro_gamblelow_txt_3',
+        text='0',
+        font='Arial',
+        pos=(width, -height+0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-5.0);
+    intro_gamblelow_p_3 = visual.TextStim(win=win, name='intro_gamblelow_p_3',
+        text='20%',
+        font='Arial',
+        pos=(width, -height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-6.0);
     
     # --- Initialize components for Routine "instructions_t2_outcome" ---
     total_prompt_inst_5a_2 = visual.TextStim(win=win, name='total_prompt_inst_5a_2',
@@ -945,41 +952,27 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color=[1.0000, 0.6863, -1.0000], colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
-    fixation_inst_5a_5 = visual.ShapeStim(
-        win=win, name='fixation_inst_5a_5', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-2.0, interpolate=True)
     p_outcome_square_3 = visual.Rect(
         win=win, name='p_outcome_square_3',
         width=[1.0, 1.0][0], height=[1.0, 1.0][1],
         ori=0.0, pos=[0,0], draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-3.0, interpolate=True)
+        opacity=None, depth=-2.0, interpolate=True)
     intro_outcome_text_3 = visual.TextStim(win=win, name='intro_outcome_text_3',
-        text='Win!',
+        text='Loss!',
         font='Arial',
         pos=(width, 0.03), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-4.0);
-    intro_outcome_text_4 = visual.TextStim(win=win, name='intro_outcome_text_4',
-        text='MEDIUM\n($0.04)',
-        font='Arial',
-        pos=(width, -0.03), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-5.0);
+        depth=-3.0);
     intro_next_trial_txt = visual.TextStim(win=win, name='intro_next_trial_txt',
         text='Press the <space bar> to continue',
         font='Arial',
         pos=(0, -0.35), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-6.0);
+        depth=-4.0);
     intro_next_trial_input = keyboard.Keyboard(deviceName='intro_next_trial_input')
     
     # --- Initialize components for Routine "instructions6" ---
@@ -1219,44 +1212,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=0.0);
     
-    # --- Initialize components for Routine "p_gamble1_show" ---
-    p_fixation_cross = visual.ShapeStim(
-        win=win, name='p_fixation_cross', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-1.0, interpolate=True)
-    p_gamble1_rew_text = visual.TextStim(win=win, name='p_gamble1_rew_text',
-        text='',
-        font='Arial',
-        pos=(-width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-2.0);
-    p_gamble1_rew_text_low = visual.TextStim(win=win, name='p_gamble1_rew_text_low',
-        text='',
-        font='Arial',
-        pos=(-width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-3.0);
-    p_gamble1_prob_text = visual.TextStim(win=win, name='p_gamble1_prob_text',
-        text='',
-        font='Arial',
-        pos=(-width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-4.0);
-    
-    # --- Initialize components for Routine "gamble_show_iti" ---
-    text_8 = visual.TextStim(win=win, name='text_8',
-        text=None,
-        font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=0.0);
+    # --- Initialize components for Routine "p_options_show" ---
     p_fixation_cross_4 = visual.ShapeStim(
         win=win, name='p_fixation_cross_4', vertices='cross',
         size=(0.03, 0.03),
@@ -1264,113 +1220,93 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-1.0, interpolate=True)
-    
-    # --- Initialize components for Routine "p_gamble2_show" ---
-    p_fixation_cross_2 = visual.ShapeStim(
-        win=win, name='p_fixation_cross_2', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
+    p_box1 = visual.Rect(
+        win=win, name='p_box1',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-1.0, interpolate=True)
-    p_gamble2_rew_text = visual.TextStim(win=win, name='p_gamble2_rew_text',
-        text='',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-2.0);
-    p_gamble2_rew_text_low = visual.TextStim(win=win, name='p_gamble2_rew_text_low',
-        text='',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-3.0);
-    p_gamble2_prob_text = visual.TextStim(win=win, name='p_gamble2_prob_text',
-        text='',
-        font='Arial',
-        pos=(width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-4.0);
-    
-    # --- Initialize components for Routine "gamble_show_iti" ---
-    text_8 = visual.TextStim(win=win, name='text_8',
-        text=None,
-        font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=0.0);
-    p_fixation_cross_4 = visual.ShapeStim(
-        win=win, name='p_fixation_cross_4', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
+        opacity=None, depth=-2.0, interpolate=True)
+    p_box2 = visual.Rect(
+        win=win, name='p_box2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-1.0, interpolate=True)
-    
-    # --- Initialize components for Routine "p_gamble_choice" ---
-    p_fixation_cross_3 = visual.ShapeStim(
-        win=win, name='p_fixation_cross_3', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
+        opacity=None, depth=-3.0, interpolate=True)
+    p_box3 = visual.Rect(
+        win=win, name='p_box3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-1.0, interpolate=True)
-    p_gamble1_rew_text_2 = visual.TextStim(win=win, name='p_gamble1_rew_text_2',
+        opacity=None, depth=-4.0, interpolate=True)
+    p_box4 = visual.Rect(
+        win=win, name='p_box4',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-5.0, interpolate=True)
+    p_box1_mag = visual.TextStim(win=win, name='p_box1_mag',
         text='',
         font='Arial',
-        pos=(-width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-2.0);
-    p_gamble1_rew_text_low_2 = visual.TextStim(win=win, name='p_gamble1_rew_text_low_2',
-        text='',
-        font='Arial',
-        pos=(-width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-3.0);
-    p_gamble1_prob_text_2 = visual.TextStim(win=win, name='p_gamble1_prob_text_2',
-        text='',
-        font='Arial',
-        pos=(-width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-4.0);
-    p_gamble2_rew_text_2 = visual.TextStim(win=win, name='p_gamble2_rew_text_2',
-        text='',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin+0.03), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-5.0);
-    p_gamble2_rew_text_low_2 = visual.TextStim(win=win, name='p_gamble2_rew_text_low_2',
-        text='',
-        font='Arial',
-        pos=(width, reward[2]+rew_txt_margin), draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
-    p_gamble2_prob_text_2 = visual.TextStim(win=win, name='p_gamble2_prob_text_2',
+    p_box1_P = visual.TextStim(win=win, name='p_box1_P',
         text='',
         font='Arial',
-        pos=(width, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-7.0);
-    choice_prac = keyboard.Keyboard(deviceName='choice_prac')
-    Choose_text_p = visual.TextStim(win=win, name='Choose_text_p',
-        text='Press the corresponding arrow key to select a gamble.',
+    p_box2_mag = visual.TextStim(win=win, name='p_box2_mag',
+        text='',
         font='Arial',
-        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-8.0);
+    p_box2_P = visual.TextStim(win=win, name='p_box2_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-9.0);
+    p_box3_mag = visual.TextStim(win=win, name='p_box3_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-10.0);
+    p_box3_P = visual.TextStim(win=win, name='p_box3_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-11.0);
+    p_box4_mag = visual.TextStim(win=win, name='p_box4_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-12.0);
+    p_box4_P = visual.TextStim(win=win, name='p_box4_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-13.0);
+    p_choice = keyboard.Keyboard(deviceName='p_choice')
     
-    # --- Initialize components for Routine "p_chosen_gamble" ---
+    # --- Initialize components for Routine "p_chosen_option" ---
     fixation_5 = visual.ShapeStim(
         win=win, name='fixation_5', vertices='cross',
         size=(0.03, 0.03),
@@ -1378,29 +1314,64 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor=[1.0000, 1.0000, 1.0000], fillColor=[1.0000, 1.0000, 1.0000],
         opacity=None, depth=-1.0, interpolate=True)
-    p_chosen_reward_txt = visual.TextStim(win=win, name='p_chosen_reward_txt',
+    p_box1_2 = visual.Rect(
+        win=win, name='p_box1_2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-2.0, interpolate=True)
+    p_box2_2 = visual.Rect(
+        win=win, name='p_box2_2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-3.0, interpolate=True)
+    p_box3_2 = visual.Rect(
+        win=win, name='p_box3_2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-4.0, interpolate=True)
+    p_box4_2 = visual.Rect(
+        win=win, name='p_box4_2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-5.0, interpolate=True)
+    p_box1_mag_2 = visual.TextStim(win=win, name='p_box1_mag_2',
         text='',
         font='Arial',
-        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-2.0);
-    p_chosen_reward_txt_low = visual.TextStim(win=win, name='p_chosen_reward_txt_low',
+        depth=-6.0);
+    p_box1_P_2 = visual.TextStim(win=win, name='p_box1_P_2',
         text='',
         font='Arial',
-        pos=[0,0], draggable=False, height=0.025, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-3.0);
-    p_chosen_prob_txt = visual.TextStim(win=win, name='p_chosen_prob_txt',
+        depth=-7.0);
+    p_box2_mag_2 = visual.TextStim(win=win, name='p_box2_mag_2',
         text='',
         font='Arial',
-        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-4.0);
+        depth=-8.0);
+    p_box2_P_2 = visual.TextStim(win=win, name='p_box2_P_2',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-9.0);
     
-    # --- Initialize components for Routine "p_gamble_outcome" ---
+    # --- Initialize components for Routine "p_outcome" ---
     # Run 'Begin Experiment' code from p_gamble_result_code
     p_progVal = 1
     fixation_6 = visual.ShapeStim(
@@ -1593,14 +1564,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-4.0);
     
-    # --- Initialize components for Routine "gamble_show_iti" ---
-    text_8 = visual.TextStim(win=win, name='text_8',
-        text=None,
-        font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=0.0);
+    # --- Initialize components for Routine "p_options_show" ---
     p_fixation_cross_4 = visual.ShapeStim(
         win=win, name='p_fixation_cross_4', vertices='cross',
         size=(0.03, 0.03),
@@ -1608,6 +1572,91 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-1.0, interpolate=True)
+    p_box1 = visual.Rect(
+        win=win, name='p_box1',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-2.0, interpolate=True)
+    p_box2 = visual.Rect(
+        win=win, name='p_box2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-3.0, interpolate=True)
+    p_box3 = visual.Rect(
+        win=win, name='p_box3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-4.0, interpolate=True)
+    p_box4 = visual.Rect(
+        win=win, name='p_box4',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-5.0, interpolate=True)
+    p_box1_mag = visual.TextStim(win=win, name='p_box1_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-6.0);
+    p_box1_P = visual.TextStim(win=win, name='p_box1_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-7.0);
+    p_box2_mag = visual.TextStim(win=win, name='p_box2_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-8.0);
+    p_box2_P = visual.TextStim(win=win, name='p_box2_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-9.0);
+    p_box3_mag = visual.TextStim(win=win, name='p_box3_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-10.0);
+    p_box3_P = visual.TextStim(win=win, name='p_box3_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-11.0);
+    p_box4_mag = visual.TextStim(win=win, name='p_box4_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-12.0);
+    p_box4_P = visual.TextStim(win=win, name='p_box4_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-13.0);
+    p_choice = keyboard.Keyboard(deviceName='p_choice')
     
     # --- Initialize components for Routine "gamble2_show" ---
     fixation_cross_2 = visual.ShapeStim(
@@ -1639,14 +1688,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-4.0);
     
-    # --- Initialize components for Routine "gamble_show_iti" ---
-    text_8 = visual.TextStim(win=win, name='text_8',
-        text=None,
-        font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=0.0);
+    # --- Initialize components for Routine "p_options_show" ---
     p_fixation_cross_4 = visual.ShapeStim(
         win=win, name='p_fixation_cross_4', vertices='cross',
         size=(0.03, 0.03),
@@ -1654,6 +1696,91 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-1.0, interpolate=True)
+    p_box1 = visual.Rect(
+        win=win, name='p_box1',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-2.0, interpolate=True)
+    p_box2 = visual.Rect(
+        win=win, name='p_box2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-3.0, interpolate=True)
+    p_box3 = visual.Rect(
+        win=win, name='p_box3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-4.0, interpolate=True)
+    p_box4 = visual.Rect(
+        win=win, name='p_box4',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-5.0, interpolate=True)
+    p_box1_mag = visual.TextStim(win=win, name='p_box1_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-6.0);
+    p_box1_P = visual.TextStim(win=win, name='p_box1_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-7.0);
+    p_box2_mag = visual.TextStim(win=win, name='p_box2_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-8.0);
+    p_box2_P = visual.TextStim(win=win, name='p_box2_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-9.0);
+    p_box3_mag = visual.TextStim(win=win, name='p_box3_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-10.0);
+    p_box3_P = visual.TextStim(win=win, name='p_box3_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-11.0);
+    p_box4_mag = visual.TextStim(win=win, name='p_box4_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-12.0);
+    p_box4_P = visual.TextStim(win=win, name='p_box4_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-13.0);
+    p_choice = keyboard.Keyboard(deviceName='p_choice')
     
     # --- Initialize components for Routine "gamble_choice" ---
     fixation_cross_3 = visual.ShapeStim(
@@ -2274,16 +2401,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t1_target_on_choice
     instructions_t1_target_on_choice = data.Routine(
         name='instructions_t1_target_on_choice',
-        components=[fixation_inst_5a, LL_line, LR_line, RL_line, RR_line, intro_sure, intro_sure_txt, intro_gambletop, intro_gambletop_txt, intro_gambletop_p, intro_gamblelow, intro_gamblelow_txt, intro_gamblelow_p, text_inst_5a, choice_inst_5a],
+        components=[fixation_inst_5a, intro_sure, intro_sure_txt, intro_gambletop, intro_gambletop_txt, intro_gambletop_p, intro_gamblelow, intro_gamblelow_txt, intro_gamblelow_p, text_inst_5a, choice_inst_5a],
     )
     instructions_t1_target_on_choice.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
     # Run 'Begin Routine' code from code_2
-    Intro_sure = reward[-1]
-    Intro_gamble = reward[8]
-    Intro_gamble_p = 75
+    Intro_sure = 0.5
+    Intro_gamble_mag = 0.25
+    Intro_gamble_p = 0.80
     intro_sure_txt.setText(Intro_sure)
+    intro_gambletop_txt.setText(Intro_gamble_mag)
+    intro_gambletop_p.setText([Intro_gamble_p + "%" ])
     # create starting attributes for choice_inst_5a
     choice_inst_5a.keys = []
     choice_inst_5a.rt = []
@@ -2335,86 +2464,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if fixation_inst_5a is active this frame...
         if fixation_inst_5a.status == STARTED:
-            # update params
-            pass
-        
-        # *LL_line* updates
-        
-        # if LL_line is starting this frame...
-        if LL_line.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            LL_line.frameNStart = frameN  # exact frame index
-            LL_line.tStart = t  # local t and not account for scr refresh
-            LL_line.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(LL_line, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'LL_line.started')
-            # update status
-            LL_line.status = STARTED
-            LL_line.setAutoDraw(True)
-        
-        # if LL_line is active this frame...
-        if LL_line.status == STARTED:
-            # update params
-            pass
-        
-        # *LR_line* updates
-        
-        # if LR_line is starting this frame...
-        if LR_line.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            LR_line.frameNStart = frameN  # exact frame index
-            LR_line.tStart = t  # local t and not account for scr refresh
-            LR_line.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(LR_line, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'LR_line.started')
-            # update status
-            LR_line.status = STARTED
-            LR_line.setAutoDraw(True)
-        
-        # if LR_line is active this frame...
-        if LR_line.status == STARTED:
-            # update params
-            pass
-        
-        # *RL_line* updates
-        
-        # if RL_line is starting this frame...
-        if RL_line.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            RL_line.frameNStart = frameN  # exact frame index
-            RL_line.tStart = t  # local t and not account for scr refresh
-            RL_line.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(RL_line, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'RL_line.started')
-            # update status
-            RL_line.status = STARTED
-            RL_line.setAutoDraw(True)
-        
-        # if RL_line is active this frame...
-        if RL_line.status == STARTED:
-            # update params
-            pass
-        
-        # *RR_line* updates
-        
-        # if RR_line is starting this frame...
-        if RR_line.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            RR_line.frameNStart = frameN  # exact frame index
-            RR_line.tStart = t  # local t and not account for scr refresh
-            RR_line.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(RR_line, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'RR_line.started')
-            # update status
-            RR_line.status = STARTED
-            RR_line.setAutoDraw(True)
-        
-        # if RR_line is active this frame...
-        if RR_line.status == STARTED:
             # update params
             pass
         
@@ -2680,12 +2729,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t1_chosen_gamble
     instructions_t1_chosen_gamble = data.Routine(
         name='instructions_t1_chosen_gamble',
-        components=[fixation_inst_5a_2, LL_line_2, LR_line_2, RL_line_2, RR_line_2, intro_sure_2, intro_sure_txt_2],
+        components=[fixation_inst_5a_2, intro_sure_2, intro_sure_txt_2],
     )
     instructions_t1_chosen_gamble.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    intro_sure_txt_2.setText(r1)
+    intro_sure_txt_2.setText(Intro_sure)
     # store start times for instructions_t1_chosen_gamble
     instructions_t1_chosen_gamble.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     instructions_t1_chosen_gamble.tStart = globalClock.getTime(format='float')
@@ -2719,9 +2768,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if tThisFlip > instructions_t1_chosen_gamble.maxDuration-frameTolerance:
             instructions_t1_chosen_gamble.maxDurationReached = True
             continueRoutine = False
-        # Run 'Each Frame' code from code_3
-        Gamble1_green.draw()
-        Gamble1_red.draw()
         
         # *fixation_inst_5a_2* updates
         
@@ -2740,86 +2786,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if fixation_inst_5a_2 is active this frame...
         if fixation_inst_5a_2.status == STARTED:
-            # update params
-            pass
-        
-        # *LL_line_2* updates
-        
-        # if LL_line_2 is starting this frame...
-        if LL_line_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            LL_line_2.frameNStart = frameN  # exact frame index
-            LL_line_2.tStart = t  # local t and not account for scr refresh
-            LL_line_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(LL_line_2, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'LL_line_2.started')
-            # update status
-            LL_line_2.status = STARTED
-            LL_line_2.setAutoDraw(True)
-        
-        # if LL_line_2 is active this frame...
-        if LL_line_2.status == STARTED:
-            # update params
-            pass
-        
-        # *LR_line_2* updates
-        
-        # if LR_line_2 is starting this frame...
-        if LR_line_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            LR_line_2.frameNStart = frameN  # exact frame index
-            LR_line_2.tStart = t  # local t and not account for scr refresh
-            LR_line_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(LR_line_2, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'LR_line_2.started')
-            # update status
-            LR_line_2.status = STARTED
-            LR_line_2.setAutoDraw(True)
-        
-        # if LR_line_2 is active this frame...
-        if LR_line_2.status == STARTED:
-            # update params
-            pass
-        
-        # *RL_line_2* updates
-        
-        # if RL_line_2 is starting this frame...
-        if RL_line_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            RL_line_2.frameNStart = frameN  # exact frame index
-            RL_line_2.tStart = t  # local t and not account for scr refresh
-            RL_line_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(RL_line_2, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'RL_line_2.started')
-            # update status
-            RL_line_2.status = STARTED
-            RL_line_2.setAutoDraw(True)
-        
-        # if RL_line_2 is active this frame...
-        if RL_line_2.status == STARTED:
-            # update params
-            pass
-        
-        # *RR_line_2* updates
-        
-        # if RR_line_2 is starting this frame...
-        if RR_line_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            RR_line_2.frameNStart = frameN  # exact frame index
-            RR_line_2.tStart = t  # local t and not account for scr refresh
-            RR_line_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(RR_line_2, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'RR_line_2.started')
-            # update status
-            RR_line_2.status = STARTED
-            RR_line_2.setAutoDraw(True)
-        
-        # if RR_line_2 is active this frame...
-        if RR_line_2.status == STARTED:
             # update params
             pass
         
@@ -2910,7 +2876,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t1_outcome
     instructions_t1_outcome = data.Routine(
         name='instructions_t1_outcome',
-        components=[total_prompt_inst_5a, curr_total_inst_5a, fixation_inst_5a_4, p_outcome_square_2, intro_outcome_text, intro_outcome_text_2, intro_next_trial_txt_2, intro_next_trial_input_2],
+        components=[total_prompt_inst_5a, curr_total_inst_5a, p_outcome_square_2, intro_outcome_text, intro_next_trial_txt_2, intro_next_trial_input_2],
     )
     instructions_t1_outcome.status = NOT_STARTED
     continueRoutine = True
@@ -2918,7 +2884,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     curr_total_inst_5a.setText('$5.5')
     p_outcome_square_2.setFillColor('green')
     p_outcome_square_2.setPos((0, 0))
-    p_outcome_square_2.setSize((reward[-1]*option_size*2, reward[-1]*option_size*2))
+    p_outcome_square_2.setSize((0.5*option_size*2, 0.5*option_size*2))
     p_outcome_square_2.setLineColor('green')
     # create starting attributes for intro_next_trial_input_2
     intro_next_trial_input_2.keys = []
@@ -2994,26 +2960,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *fixation_inst_5a_4* updates
-        
-        # if fixation_inst_5a_4 is starting this frame...
-        if fixation_inst_5a_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            fixation_inst_5a_4.frameNStart = frameN  # exact frame index
-            fixation_inst_5a_4.tStart = t  # local t and not account for scr refresh
-            fixation_inst_5a_4.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(fixation_inst_5a_4, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'fixation_inst_5a_4.started')
-            # update status
-            fixation_inst_5a_4.status = STARTED
-            fixation_inst_5a_4.setAutoDraw(True)
-        
-        # if fixation_inst_5a_4 is active this frame...
-        if fixation_inst_5a_4.status == STARTED:
-            # update params
-            pass
-        
         # *p_outcome_square_2* updates
         
         # if p_outcome_square_2 is starting this frame...
@@ -3051,26 +2997,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if intro_outcome_text is active this frame...
         if intro_outcome_text.status == STARTED:
-            # update params
-            pass
-        
-        # *intro_outcome_text_2* updates
-        
-        # if intro_outcome_text_2 is starting this frame...
-        if intro_outcome_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            intro_outcome_text_2.frameNStart = frameN  # exact frame index
-            intro_outcome_text_2.tStart = t  # local t and not account for scr refresh
-            intro_outcome_text_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(intro_outcome_text_2, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'intro_outcome_text_2.started')
-            # update status
-            intro_outcome_text_2.status = STARTED
-            intro_outcome_text_2.setAutoDraw(True)
-        
-        # if intro_outcome_text_2 is active this frame...
-        if intro_outcome_text_2.status == STARTED:
             # update params
             pass
         
@@ -3282,21 +3208,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t2_target_on_choice
     instructions_t2_target_on_choice = data.Routine(
         name='instructions_t2_target_on_choice',
-        components=[fixation_inst_5b, gamble1_txt_inst_5a_3, gamble1_txt_inst_5a_low_3, gamble1_prob_inst_5a_3, gamble2_txt_inst_5a_2, gamble2_txt_inst_5a_low_2, gamble2_prob_inst_5a_2, choice_inst_5b, text_inst_5b],
+        components=[fixation_inst_5b, intro_sure_3, intro_gambletop_2, intro_gamblelow_2, intro_sure_txt_3, intro_gambletop_txt_2, intro_gambletop_p_2, intro_gamblelow_txt_2, intro_gamblelow_p_2, text_inst_5b, choice_inst_5b],
     )
     instructions_t2_target_on_choice.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    # Run 'Begin Routine' code from code_6
-    Intro_gamble2_1 = reward[0]
-    Intro_gamble2_2 = reward[1]
-    
-    Gamble1_green = visual.Pie(win, fillColor = 'Green', colorSpace = 'rgb',start = 0,end = 1*360, pos=(-width,0), radius=Intro_gamble2_1*pie_size)
-    Gamble1_red = visual.Pie(win, fillColor = (-0.2,-0.2,-0.2), colorSpace = 'rgb',start = 1*360,end = 360, pos=(-width,0), radius=Intro_gamble2_1*pie_size)
-    
-    Gamble2_green = visual.Pie(win, fillColor = 'Green', colorSpace = 'rgb',start = 0,end = 0.95*360,pos=(width,0), radius=Intro_gamble2_2*pie_size)
-    Gamble2_red = visual.Pie(win, fillColor = (-0.2,-0.2,-0.2), colorSpace = 'rgb',start = 0.95*360,end = 360, pos=(width,0), radius=Intro_gamble2_2*pie_size)
-    gamble2_prob_inst_5a_2.setText('95%')
+    intro_sure_txt_3.setText('$0.15')
+    intro_gambletop_txt_2.setText('$0.50')
+    intro_gambletop_p_2.setText([0.80 + "%" ])
     # create starting attributes for choice_inst_5b
     choice_inst_5b.keys = []
     choice_inst_5b.rt = []
@@ -3330,11 +3249,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        # Run 'Each Frame' code from code_6
-        Gamble1_green.draw()
-        Gamble1_red.draw()
-        Gamble2_green.draw()
-        Gamble2_red.draw()
         
         # *fixation_inst_5b* updates
         
@@ -3356,123 +3270,183 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *gamble1_txt_inst_5a_3* updates
+        # *intro_sure_3* updates
         
-        # if gamble1_txt_inst_5a_3 is starting this frame...
-        if gamble1_txt_inst_5a_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_sure_3 is starting this frame...
+        if intro_sure_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble1_txt_inst_5a_3.frameNStart = frameN  # exact frame index
-            gamble1_txt_inst_5a_3.tStart = t  # local t and not account for scr refresh
-            gamble1_txt_inst_5a_3.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble1_txt_inst_5a_3, 'tStartRefresh')  # time at next scr refresh
+            intro_sure_3.frameNStart = frameN  # exact frame index
+            intro_sure_3.tStart = t  # local t and not account for scr refresh
+            intro_sure_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_sure_3, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble1_txt_inst_5a_3.started')
+            thisExp.timestampOnFlip(win, 'intro_sure_3.started')
             # update status
-            gamble1_txt_inst_5a_3.status = STARTED
-            gamble1_txt_inst_5a_3.setAutoDraw(True)
+            intro_sure_3.status = STARTED
+            intro_sure_3.setAutoDraw(True)
         
-        # if gamble1_txt_inst_5a_3 is active this frame...
-        if gamble1_txt_inst_5a_3.status == STARTED:
+        # if intro_sure_3 is active this frame...
+        if intro_sure_3.status == STARTED:
             # update params
             pass
         
-        # *gamble1_txt_inst_5a_low_3* updates
+        # *intro_gambletop_2* updates
         
-        # if gamble1_txt_inst_5a_low_3 is starting this frame...
-        if gamble1_txt_inst_5a_low_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gambletop_2 is starting this frame...
+        if intro_gambletop_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble1_txt_inst_5a_low_3.frameNStart = frameN  # exact frame index
-            gamble1_txt_inst_5a_low_3.tStart = t  # local t and not account for scr refresh
-            gamble1_txt_inst_5a_low_3.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble1_txt_inst_5a_low_3, 'tStartRefresh')  # time at next scr refresh
+            intro_gambletop_2.frameNStart = frameN  # exact frame index
+            intro_gambletop_2.tStart = t  # local t and not account for scr refresh
+            intro_gambletop_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gambletop_2, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble1_txt_inst_5a_low_3.started')
+            thisExp.timestampOnFlip(win, 'intro_gambletop_2.started')
             # update status
-            gamble1_txt_inst_5a_low_3.status = STARTED
-            gamble1_txt_inst_5a_low_3.setAutoDraw(True)
+            intro_gambletop_2.status = STARTED
+            intro_gambletop_2.setAutoDraw(True)
         
-        # if gamble1_txt_inst_5a_low_3 is active this frame...
-        if gamble1_txt_inst_5a_low_3.status == STARTED:
+        # if intro_gambletop_2 is active this frame...
+        if intro_gambletop_2.status == STARTED:
             # update params
             pass
         
-        # *gamble1_prob_inst_5a_3* updates
+        # *intro_gamblelow_2* updates
         
-        # if gamble1_prob_inst_5a_3 is starting this frame...
-        if gamble1_prob_inst_5a_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gamblelow_2 is starting this frame...
+        if intro_gamblelow_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble1_prob_inst_5a_3.frameNStart = frameN  # exact frame index
-            gamble1_prob_inst_5a_3.tStart = t  # local t and not account for scr refresh
-            gamble1_prob_inst_5a_3.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble1_prob_inst_5a_3, 'tStartRefresh')  # time at next scr refresh
+            intro_gamblelow_2.frameNStart = frameN  # exact frame index
+            intro_gamblelow_2.tStart = t  # local t and not account for scr refresh
+            intro_gamblelow_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gamblelow_2, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble1_prob_inst_5a_3.started')
+            thisExp.timestampOnFlip(win, 'intro_gamblelow_2.started')
             # update status
-            gamble1_prob_inst_5a_3.status = STARTED
-            gamble1_prob_inst_5a_3.setAutoDraw(True)
+            intro_gamblelow_2.status = STARTED
+            intro_gamblelow_2.setAutoDraw(True)
         
-        # if gamble1_prob_inst_5a_3 is active this frame...
-        if gamble1_prob_inst_5a_3.status == STARTED:
+        # if intro_gamblelow_2 is active this frame...
+        if intro_gamblelow_2.status == STARTED:
             # update params
             pass
         
-        # *gamble2_txt_inst_5a_2* updates
+        # *intro_sure_txt_3* updates
         
-        # if gamble2_txt_inst_5a_2 is starting this frame...
-        if gamble2_txt_inst_5a_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_sure_txt_3 is starting this frame...
+        if intro_sure_txt_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble2_txt_inst_5a_2.frameNStart = frameN  # exact frame index
-            gamble2_txt_inst_5a_2.tStart = t  # local t and not account for scr refresh
-            gamble2_txt_inst_5a_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble2_txt_inst_5a_2, 'tStartRefresh')  # time at next scr refresh
+            intro_sure_txt_3.frameNStart = frameN  # exact frame index
+            intro_sure_txt_3.tStart = t  # local t and not account for scr refresh
+            intro_sure_txt_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_sure_txt_3, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble2_txt_inst_5a_2.started')
+            thisExp.timestampOnFlip(win, 'intro_sure_txt_3.started')
             # update status
-            gamble2_txt_inst_5a_2.status = STARTED
-            gamble2_txt_inst_5a_2.setAutoDraw(True)
+            intro_sure_txt_3.status = STARTED
+            intro_sure_txt_3.setAutoDraw(True)
         
-        # if gamble2_txt_inst_5a_2 is active this frame...
-        if gamble2_txt_inst_5a_2.status == STARTED:
+        # if intro_sure_txt_3 is active this frame...
+        if intro_sure_txt_3.status == STARTED:
             # update params
             pass
         
-        # *gamble2_txt_inst_5a_low_2* updates
+        # *intro_gambletop_txt_2* updates
         
-        # if gamble2_txt_inst_5a_low_2 is starting this frame...
-        if gamble2_txt_inst_5a_low_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gambletop_txt_2 is starting this frame...
+        if intro_gambletop_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble2_txt_inst_5a_low_2.frameNStart = frameN  # exact frame index
-            gamble2_txt_inst_5a_low_2.tStart = t  # local t and not account for scr refresh
-            gamble2_txt_inst_5a_low_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble2_txt_inst_5a_low_2, 'tStartRefresh')  # time at next scr refresh
+            intro_gambletop_txt_2.frameNStart = frameN  # exact frame index
+            intro_gambletop_txt_2.tStart = t  # local t and not account for scr refresh
+            intro_gambletop_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gambletop_txt_2, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble2_txt_inst_5a_low_2.started')
+            thisExp.timestampOnFlip(win, 'intro_gambletop_txt_2.started')
             # update status
-            gamble2_txt_inst_5a_low_2.status = STARTED
-            gamble2_txt_inst_5a_low_2.setAutoDraw(True)
+            intro_gambletop_txt_2.status = STARTED
+            intro_gambletop_txt_2.setAutoDraw(True)
         
-        # if gamble2_txt_inst_5a_low_2 is active this frame...
-        if gamble2_txt_inst_5a_low_2.status == STARTED:
+        # if intro_gambletop_txt_2 is active this frame...
+        if intro_gambletop_txt_2.status == STARTED:
             # update params
             pass
         
-        # *gamble2_prob_inst_5a_2* updates
+        # *intro_gambletop_p_2* updates
         
-        # if gamble2_prob_inst_5a_2 is starting this frame...
-        if gamble2_prob_inst_5a_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gambletop_p_2 is starting this frame...
+        if intro_gambletop_p_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble2_prob_inst_5a_2.frameNStart = frameN  # exact frame index
-            gamble2_prob_inst_5a_2.tStart = t  # local t and not account for scr refresh
-            gamble2_prob_inst_5a_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble2_prob_inst_5a_2, 'tStartRefresh')  # time at next scr refresh
+            intro_gambletop_p_2.frameNStart = frameN  # exact frame index
+            intro_gambletop_p_2.tStart = t  # local t and not account for scr refresh
+            intro_gambletop_p_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gambletop_p_2, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble2_prob_inst_5a_2.started')
+            thisExp.timestampOnFlip(win, 'intro_gambletop_p_2.started')
             # update status
-            gamble2_prob_inst_5a_2.status = STARTED
-            gamble2_prob_inst_5a_2.setAutoDraw(True)
+            intro_gambletop_p_2.status = STARTED
+            intro_gambletop_p_2.setAutoDraw(True)
         
-        # if gamble2_prob_inst_5a_2 is active this frame...
-        if gamble2_prob_inst_5a_2.status == STARTED:
+        # if intro_gambletop_p_2 is active this frame...
+        if intro_gambletop_p_2.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_gamblelow_txt_2* updates
+        
+        # if intro_gamblelow_txt_2 is starting this frame...
+        if intro_gamblelow_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_gamblelow_txt_2.frameNStart = frameN  # exact frame index
+            intro_gamblelow_txt_2.tStart = t  # local t and not account for scr refresh
+            intro_gamblelow_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gamblelow_txt_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_gamblelow_txt_2.started')
+            # update status
+            intro_gamblelow_txt_2.status = STARTED
+            intro_gamblelow_txt_2.setAutoDraw(True)
+        
+        # if intro_gamblelow_txt_2 is active this frame...
+        if intro_gamblelow_txt_2.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_gamblelow_p_2* updates
+        
+        # if intro_gamblelow_p_2 is starting this frame...
+        if intro_gamblelow_p_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_gamblelow_p_2.frameNStart = frameN  # exact frame index
+            intro_gamblelow_p_2.tStart = t  # local t and not account for scr refresh
+            intro_gamblelow_p_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gamblelow_p_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_gamblelow_p_2.started')
+            # update status
+            intro_gamblelow_p_2.status = STARTED
+            intro_gamblelow_p_2.setAutoDraw(True)
+        
+        # if intro_gamblelow_p_2 is active this frame...
+        if intro_gamblelow_p_2.status == STARTED:
+            # update params
+            pass
+        
+        # *text_inst_5b* updates
+        
+        # if text_inst_5b is starting this frame...
+        if text_inst_5b.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            text_inst_5b.frameNStart = frameN  # exact frame index
+            text_inst_5b.tStart = t  # local t and not account for scr refresh
+            text_inst_5b.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(text_inst_5b, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'text_inst_5b.started')
+            # update status
+            text_inst_5b.status = STARTED
+            text_inst_5b.setAutoDraw(True)
+        
+        # if text_inst_5b is active this frame...
+        if text_inst_5b.status == STARTED:
             # update params
             pass
         
@@ -3503,26 +3477,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 choice_inst_5b.duration = _choice_inst_5b_allKeys[-1].duration
                 # a response ends the routine
                 continueRoutine = False
-        
-        # *text_inst_5b* updates
-        
-        # if text_inst_5b is starting this frame...
-        if text_inst_5b.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            text_inst_5b.frameNStart = frameN  # exact frame index
-            text_inst_5b.tStart = t  # local t and not account for scr refresh
-            text_inst_5b.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(text_inst_5b, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'text_inst_5b.started')
-            # update status
-            text_inst_5b.status = STARTED
-            text_inst_5b.setAutoDraw(True)
-        
-        # if text_inst_5b is active this frame...
-        if text_inst_5b.status == STARTED:
-            # update params
-            pass
         
         # check for quit (typically the Esc key)
         if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -3578,11 +3532,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t2_chosen_gamble
     instructions_t2_chosen_gamble = data.Routine(
         name='instructions_t2_chosen_gamble',
-        components=[fixation_inst_5a_3, gamble1_txt_inst_5a_4, gamble2_txt_inst_5a_low_3, gamble1_prob_inst_5a_4],
+        components=[fixation_inst_5a_3, intro_gambletop_3, intro_gamblelow_3, intro_gambletop_txt_3, intro_gambletop_p_3, intro_gamblelow_txt_3, intro_gamblelow_p_3],
     )
     instructions_t2_chosen_gamble.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    intro_gambletop_txt_3.setText('$0.50')
+    intro_gambletop_p_3.setText([0.80 + "%" ])
     # store start times for instructions_t2_chosen_gamble
     instructions_t2_chosen_gamble.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     instructions_t2_chosen_gamble.tStart = globalClock.getTime(format='float')
@@ -3616,9 +3572,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if tThisFlip > instructions_t2_chosen_gamble.maxDuration-frameTolerance:
             instructions_t2_chosen_gamble.maxDurationReached = True
             continueRoutine = False
-        # Run 'Each Frame' code from code_7
-        Gamble2_green.draw()
-        Gamble2_red.draw()
         
         # *fixation_inst_5a_3* updates
         
@@ -3640,63 +3593,123 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *gamble1_txt_inst_5a_4* updates
+        # *intro_gambletop_3* updates
         
-        # if gamble1_txt_inst_5a_4 is starting this frame...
-        if gamble1_txt_inst_5a_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gambletop_3 is starting this frame...
+        if intro_gambletop_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble1_txt_inst_5a_4.frameNStart = frameN  # exact frame index
-            gamble1_txt_inst_5a_4.tStart = t  # local t and not account for scr refresh
-            gamble1_txt_inst_5a_4.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble1_txt_inst_5a_4, 'tStartRefresh')  # time at next scr refresh
+            intro_gambletop_3.frameNStart = frameN  # exact frame index
+            intro_gambletop_3.tStart = t  # local t and not account for scr refresh
+            intro_gambletop_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gambletop_3, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble1_txt_inst_5a_4.started')
+            thisExp.timestampOnFlip(win, 'intro_gambletop_3.started')
             # update status
-            gamble1_txt_inst_5a_4.status = STARTED
-            gamble1_txt_inst_5a_4.setAutoDraw(True)
+            intro_gambletop_3.status = STARTED
+            intro_gambletop_3.setAutoDraw(True)
         
-        # if gamble1_txt_inst_5a_4 is active this frame...
-        if gamble1_txt_inst_5a_4.status == STARTED:
+        # if intro_gambletop_3 is active this frame...
+        if intro_gambletop_3.status == STARTED:
             # update params
             pass
         
-        # *gamble2_txt_inst_5a_low_3* updates
+        # *intro_gamblelow_3* updates
         
-        # if gamble2_txt_inst_5a_low_3 is starting this frame...
-        if gamble2_txt_inst_5a_low_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gamblelow_3 is starting this frame...
+        if intro_gamblelow_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble2_txt_inst_5a_low_3.frameNStart = frameN  # exact frame index
-            gamble2_txt_inst_5a_low_3.tStart = t  # local t and not account for scr refresh
-            gamble2_txt_inst_5a_low_3.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble2_txt_inst_5a_low_3, 'tStartRefresh')  # time at next scr refresh
+            intro_gamblelow_3.frameNStart = frameN  # exact frame index
+            intro_gamblelow_3.tStart = t  # local t and not account for scr refresh
+            intro_gamblelow_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gamblelow_3, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble2_txt_inst_5a_low_3.started')
+            thisExp.timestampOnFlip(win, 'intro_gamblelow_3.started')
             # update status
-            gamble2_txt_inst_5a_low_3.status = STARTED
-            gamble2_txt_inst_5a_low_3.setAutoDraw(True)
+            intro_gamblelow_3.status = STARTED
+            intro_gamblelow_3.setAutoDraw(True)
         
-        # if gamble2_txt_inst_5a_low_3 is active this frame...
-        if gamble2_txt_inst_5a_low_3.status == STARTED:
+        # if intro_gamblelow_3 is active this frame...
+        if intro_gamblelow_3.status == STARTED:
             # update params
             pass
         
-        # *gamble1_prob_inst_5a_4* updates
+        # *intro_gambletop_txt_3* updates
         
-        # if gamble1_prob_inst_5a_4 is starting this frame...
-        if gamble1_prob_inst_5a_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if intro_gambletop_txt_3 is starting this frame...
+        if intro_gambletop_txt_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            gamble1_prob_inst_5a_4.frameNStart = frameN  # exact frame index
-            gamble1_prob_inst_5a_4.tStart = t  # local t and not account for scr refresh
-            gamble1_prob_inst_5a_4.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(gamble1_prob_inst_5a_4, 'tStartRefresh')  # time at next scr refresh
+            intro_gambletop_txt_3.frameNStart = frameN  # exact frame index
+            intro_gambletop_txt_3.tStart = t  # local t and not account for scr refresh
+            intro_gambletop_txt_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gambletop_txt_3, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'gamble1_prob_inst_5a_4.started')
+            thisExp.timestampOnFlip(win, 'intro_gambletop_txt_3.started')
             # update status
-            gamble1_prob_inst_5a_4.status = STARTED
-            gamble1_prob_inst_5a_4.setAutoDraw(True)
+            intro_gambletop_txt_3.status = STARTED
+            intro_gambletop_txt_3.setAutoDraw(True)
         
-        # if gamble1_prob_inst_5a_4 is active this frame...
-        if gamble1_prob_inst_5a_4.status == STARTED:
+        # if intro_gambletop_txt_3 is active this frame...
+        if intro_gambletop_txt_3.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_gambletop_p_3* updates
+        
+        # if intro_gambletop_p_3 is starting this frame...
+        if intro_gambletop_p_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_gambletop_p_3.frameNStart = frameN  # exact frame index
+            intro_gambletop_p_3.tStart = t  # local t and not account for scr refresh
+            intro_gambletop_p_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gambletop_p_3, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_gambletop_p_3.started')
+            # update status
+            intro_gambletop_p_3.status = STARTED
+            intro_gambletop_p_3.setAutoDraw(True)
+        
+        # if intro_gambletop_p_3 is active this frame...
+        if intro_gambletop_p_3.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_gamblelow_txt_3* updates
+        
+        # if intro_gamblelow_txt_3 is starting this frame...
+        if intro_gamblelow_txt_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_gamblelow_txt_3.frameNStart = frameN  # exact frame index
+            intro_gamblelow_txt_3.tStart = t  # local t and not account for scr refresh
+            intro_gamblelow_txt_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gamblelow_txt_3, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_gamblelow_txt_3.started')
+            # update status
+            intro_gamblelow_txt_3.status = STARTED
+            intro_gamblelow_txt_3.setAutoDraw(True)
+        
+        # if intro_gamblelow_txt_3 is active this frame...
+        if intro_gamblelow_txt_3.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_gamblelow_p_3* updates
+        
+        # if intro_gamblelow_p_3 is starting this frame...
+        if intro_gamblelow_p_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_gamblelow_p_3.frameNStart = frameN  # exact frame index
+            intro_gamblelow_p_3.tStart = t  # local t and not account for scr refresh
+            intro_gamblelow_p_3.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_gamblelow_p_3, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_gamblelow_p_3.started')
+            # update status
+            intro_gamblelow_p_3.status = STARTED
+            intro_gamblelow_p_3.setAutoDraw(True)
+        
+        # if intro_gamblelow_p_3 is active this frame...
+        if intro_gamblelow_p_3.status == STARTED:
             # update params
             pass
         
@@ -3747,16 +3760,16 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t2_outcome
     instructions_t2_outcome = data.Routine(
         name='instructions_t2_outcome',
-        components=[total_prompt_inst_5a_2, curr_total_inst_5a_2, fixation_inst_5a_5, p_outcome_square_3, intro_outcome_text_3, intro_outcome_text_4, intro_next_trial_txt, intro_next_trial_input],
+        components=[total_prompt_inst_5a_2, curr_total_inst_5a_2, p_outcome_square_3, intro_outcome_text_3, intro_next_trial_txt, intro_next_trial_input],
     )
     instructions_t2_outcome.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    curr_total_inst_5a_2.setText('$5.10')
-    p_outcome_square_3.setFillColor('green')
-    p_outcome_square_3.setPos((width, 0))
-    p_outcome_square_3.setSize((reward[1]*pie_size*2, reward[1]*pie_size*2))
-    p_outcome_square_3.setLineColor('green')
+    curr_total_inst_5a_2.setText('$5.50')
+    p_outcome_square_3.setFillColor('red')
+    p_outcome_square_3.setPos((0, 0))
+    p_outcome_square_3.setSize((0.4*option_size*2, 0.4*option_size*2))
+    p_outcome_square_3.setLineColor('red')
     # create starting attributes for intro_next_trial_input
     intro_next_trial_input.keys = []
     intro_next_trial_input.rt = []
@@ -3831,26 +3844,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *fixation_inst_5a_5* updates
-        
-        # if fixation_inst_5a_5 is starting this frame...
-        if fixation_inst_5a_5.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            fixation_inst_5a_5.frameNStart = frameN  # exact frame index
-            fixation_inst_5a_5.tStart = t  # local t and not account for scr refresh
-            fixation_inst_5a_5.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(fixation_inst_5a_5, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'fixation_inst_5a_5.started')
-            # update status
-            fixation_inst_5a_5.status = STARTED
-            fixation_inst_5a_5.setAutoDraw(True)
-        
-        # if fixation_inst_5a_5 is active this frame...
-        if fixation_inst_5a_5.status == STARTED:
-            # update params
-            pass
-        
         # *p_outcome_square_3* updates
         
         # if p_outcome_square_3 is starting this frame...
@@ -3888,26 +3881,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if intro_outcome_text_3 is active this frame...
         if intro_outcome_text_3.status == STARTED:
-            # update params
-            pass
-        
-        # *intro_outcome_text_4* updates
-        
-        # if intro_outcome_text_4 is starting this frame...
-        if intro_outcome_text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            intro_outcome_text_4.frameNStart = frameN  # exact frame index
-            intro_outcome_text_4.tStart = t  # local t and not account for scr refresh
-            intro_outcome_text_4.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(intro_outcome_text_4, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'intro_outcome_text_4.started')
-            # update status
-            intro_outcome_text_4.status = STARTED
-            intro_outcome_text_4.setAutoDraw(True)
-        
-        # if intro_outcome_text_4 is active this frame...
-        if intro_outcome_text_4.status == STARTED:
             # update params
             pass
         
@@ -5706,42 +5679,149 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             for paramName in thisPractice_trial:
                 globals()[paramName] = thisPractice_trial[paramName]
         
-        # --- Prepare to start Routine "p_gamble1_show" ---
-        # create an object to store info about Routine p_gamble1_show
-        p_gamble1_show = data.Routine(
-            name='p_gamble1_show',
-            components=[p_fixation_cross, p_gamble1_rew_text, p_gamble1_rew_text_low, p_gamble1_prob_text],
+        # --- Prepare to start Routine "p_options_show" ---
+        # create an object to store info about Routine p_options_show
+        p_options_show = data.Routine(
+            name='p_options_show',
+            components=[p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_choice],
         )
-        p_gamble1_show.status = NOT_STARTED
+        p_options_show.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        # Run 'Begin Routine' code from p_gamble1_code
-        p_gamble1_p = gambles[practice_trials.thisN][0]
-        p_gamble1_r = gambles[practice_trials.thisN][1]
+        # Run 'Begin Routine' code from code_9
+        # Determine the type of trial
         
-        gamble1_size = p_gamble1_r*pie_size
+        if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
+            sure_left = True
+            forced_trial = False
+        elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right
+            sure_left = False
+            forced_trial = False
+        elif (options_prac[practice_trials.thisN,0]==0) and (options_prac[practice_trials.thisN,1]==1): # forced gamble right
+            trial_side_left = False
+            forced_trial = True
+            forced_type_sure = False
+        elif (options_prac[practice_trials.thisN,4]==0) and (options_prac[practice_trials.thisN,5]==1): # forced gamble left
+            trial_side_left = True
+            forced_trial = True
+            forced_type_sure = False
+        elif (options_prac[practice_trials.thisN,1]==1): # forced sure left
+            trial_side_left = True
+            forced_trial = True
+            forced_type_sure = True
+        else: # forced sure right
+            trial_side_left = False
+            forced_trial = True
+            forced_type_sure = True
         
-        Gamble1_green = visual.Pie(win, fillColor = 'Green', colorSpace = 'rgb',start = 0,end = 3.6*p_gamble1_p,pos=(-width,0), radius=gamble1_size)
-        Gamble1_red = visual.Pie(win, fillColor = (-0.2,-0.2,-0.2), colorSpace = 'rgb',start = 3.6*p_gamble1_p,end = 360, pos=(-width,0), radius=gamble1_size)
         
-        timer = core.CountdownTimer(start = time_gamble_show)
+        # Determine the coordonates and components of the boxes
         
-        thisExp.addData("p_gamble1_p", p_gamble1_p) 
-        thisExp.addData("p_gamble1_r", p_gamble1_r) 
-        
-        #event.clearEvents()
-        p_gamble1_rew_text.setText(p_gambles_txt[practice_trials.thisN][1])
-        p_gamble1_rew_text_low.setText(p_gambles_txt[practice_trials.thisN][2])
-        p_gamble1_prob_text.setText(p_gambles_txt[practice_trials.thisN][0])
-        # store start times for p_gamble1_show
-        p_gamble1_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        p_gamble1_show.tStart = globalClock.getTime(format='float')
-        p_gamble1_show.status = STARTED
-        thisExp.addData('p_gamble1_show.started', p_gamble1_show.tStart)
-        p_gamble1_show.maxDuration = time_gamble_show
+        if not(forced_trial): # choice trial
+            x1 = -width
+            x2 = -width
+            x3 = width
+            x4 = width
+            if sure_left: # sure option on left side
+                y1 = 0
+                y2 = 2 # Not showing
+                y3 = height
+                y4 = -height
+                Mag1 = options_prac[practice_trials.thisN,0]
+                P1 = ""
+                Mag2 = 0
+                P2 = 0
+                Mag3 = options_prac[practice_trials.thisN,4]
+                P3 = options_prac[practice_trials.thisN,5]
+                Mag4 = options_prac[practice_trials.thisN,2]
+                P4 = options_prac[practice_trials.thisN,3]
+            else: # sure option on the right side
+                y1 = height
+                y2 = -height
+                y3 = 0
+                y4 = 2 # Not showing
+                Mag1 = options_prac[practice_trials.thisN,2]
+                P1 = options_prac[practice_trials.thisN,3]
+                Mag2 = options_prac[practice_trials.thisN,0]
+                P2 = options_prac[practice_trials.thisN,1]
+                Mag3 = options_prac[practice_trials.thisN,4]
+                P3 = options_prac[practice_trials.thisN,5]
+                Mag4 = 0
+                P4 = 0
+        else: # forced option
+            x1 = 0
+            x2 = 0
+            x3 = 0
+            x4 = 0
+            if forced_type_sure: # Forced sure option
+                y1 = 0
+                y2 = 2 # Not showing
+                y3 = 2 # Not showing
+                y4 = 2 # Not showing
+                if trial_side_left: # option on the left
+                    Mag1 = options_prac[practice_trials.thisN,0]
+                    P1 = options_prac[practice_trials.thisN,1]
+                else: # option on the right
+                    Mag1 = options_prac[practice_trials.thisN,4]
+                    P1 = options_prac[practice_trials.thisN,5]
+                Mag2 = 0
+                P2 = 0
+                Mag3 = 0
+                P3 = 0
+                Mag4 = 0
+                P4 = 0
+            else: # Forced gamble option
+                y1 = height
+                y2 = -height
+                y3 = 2 # Not showing
+                y4 = 2 # Not showing
+                if trial_side_left: # option on the left
+                    Mag1 = options_prac[practice_trials.thisN,2]
+                    P1 = options_prac[practice_trials.thisN,3]
+                    Mag2 = options_prac[practice_trials.thisN,0]
+                    P2 = options_prac[practice_trials.thisN,1]
+                else: # option on the right
+                    Mag1 = options_prac[practice_trials.thisN,4]
+                    P1 = options_prac[practice_trials.thisN,5]
+                    Mag2 = options_prac[practice_trials.thisN,2]
+                    P2 = options_prac[practice_trials.thisN,3]
+                Mag3 = 0
+                P3 = 0
+                Mag4 = 0
+                P4 = 0
+        p_box1.setPos((x1, y1))
+        p_box2.setPos((x2, y2))
+        p_box3.setPos((x3, y3))
+        p_box4.setPos((x4, y4))
+        p_box1_mag.setPos((x1, y1+0.03))
+        p_box1_mag.setText(Mag1)
+        p_box1_P.setPos((x1, y1-0.04))
+        p_box1_P.setText(P1)
+        p_box2_mag.setPos((x2, y2+0.03))
+        p_box2_mag.setText(Mag2)
+        p_box2_P.setPos((x2, y2-0.04))
+        p_box2_P.setText(P2)
+        p_box3_mag.setPos((x3, y3+0.03))
+        p_box3_mag.setText(Mag3)
+        p_box3_P.setPos((x3, y3-0.04))
+        p_box3_P.setText(P3)
+        p_box4_mag.setPos((x4, y4+0.03))
+        p_box4_mag.setText(Mag4)
+        p_box4_P.setPos((x4, y4-0.04))
+        p_box4_P.setText(P4)
+        # create starting attributes for p_choice
+        p_choice.keys = []
+        p_choice.rt = []
+        _p_choice_allKeys = []
+        # store start times for p_options_show
+        p_options_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        p_options_show.tStart = globalClock.getTime(format='float')
+        p_options_show.status = STARTED
+        thisExp.addData('p_options_show.started', p_options_show.tStart)
+        p_options_show.maxDuration = time_gamble_delay
         # keep track of which components have finished
-        p_gamble1_showComponents = p_gamble1_show.components
-        for thisComponent in p_gamble1_show.components:
+        p_options_showComponents = p_options_show.components
+        for thisComponent in p_options_show.components:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -5753,11 +5833,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
         frameN = -1
         
-        # --- Run Routine "p_gamble1_show" ---
+        # --- Run Routine "p_options_show" ---
         # if trial has changed, end Routine now
         if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
             continueRoutine = False
-        p_gamble1_show.forceEnded = routineForceEnded = not continueRoutine
+        p_options_show.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # get current time
             t = routineTimer.getTime()
@@ -5766,201 +5846,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             # is it time to end the Routine? (based on local clock)
-            if tThisFlip > p_gamble1_show.maxDuration-frameTolerance:
-                p_gamble1_show.maxDurationReached = True
+            if tThisFlip > p_options_show.maxDuration-frameTolerance:
+                p_options_show.maxDurationReached = True
                 continueRoutine = False
-            # Run 'Each Frame' code from p_gamble1_code
-            if timer.getTime()>0: # delay before previous routine + delay after showing the gamble
-                Gamble1_green.draw()
-                Gamble1_red.draw()
-            
-            # *p_fixation_cross* updates
-            
-            # if p_fixation_cross is starting this frame...
-            if p_fixation_cross.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                p_fixation_cross.frameNStart = frameN  # exact frame index
-                p_fixation_cross.tStart = t  # local t and not account for scr refresh
-                p_fixation_cross.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_fixation_cross, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_fixation_cross.started')
-                # update status
-                p_fixation_cross.status = STARTED
-                p_fixation_cross.setAutoDraw(True)
-            
-            # if p_fixation_cross is active this frame...
-            if p_fixation_cross.status == STARTED:
-                # update params
-                pass
-            
-            # *p_gamble1_rew_text* updates
-            
-            # if p_gamble1_rew_text is starting this frame...
-            if p_gamble1_rew_text.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
-                # keep track of start time/frame for later
-                p_gamble1_rew_text.frameNStart = frameN  # exact frame index
-                p_gamble1_rew_text.tStart = t  # local t and not account for scr refresh
-                p_gamble1_rew_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble1_rew_text, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble1_rew_text.started')
-                # update status
-                p_gamble1_rew_text.status = STARTED
-                p_gamble1_rew_text.setAutoDraw(True)
-            
-            # if p_gamble1_rew_text is active this frame...
-            if p_gamble1_rew_text.status == STARTED:
-                # update params
-                pass
-            
-            # *p_gamble1_rew_text_low* updates
-            
-            # if p_gamble1_rew_text_low is starting this frame...
-            if p_gamble1_rew_text_low.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                p_gamble1_rew_text_low.frameNStart = frameN  # exact frame index
-                p_gamble1_rew_text_low.tStart = t  # local t and not account for scr refresh
-                p_gamble1_rew_text_low.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble1_rew_text_low, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble1_rew_text_low.started')
-                # update status
-                p_gamble1_rew_text_low.status = STARTED
-                p_gamble1_rew_text_low.setAutoDraw(True)
-            
-            # if p_gamble1_rew_text_low is active this frame...
-            if p_gamble1_rew_text_low.status == STARTED:
-                # update params
-                pass
-            
-            # *p_gamble1_prob_text* updates
-            
-            # if p_gamble1_prob_text is starting this frame...
-            if p_gamble1_prob_text.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
-                # keep track of start time/frame for later
-                p_gamble1_prob_text.frameNStart = frameN  # exact frame index
-                p_gamble1_prob_text.tStart = t  # local t and not account for scr refresh
-                p_gamble1_prob_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble1_prob_text, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble1_prob_text.started')
-                # update status
-                p_gamble1_prob_text.status = STARTED
-                p_gamble1_prob_text.setAutoDraw(True)
-            
-            # if p_gamble1_prob_text is active this frame...
-            if p_gamble1_prob_text.status == STARTED:
-                # update params
-                pass
-            
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
-            if thisExp.status == FINISHED or endExpNow:
-                endExperiment(thisExp, win=win)
-                return
-            # pause experiment here if requested
-            if thisExp.status == PAUSED:
-                pauseExperiment(
-                    thisExp=thisExp, 
-                    win=win, 
-                    timers=[routineTimer], 
-                    playbackComponents=[]
-                )
-                # skip the frame we paused on
-                continue
-            
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                p_gamble1_show.forceEnded = routineForceEnded = True
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in p_gamble1_show.components:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # --- Ending Routine "p_gamble1_show" ---
-        for thisComponent in p_gamble1_show.components:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        # store stop times for p_gamble1_show
-        p_gamble1_show.tStop = globalClock.getTime(format='float')
-        p_gamble1_show.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('p_gamble1_show.stopped', p_gamble1_show.tStop)
-        # the Routine "p_gamble1_show" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        
-        # --- Prepare to start Routine "gamble_show_iti" ---
-        # create an object to store info about Routine gamble_show_iti
-        gamble_show_iti = data.Routine(
-            name='gamble_show_iti',
-            components=[text_8, p_fixation_cross_4],
-        )
-        gamble_show_iti.status = NOT_STARTED
-        continueRoutine = True
-        # update component parameters for each repeat
-        # store start times for gamble_show_iti
-        gamble_show_iti.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        gamble_show_iti.tStart = globalClock.getTime(format='float')
-        gamble_show_iti.status = STARTED
-        thisExp.addData('gamble_show_iti.started', gamble_show_iti.tStart)
-        gamble_show_iti.maxDuration = time_gamble_delay
-        # keep track of which components have finished
-        gamble_show_itiComponents = gamble_show_iti.components
-        for thisComponent in gamble_show_iti.components:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        frameN = -1
-        
-        # --- Run Routine "gamble_show_iti" ---
-        # if trial has changed, end Routine now
-        if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
-            continueRoutine = False
-        gamble_show_iti.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine:
-            # get current time
-            t = routineTimer.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            # is it time to end the Routine? (based on local clock)
-            if tThisFlip > gamble_show_iti.maxDuration-frameTolerance:
-                gamble_show_iti.maxDurationReached = True
-                continueRoutine = False
-            
-            # *text_8* updates
-            
-            # if text_8 is starting this frame...
-            if text_8.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                text_8.frameNStart = frameN  # exact frame index
-                text_8.tStart = t  # local t and not account for scr refresh
-                text_8.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_8, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'text_8.started')
-                # update status
-                text_8.status = STARTED
-                text_8.setAutoDraw(True)
-            
-            # if text_8 is active this frame...
-            if text_8.status == STARTED:
-                # update params
-                pass
             
             # *p_fixation_cross_4* updates
             
@@ -5982,609 +5870,274 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
-            if thisExp.status == FINISHED or endExpNow:
-                endExperiment(thisExp, win=win)
-                return
-            # pause experiment here if requested
-            if thisExp.status == PAUSED:
-                pauseExperiment(
-                    thisExp=thisExp, 
-                    win=win, 
-                    timers=[routineTimer], 
-                    playbackComponents=[]
-                )
-                # skip the frame we paused on
-                continue
+            # *p_box1* updates
             
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                gamble_show_iti.forceEnded = routineForceEnded = True
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in gamble_show_iti.components:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # --- Ending Routine "gamble_show_iti" ---
-        for thisComponent in gamble_show_iti.components:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        # store stop times for gamble_show_iti
-        gamble_show_iti.tStop = globalClock.getTime(format='float')
-        gamble_show_iti.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('gamble_show_iti.stopped', gamble_show_iti.tStop)
-        # the Routine "gamble_show_iti" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        
-        # --- Prepare to start Routine "p_gamble2_show" ---
-        # create an object to store info about Routine p_gamble2_show
-        p_gamble2_show = data.Routine(
-            name='p_gamble2_show',
-            components=[p_fixation_cross_2, p_gamble2_rew_text, p_gamble2_rew_text_low, p_gamble2_prob_text],
-        )
-        p_gamble2_show.status = NOT_STARTED
-        continueRoutine = True
-        # update component parameters for each repeat
-        # Run 'Begin Routine' code from p_gamble2_code
-        p_gamble2_p = gambles[practice_trials.thisN][2]
-        p_gamble2_r = gambles[practice_trials.thisN][3]
-        
-        gamble2_size = p_gamble2_r*pie_size
-        
-        Gamble2_green = visual.Pie(win, fillColor = 'Green', colorSpace = 'rgb',start = 0,end = 3.6*p_gamble2_p,pos=(width,0), radius=gamble2_size)
-        Gamble2_red = visual.Pie(win, fillColor = (-0.2,-0.2,-0.2), colorSpace = 'rgb',start = 3.6*p_gamble2_p,end = 360, pos=(width,0), radius=gamble2_size)
-        
-        timer = core.CountdownTimer(time_gamble_show+time_gamble_delay)
-        
-        thisExp.addData("p_gamble2_p", p_gamble2_p) 
-        thisExp.addData("p_gamble2_r", p_gamble2_r)
-        p_gamble2_rew_text.setText(p_gambles_txt[practice_trials.thisN][4])
-        p_gamble2_rew_text_low.setText(p_gambles_txt[practice_trials.thisN][5])
-        p_gamble2_prob_text.setText(p_gambles_txt[practice_trials.thisN][3])
-        # store start times for p_gamble2_show
-        p_gamble2_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        p_gamble2_show.tStart = globalClock.getTime(format='float')
-        p_gamble2_show.status = STARTED
-        thisExp.addData('p_gamble2_show.started', p_gamble2_show.tStart)
-        p_gamble2_show.maxDuration = time_gamble_show
-        # keep track of which components have finished
-        p_gamble2_showComponents = p_gamble2_show.components
-        for thisComponent in p_gamble2_show.components:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        frameN = -1
-        
-        # --- Run Routine "p_gamble2_show" ---
-        # if trial has changed, end Routine now
-        if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
-            continueRoutine = False
-        p_gamble2_show.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine:
-            # get current time
-            t = routineTimer.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            # is it time to end the Routine? (based on local clock)
-            if tThisFlip > p_gamble2_show.maxDuration-frameTolerance:
-                p_gamble2_show.maxDurationReached = True
-                continueRoutine = False
-            # Run 'Each Frame' code from p_gamble2_code
-            if timer.getTime()>time_gamble_delay:
-                Gamble2_green.draw()
-                Gamble2_red.draw()
-            
-            # *p_fixation_cross_2* updates
-            
-            # if p_fixation_cross_2 is starting this frame...
-            if p_fixation_cross_2.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # if p_box1 is starting this frame...
+            if p_box1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_fixation_cross_2.frameNStart = frameN  # exact frame index
-                p_fixation_cross_2.tStart = t  # local t and not account for scr refresh
-                p_fixation_cross_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_fixation_cross_2, 'tStartRefresh')  # time at next scr refresh
+                p_box1.frameNStart = frameN  # exact frame index
+                p_box1.tStart = t  # local t and not account for scr refresh
+                p_box1.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_fixation_cross_2.started')
+                thisExp.timestampOnFlip(win, 'p_box1.started')
                 # update status
-                p_fixation_cross_2.status = STARTED
-                p_fixation_cross_2.setAutoDraw(True)
+                p_box1.status = STARTED
+                p_box1.setAutoDraw(True)
             
-            # if p_fixation_cross_2 is active this frame...
-            if p_fixation_cross_2.status == STARTED:
+            # if p_box1 is active this frame...
+            if p_box1.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble2_rew_text* updates
+            # *p_box2* updates
             
-            # if p_gamble2_rew_text is starting this frame...
-            if p_gamble2_rew_text.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # if p_box2 is starting this frame...
+            if p_box2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble2_rew_text.frameNStart = frameN  # exact frame index
-                p_gamble2_rew_text.tStart = t  # local t and not account for scr refresh
-                p_gamble2_rew_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble2_rew_text, 'tStartRefresh')  # time at next scr refresh
+                p_box2.frameNStart = frameN  # exact frame index
+                p_box2.tStart = t  # local t and not account for scr refresh
+                p_box2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble2_rew_text.started')
+                thisExp.timestampOnFlip(win, 'p_box2.started')
                 # update status
-                p_gamble2_rew_text.status = STARTED
-                p_gamble2_rew_text.setAutoDraw(True)
+                p_box2.status = STARTED
+                p_box2.setAutoDraw(True)
             
-            # if p_gamble2_rew_text is active this frame...
-            if p_gamble2_rew_text.status == STARTED:
+            # if p_box2 is active this frame...
+            if p_box2.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble2_rew_text_low* updates
+            # *p_box3* updates
             
-            # if p_gamble2_rew_text_low is starting this frame...
-            if p_gamble2_rew_text_low.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box3 is starting this frame...
+            if p_box3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble2_rew_text_low.frameNStart = frameN  # exact frame index
-                p_gamble2_rew_text_low.tStart = t  # local t and not account for scr refresh
-                p_gamble2_rew_text_low.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble2_rew_text_low, 'tStartRefresh')  # time at next scr refresh
+                p_box3.frameNStart = frameN  # exact frame index
+                p_box3.tStart = t  # local t and not account for scr refresh
+                p_box3.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble2_rew_text_low.started')
+                thisExp.timestampOnFlip(win, 'p_box3.started')
                 # update status
-                p_gamble2_rew_text_low.status = STARTED
-                p_gamble2_rew_text_low.setAutoDraw(True)
+                p_box3.status = STARTED
+                p_box3.setAutoDraw(True)
             
-            # if p_gamble2_rew_text_low is active this frame...
-            if p_gamble2_rew_text_low.status == STARTED:
+            # if p_box3 is active this frame...
+            if p_box3.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble2_prob_text* updates
+            # *p_box4* updates
             
-            # if p_gamble2_prob_text is starting this frame...
-            if p_gamble2_prob_text.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # if p_box4 is starting this frame...
+            if p_box4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble2_prob_text.frameNStart = frameN  # exact frame index
-                p_gamble2_prob_text.tStart = t  # local t and not account for scr refresh
-                p_gamble2_prob_text.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble2_prob_text, 'tStartRefresh')  # time at next scr refresh
+                p_box4.frameNStart = frameN  # exact frame index
+                p_box4.tStart = t  # local t and not account for scr refresh
+                p_box4.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble2_prob_text.started')
+                thisExp.timestampOnFlip(win, 'p_box4.started')
                 # update status
-                p_gamble2_prob_text.status = STARTED
-                p_gamble2_prob_text.setAutoDraw(True)
+                p_box4.status = STARTED
+                p_box4.setAutoDraw(True)
             
-            # if p_gamble2_prob_text is active this frame...
-            if p_gamble2_prob_text.status == STARTED:
+            # if p_box4 is active this frame...
+            if p_box4.status == STARTED:
                 # update params
                 pass
             
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
-            if thisExp.status == FINISHED or endExpNow:
-                endExperiment(thisExp, win=win)
-                return
-            # pause experiment here if requested
-            if thisExp.status == PAUSED:
-                pauseExperiment(
-                    thisExp=thisExp, 
-                    win=win, 
-                    timers=[routineTimer], 
-                    playbackComponents=[]
-                )
-                # skip the frame we paused on
-                continue
+            # *p_box1_mag* updates
             
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                p_gamble2_show.forceEnded = routineForceEnded = True
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in p_gamble2_show.components:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # --- Ending Routine "p_gamble2_show" ---
-        for thisComponent in p_gamble2_show.components:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        # store stop times for p_gamble2_show
-        p_gamble2_show.tStop = globalClock.getTime(format='float')
-        p_gamble2_show.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('p_gamble2_show.stopped', p_gamble2_show.tStop)
-        # the Routine "p_gamble2_show" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        
-        # --- Prepare to start Routine "gamble_show_iti" ---
-        # create an object to store info about Routine gamble_show_iti
-        gamble_show_iti = data.Routine(
-            name='gamble_show_iti',
-            components=[text_8, p_fixation_cross_4],
-        )
-        gamble_show_iti.status = NOT_STARTED
-        continueRoutine = True
-        # update component parameters for each repeat
-        # store start times for gamble_show_iti
-        gamble_show_iti.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        gamble_show_iti.tStart = globalClock.getTime(format='float')
-        gamble_show_iti.status = STARTED
-        thisExp.addData('gamble_show_iti.started', gamble_show_iti.tStart)
-        gamble_show_iti.maxDuration = time_gamble_delay
-        # keep track of which components have finished
-        gamble_show_itiComponents = gamble_show_iti.components
-        for thisComponent in gamble_show_iti.components:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        frameN = -1
-        
-        # --- Run Routine "gamble_show_iti" ---
-        # if trial has changed, end Routine now
-        if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
-            continueRoutine = False
-        gamble_show_iti.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine:
-            # get current time
-            t = routineTimer.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            # is it time to end the Routine? (based on local clock)
-            if tThisFlip > gamble_show_iti.maxDuration-frameTolerance:
-                gamble_show_iti.maxDurationReached = True
-                continueRoutine = False
-            
-            # *text_8* updates
-            
-            # if text_8 is starting this frame...
-            if text_8.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box1_mag is starting this frame...
+            if p_box1_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                text_8.frameNStart = frameN  # exact frame index
-                text_8.tStart = t  # local t and not account for scr refresh
-                text_8.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_8, 'tStartRefresh')  # time at next scr refresh
+                p_box1_mag.frameNStart = frameN  # exact frame index
+                p_box1_mag.tStart = t  # local t and not account for scr refresh
+                p_box1_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_mag, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'text_8.started')
+                thisExp.timestampOnFlip(win, 'p_box1_mag.started')
                 # update status
-                text_8.status = STARTED
-                text_8.setAutoDraw(True)
+                p_box1_mag.status = STARTED
+                p_box1_mag.setAutoDraw(True)
             
-            # if text_8 is active this frame...
-            if text_8.status == STARTED:
+            # if p_box1_mag is active this frame...
+            if p_box1_mag.status == STARTED:
                 # update params
                 pass
             
-            # *p_fixation_cross_4* updates
+            # *p_box1_P* updates
             
-            # if p_fixation_cross_4 is starting this frame...
-            if p_fixation_cross_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box1_P is starting this frame...
+            if p_box1_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_fixation_cross_4.frameNStart = frameN  # exact frame index
-                p_fixation_cross_4.tStart = t  # local t and not account for scr refresh
-                p_fixation_cross_4.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_fixation_cross_4, 'tStartRefresh')  # time at next scr refresh
+                p_box1_P.frameNStart = frameN  # exact frame index
+                p_box1_P.tStart = t  # local t and not account for scr refresh
+                p_box1_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_P, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_fixation_cross_4.started')
+                thisExp.timestampOnFlip(win, 'p_box1_P.started')
                 # update status
-                p_fixation_cross_4.status = STARTED
-                p_fixation_cross_4.setAutoDraw(True)
+                p_box1_P.status = STARTED
+                p_box1_P.setAutoDraw(True)
             
-            # if p_fixation_cross_4 is active this frame...
-            if p_fixation_cross_4.status == STARTED:
+            # if p_box1_P is active this frame...
+            if p_box1_P.status == STARTED:
                 # update params
                 pass
             
-            # check for quit (typically the Esc key)
-            if defaultKeyboard.getKeys(keyList=["escape"]):
-                thisExp.status = FINISHED
-            if thisExp.status == FINISHED or endExpNow:
-                endExperiment(thisExp, win=win)
-                return
-            # pause experiment here if requested
-            if thisExp.status == PAUSED:
-                pauseExperiment(
-                    thisExp=thisExp, 
-                    win=win, 
-                    timers=[routineTimer], 
-                    playbackComponents=[]
-                )
-                # skip the frame we paused on
-                continue
+            # *p_box2_mag* updates
             
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                gamble_show_iti.forceEnded = routineForceEnded = True
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in gamble_show_iti.components:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # --- Ending Routine "gamble_show_iti" ---
-        for thisComponent in gamble_show_iti.components:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        # store stop times for gamble_show_iti
-        gamble_show_iti.tStop = globalClock.getTime(format='float')
-        gamble_show_iti.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('gamble_show_iti.stopped', gamble_show_iti.tStop)
-        # the Routine "gamble_show_iti" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        
-        # --- Prepare to start Routine "p_gamble_choice" ---
-        # create an object to store info about Routine p_gamble_choice
-        p_gamble_choice = data.Routine(
-            name='p_gamble_choice',
-            components=[p_fixation_cross_3, p_gamble1_rew_text_2, p_gamble1_rew_text_low_2, p_gamble1_prob_text_2, p_gamble2_rew_text_2, p_gamble2_rew_text_low_2, p_gamble2_prob_text_2, choice_prac, Choose_text_p],
-        )
-        p_gamble_choice.status = NOT_STARTED
-        continueRoutine = True
-        # update component parameters for each repeat
-        p_gamble1_rew_text_2.setText(p_gambles_txt[practice_trials.thisN][1])
-        p_gamble1_rew_text_low_2.setText(p_gambles_txt[practice_trials.thisN][2])
-        p_gamble1_prob_text_2.setText(p_gambles_txt[practice_trials.thisN][0])
-        p_gamble2_rew_text_2.setText(p_gambles_txt[practice_trials.thisN][4])
-        p_gamble2_rew_text_low_2.setText(p_gambles_txt[practice_trials.thisN][5])
-        p_gamble2_prob_text_2.setText(p_gambles_txt[practice_trials.thisN][3])
-        # create starting attributes for choice_prac
-        choice_prac.keys = []
-        choice_prac.rt = []
-        _choice_prac_allKeys = []
-        # store start times for p_gamble_choice
-        p_gamble_choice.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        p_gamble_choice.tStart = globalClock.getTime(format='float')
-        p_gamble_choice.status = STARTED
-        thisExp.addData('p_gamble_choice.started', p_gamble_choice.tStart)
-        p_gamble_choice.maxDuration = None
-        # keep track of which components have finished
-        p_gamble_choiceComponents = p_gamble_choice.components
-        for thisComponent in p_gamble_choice.components:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        frameN = -1
-        
-        # --- Run Routine "p_gamble_choice" ---
-        # if trial has changed, end Routine now
-        if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
-            continueRoutine = False
-        p_gamble_choice.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine:
-            # get current time
-            t = routineTimer.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            # Run 'Each Frame' code from p_gamble_choice_code
-            Gamble1_green.draw()
-            Gamble1_red.draw()
-            Gamble2_green.draw()
-            Gamble2_red.draw()
-            
-            # *p_fixation_cross_3* updates
-            
-            # if p_fixation_cross_3 is starting this frame...
-            if p_fixation_cross_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box2_mag is starting this frame...
+            if p_box2_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_fixation_cross_3.frameNStart = frameN  # exact frame index
-                p_fixation_cross_3.tStart = t  # local t and not account for scr refresh
-                p_fixation_cross_3.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_fixation_cross_3, 'tStartRefresh')  # time at next scr refresh
+                p_box2_mag.frameNStart = frameN  # exact frame index
+                p_box2_mag.tStart = t  # local t and not account for scr refresh
+                p_box2_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_mag, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_fixation_cross_3.started')
+                thisExp.timestampOnFlip(win, 'p_box2_mag.started')
                 # update status
-                p_fixation_cross_3.status = STARTED
-                p_fixation_cross_3.setAutoDraw(True)
+                p_box2_mag.status = STARTED
+                p_box2_mag.setAutoDraw(True)
             
-            # if p_fixation_cross_3 is active this frame...
-            if p_fixation_cross_3.status == STARTED:
+            # if p_box2_mag is active this frame...
+            if p_box2_mag.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble1_rew_text_2* updates
+            # *p_box2_P* updates
             
-            # if p_gamble1_rew_text_2 is starting this frame...
-            if p_gamble1_rew_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box2_P is starting this frame...
+            if p_box2_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble1_rew_text_2.frameNStart = frameN  # exact frame index
-                p_gamble1_rew_text_2.tStart = t  # local t and not account for scr refresh
-                p_gamble1_rew_text_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble1_rew_text_2, 'tStartRefresh')  # time at next scr refresh
+                p_box2_P.frameNStart = frameN  # exact frame index
+                p_box2_P.tStart = t  # local t and not account for scr refresh
+                p_box2_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_P, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble1_rew_text_2.started')
+                thisExp.timestampOnFlip(win, 'p_box2_P.started')
                 # update status
-                p_gamble1_rew_text_2.status = STARTED
-                p_gamble1_rew_text_2.setAutoDraw(True)
+                p_box2_P.status = STARTED
+                p_box2_P.setAutoDraw(True)
             
-            # if p_gamble1_rew_text_2 is active this frame...
-            if p_gamble1_rew_text_2.status == STARTED:
+            # if p_box2_P is active this frame...
+            if p_box2_P.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble1_rew_text_low_2* updates
+            # *p_box3_mag* updates
             
-            # if p_gamble1_rew_text_low_2 is starting this frame...
-            if p_gamble1_rew_text_low_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box3_mag is starting this frame...
+            if p_box3_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble1_rew_text_low_2.frameNStart = frameN  # exact frame index
-                p_gamble1_rew_text_low_2.tStart = t  # local t and not account for scr refresh
-                p_gamble1_rew_text_low_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble1_rew_text_low_2, 'tStartRefresh')  # time at next scr refresh
+                p_box3_mag.frameNStart = frameN  # exact frame index
+                p_box3_mag.tStart = t  # local t and not account for scr refresh
+                p_box3_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_mag, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble1_rew_text_low_2.started')
+                thisExp.timestampOnFlip(win, 'p_box3_mag.started')
                 # update status
-                p_gamble1_rew_text_low_2.status = STARTED
-                p_gamble1_rew_text_low_2.setAutoDraw(True)
+                p_box3_mag.status = STARTED
+                p_box3_mag.setAutoDraw(True)
             
-            # if p_gamble1_rew_text_low_2 is active this frame...
-            if p_gamble1_rew_text_low_2.status == STARTED:
+            # if p_box3_mag is active this frame...
+            if p_box3_mag.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble1_prob_text_2* updates
+            # *p_box3_P* updates
             
-            # if p_gamble1_prob_text_2 is starting this frame...
-            if p_gamble1_prob_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box3_P is starting this frame...
+            if p_box3_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble1_prob_text_2.frameNStart = frameN  # exact frame index
-                p_gamble1_prob_text_2.tStart = t  # local t and not account for scr refresh
-                p_gamble1_prob_text_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble1_prob_text_2, 'tStartRefresh')  # time at next scr refresh
+                p_box3_P.frameNStart = frameN  # exact frame index
+                p_box3_P.tStart = t  # local t and not account for scr refresh
+                p_box3_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_P, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble1_prob_text_2.started')
+                thisExp.timestampOnFlip(win, 'p_box3_P.started')
                 # update status
-                p_gamble1_prob_text_2.status = STARTED
-                p_gamble1_prob_text_2.setAutoDraw(True)
+                p_box3_P.status = STARTED
+                p_box3_P.setAutoDraw(True)
             
-            # if p_gamble1_prob_text_2 is active this frame...
-            if p_gamble1_prob_text_2.status == STARTED:
+            # if p_box3_P is active this frame...
+            if p_box3_P.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble2_rew_text_2* updates
+            # *p_box4_mag* updates
             
-            # if p_gamble2_rew_text_2 is starting this frame...
-            if p_gamble2_rew_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box4_mag is starting this frame...
+            if p_box4_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble2_rew_text_2.frameNStart = frameN  # exact frame index
-                p_gamble2_rew_text_2.tStart = t  # local t and not account for scr refresh
-                p_gamble2_rew_text_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble2_rew_text_2, 'tStartRefresh')  # time at next scr refresh
+                p_box4_mag.frameNStart = frameN  # exact frame index
+                p_box4_mag.tStart = t  # local t and not account for scr refresh
+                p_box4_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_mag, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble2_rew_text_2.started')
+                thisExp.timestampOnFlip(win, 'p_box4_mag.started')
                 # update status
-                p_gamble2_rew_text_2.status = STARTED
-                p_gamble2_rew_text_2.setAutoDraw(True)
+                p_box4_mag.status = STARTED
+                p_box4_mag.setAutoDraw(True)
             
-            # if p_gamble2_rew_text_2 is active this frame...
-            if p_gamble2_rew_text_2.status == STARTED:
+            # if p_box4_mag is active this frame...
+            if p_box4_mag.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble2_rew_text_low_2* updates
+            # *p_box4_P* updates
             
-            # if p_gamble2_rew_text_low_2 is starting this frame...
-            if p_gamble2_rew_text_low_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box4_P is starting this frame...
+            if p_box4_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_gamble2_rew_text_low_2.frameNStart = frameN  # exact frame index
-                p_gamble2_rew_text_low_2.tStart = t  # local t and not account for scr refresh
-                p_gamble2_rew_text_low_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble2_rew_text_low_2, 'tStartRefresh')  # time at next scr refresh
+                p_box4_P.frameNStart = frameN  # exact frame index
+                p_box4_P.tStart = t  # local t and not account for scr refresh
+                p_box4_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_P, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble2_rew_text_low_2.started')
+                thisExp.timestampOnFlip(win, 'p_box4_P.started')
                 # update status
-                p_gamble2_rew_text_low_2.status = STARTED
-                p_gamble2_rew_text_low_2.setAutoDraw(True)
+                p_box4_P.status = STARTED
+                p_box4_P.setAutoDraw(True)
             
-            # if p_gamble2_rew_text_low_2 is active this frame...
-            if p_gamble2_rew_text_low_2.status == STARTED:
+            # if p_box4_P is active this frame...
+            if p_box4_P.status == STARTED:
                 # update params
                 pass
             
-            # *p_gamble2_prob_text_2* updates
-            
-            # if p_gamble2_prob_text_2 is starting this frame...
-            if p_gamble2_prob_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                p_gamble2_prob_text_2.frameNStart = frameN  # exact frame index
-                p_gamble2_prob_text_2.tStart = t  # local t and not account for scr refresh
-                p_gamble2_prob_text_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_gamble2_prob_text_2, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_gamble2_prob_text_2.started')
-                # update status
-                p_gamble2_prob_text_2.status = STARTED
-                p_gamble2_prob_text_2.setAutoDraw(True)
-            
-            # if p_gamble2_prob_text_2 is active this frame...
-            if p_gamble2_prob_text_2.status == STARTED:
-                # update params
-                pass
-            
-            # *choice_prac* updates
+            # *p_choice* updates
             waitOnFlip = False
             
-            # if choice_prac is starting this frame...
-            if choice_prac.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_choice is starting this frame...
+            if p_choice.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                choice_prac.frameNStart = frameN  # exact frame index
-                choice_prac.tStart = t  # local t and not account for scr refresh
-                choice_prac.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(choice_prac, 'tStartRefresh')  # time at next scr refresh
+                p_choice.frameNStart = frameN  # exact frame index
+                p_choice.tStart = t  # local t and not account for scr refresh
+                p_choice.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_choice, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'choice_prac.started')
+                thisExp.timestampOnFlip(win, 'p_choice.started')
                 # update status
-                choice_prac.status = STARTED
+                p_choice.status = STARTED
                 # keyboard checking is just starting
                 waitOnFlip = True
-                win.callOnFlip(choice_prac.clock.reset)  # t=0 on next screen flip
-                win.callOnFlip(choice_prac.clearEvents, eventType='keyboard')  # clear events on next screen flip
-            if choice_prac.status == STARTED and not waitOnFlip:
-                theseKeys = choice_prac.getKeys(keyList=['left','right'], ignoreKeys=["escape"], waitRelease=False)
-                _choice_prac_allKeys.extend(theseKeys)
-                if len(_choice_prac_allKeys):
-                    choice_prac.keys = _choice_prac_allKeys[-1].name  # just the last key pressed
-                    choice_prac.rt = _choice_prac_allKeys[-1].rt
-                    choice_prac.duration = _choice_prac_allKeys[-1].duration
+                win.callOnFlip(p_choice.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(p_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if p_choice.status == STARTED and not waitOnFlip:
+                theseKeys = p_choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
+                _p_choice_allKeys.extend(theseKeys)
+                if len(_p_choice_allKeys):
+                    p_choice.keys = _p_choice_allKeys[-1].name  # just the last key pressed
+                    p_choice.rt = _p_choice_allKeys[-1].rt
+                    p_choice.duration = _p_choice_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
             
-            # *Choose_text_p* updates
-            
-            # if Choose_text_p is starting this frame...
-            if Choose_text_p.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                Choose_text_p.frameNStart = frameN  # exact frame index
-                Choose_text_p.tStart = t  # local t and not account for scr refresh
-                Choose_text_p.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(Choose_text_p, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'Choose_text_p.started')
-                # update status
-                Choose_text_p.status = STARTED
-                Choose_text_p.setAutoDraw(True)
-            
-            # if Choose_text_p is active this frame...
-            if Choose_text_p.status == STARTED:
-                # update params
-                pass
-            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -6604,10 +6157,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
-                p_gamble_choice.forceEnded = routineForceEnded = True
+                p_options_show.forceEnded = routineForceEnded = True
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in p_gamble_choice.components:
+            for thisComponent in p_options_show.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -6616,65 +6169,68 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # --- Ending Routine "p_gamble_choice" ---
-        for thisComponent in p_gamble_choice.components:
+        # --- Ending Routine "p_options_show" ---
+        for thisComponent in p_options_show.components:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # store stop times for p_gamble_choice
-        p_gamble_choice.tStop = globalClock.getTime(format='float')
-        p_gamble_choice.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('p_gamble_choice.stopped', p_gamble_choice.tStop)
+        # store stop times for p_options_show
+        p_options_show.tStop = globalClock.getTime(format='float')
+        p_options_show.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('p_options_show.stopped', p_options_show.tStop)
         # check responses
-        if choice_prac.keys in ['', [], None]:  # No response was made
-            choice_prac.keys = None
-        practice_trials.addData('choice_prac.keys',choice_prac.keys)
-        if choice_prac.keys != None:  # we had a response
-            practice_trials.addData('choice_prac.rt', choice_prac.rt)
-            practice_trials.addData('choice_prac.duration', choice_prac.duration)
-        # the Routine "p_gamble_choice" was not non-slip safe, so reset the non-slip timer
+        if p_choice.keys in ['', [], None]:  # No response was made
+            p_choice.keys = None
+        practice_trials.addData('p_choice.keys',p_choice.keys)
+        if p_choice.keys != None:  # we had a response
+            practice_trials.addData('p_choice.rt', p_choice.rt)
+            practice_trials.addData('p_choice.duration', p_choice.duration)
+        # the Routine "p_options_show" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
-        # --- Prepare to start Routine "p_chosen_gamble" ---
-        # create an object to store info about Routine p_chosen_gamble
-        p_chosen_gamble = data.Routine(
-            name='p_chosen_gamble',
-            components=[fixation_5, p_chosen_reward_txt, p_chosen_reward_txt_low, p_chosen_prob_txt],
+        # --- Prepare to start Routine "p_chosen_option" ---
+        # create an object to store info about Routine p_chosen_option
+        p_chosen_option = data.Routine(
+            name='p_chosen_option',
+            components=[fixation_5, p_box1_2, p_box2_2, p_box3_2, p_box4_2, p_box1_mag_2, p_box1_P_2, p_box2_mag_2, p_box2_P_2],
         )
-        p_chosen_gamble.status = NOT_STARTED
+        p_chosen_option.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        # Run 'Begin Routine' code from p_chosen_gamble_code
+        # Run 'Begin Routine' code from p_chosen_option_code
         p_inputs = event.getKeys()
         p_userchoice = p_inputs[-1]
         
         if p_userchoice == 'left':
-            choice_pos = -width
-            rewa_txt = gambles_txt[practice_trials.thisN][1]
-            prob_txt = gambles_txt[practice_trials.thisN][0]
-            gamble_size = gamble1_size # Will be used for the outcome square size (next rountine)
+            y3 = 0
+            y4 = 0
             choice = 0
         else:
-            choice_pos = width
-            rewa_txt = gambles_txt[practice_trials.thisN][3]
-            prob_txt = gambles_txt[practice_trials.thisN][2]
-            gamble_size = gamble2_size # Will be used for the outcome square size (next rountine)
-            choice= 1
+            y1 = 0
+            y2 = 0
+            choice = 1
+        
         thisExp.addData('choice_prac', choice)
-        p_chosen_reward_txt.setPos((choice_pos, reward[2]+rew_txt_margin+0.03))
-        p_chosen_reward_txt.setText(rewa_txt)
-        p_chosen_reward_txt_low.setPos((choice_pos, reward[2]+rew_txt_margin))
-        p_chosen_reward_txt_low.setText(rewa_txt_low)
-        p_chosen_prob_txt.setPos((choice_pos, 0))
-        p_chosen_prob_txt.setText(prob_txt)
-        # store start times for p_chosen_gamble
-        p_chosen_gamble.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        p_chosen_gamble.tStart = globalClock.getTime(format='float')
-        p_chosen_gamble.status = STARTED
-        thisExp.addData('p_chosen_gamble.started', p_chosen_gamble.tStart)
-        p_chosen_gamble.maxDuration = time_chosen_gamble
+        p_box1_2.setPos((x1, y1))
+        p_box2_2.setPos((x2, y2))
+        p_box3_2.setPos((x3, y3))
+        p_box4_2.setPos((x4, y4))
+        p_box1_mag_2.setPos((x1, y1+0.03))
+        p_box1_mag_2.setText(Mag1)
+        p_box1_P_2.setPos((x1, y1-0.04))
+        p_box1_P_2.setText(P1)
+        p_box2_mag_2.setPos((x2, y2+0.03))
+        p_box2_mag_2.setText(Mag2)
+        p_box2_P_2.setPos((x2, y2-0.04))
+        p_box2_P_2.setText(P2)
+        # store start times for p_chosen_option
+        p_chosen_option.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        p_chosen_option.tStart = globalClock.getTime(format='float')
+        p_chosen_option.status = STARTED
+        thisExp.addData('p_chosen_option.started', p_chosen_option.tStart)
+        p_chosen_option.maxDuration = time_chosen_gamble
         # keep track of which components have finished
-        p_chosen_gambleComponents = p_chosen_gamble.components
-        for thisComponent in p_chosen_gamble.components:
+        p_chosen_optionComponents = p_chosen_option.components
+        for thisComponent in p_chosen_option.components:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -6686,11 +6242,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
         frameN = -1
         
-        # --- Run Routine "p_chosen_gamble" ---
+        # --- Run Routine "p_chosen_option" ---
         # if trial has changed, end Routine now
         if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
             continueRoutine = False
-        p_chosen_gamble.forceEnded = routineForceEnded = not continueRoutine
+        p_chosen_option.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # get current time
             t = routineTimer.getTime()
@@ -6699,16 +6255,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             # is it time to end the Routine? (based on local clock)
-            if tThisFlip > p_chosen_gamble.maxDuration-frameTolerance:
-                p_chosen_gamble.maxDurationReached = True
+            if tThisFlip > p_chosen_option.maxDuration-frameTolerance:
+                p_chosen_option.maxDurationReached = True
                 continueRoutine = False
-            # Run 'Each Frame' code from p_chosen_gamble_code
-            if p_userchoice == 'left':
-                Gamble1_green.draw()
-                Gamble1_red.draw()
-            else:
-                Gamble2_green.draw()
-                Gamble2_red.draw()
             
             # *fixation_5* updates
             
@@ -6730,63 +6279,163 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *p_chosen_reward_txt* updates
+            # *p_box1_2* updates
             
-            # if p_chosen_reward_txt is starting this frame...
-            if p_chosen_reward_txt.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box1_2 is starting this frame...
+            if p_box1_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_chosen_reward_txt.frameNStart = frameN  # exact frame index
-                p_chosen_reward_txt.tStart = t  # local t and not account for scr refresh
-                p_chosen_reward_txt.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_chosen_reward_txt, 'tStartRefresh')  # time at next scr refresh
+                p_box1_2.frameNStart = frameN  # exact frame index
+                p_box1_2.tStart = t  # local t and not account for scr refresh
+                p_box1_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_2, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_chosen_reward_txt.started')
+                thisExp.timestampOnFlip(win, 'p_box1_2.started')
                 # update status
-                p_chosen_reward_txt.status = STARTED
-                p_chosen_reward_txt.setAutoDraw(True)
+                p_box1_2.status = STARTED
+                p_box1_2.setAutoDraw(True)
             
-            # if p_chosen_reward_txt is active this frame...
-            if p_chosen_reward_txt.status == STARTED:
+            # if p_box1_2 is active this frame...
+            if p_box1_2.status == STARTED:
                 # update params
                 pass
             
-            # *p_chosen_reward_txt_low* updates
+            # *p_box2_2* updates
             
-            # if p_chosen_reward_txt_low is starting this frame...
-            if p_chosen_reward_txt_low.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box2_2 is starting this frame...
+            if p_box2_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_chosen_reward_txt_low.frameNStart = frameN  # exact frame index
-                p_chosen_reward_txt_low.tStart = t  # local t and not account for scr refresh
-                p_chosen_reward_txt_low.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_chosen_reward_txt_low, 'tStartRefresh')  # time at next scr refresh
+                p_box2_2.frameNStart = frameN  # exact frame index
+                p_box2_2.tStart = t  # local t and not account for scr refresh
+                p_box2_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_2, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_chosen_reward_txt_low.started')
+                thisExp.timestampOnFlip(win, 'p_box2_2.started')
                 # update status
-                p_chosen_reward_txt_low.status = STARTED
-                p_chosen_reward_txt_low.setAutoDraw(True)
+                p_box2_2.status = STARTED
+                p_box2_2.setAutoDraw(True)
             
-            # if p_chosen_reward_txt_low is active this frame...
-            if p_chosen_reward_txt_low.status == STARTED:
+            # if p_box2_2 is active this frame...
+            if p_box2_2.status == STARTED:
                 # update params
                 pass
             
-            # *p_chosen_prob_txt* updates
+            # *p_box3_2* updates
             
-            # if p_chosen_prob_txt is starting this frame...
-            if p_chosen_prob_txt.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if p_box3_2 is starting this frame...
+            if p_box3_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                p_chosen_prob_txt.frameNStart = frameN  # exact frame index
-                p_chosen_prob_txt.tStart = t  # local t and not account for scr refresh
-                p_chosen_prob_txt.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_chosen_prob_txt, 'tStartRefresh')  # time at next scr refresh
+                p_box3_2.frameNStart = frameN  # exact frame index
+                p_box3_2.tStart = t  # local t and not account for scr refresh
+                p_box3_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_2, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_chosen_prob_txt.started')
+                thisExp.timestampOnFlip(win, 'p_box3_2.started')
                 # update status
-                p_chosen_prob_txt.status = STARTED
-                p_chosen_prob_txt.setAutoDraw(True)
+                p_box3_2.status = STARTED
+                p_box3_2.setAutoDraw(True)
             
-            # if p_chosen_prob_txt is active this frame...
-            if p_chosen_prob_txt.status == STARTED:
+            # if p_box3_2 is active this frame...
+            if p_box3_2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4_2* updates
+            
+            # if p_box4_2 is starting this frame...
+            if p_box4_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4_2.frameNStart = frameN  # exact frame index
+                p_box4_2.tStart = t  # local t and not account for scr refresh
+                p_box4_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4_2.started')
+                # update status
+                p_box4_2.status = STARTED
+                p_box4_2.setAutoDraw(True)
+            
+            # if p_box4_2 is active this frame...
+            if p_box4_2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box1_mag_2* updates
+            
+            # if p_box1_mag_2 is starting this frame...
+            if p_box1_mag_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1_mag_2.frameNStart = frameN  # exact frame index
+                p_box1_mag_2.tStart = t  # local t and not account for scr refresh
+                p_box1_mag_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_mag_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1_mag_2.started')
+                # update status
+                p_box1_mag_2.status = STARTED
+                p_box1_mag_2.setAutoDraw(True)
+            
+            # if p_box1_mag_2 is active this frame...
+            if p_box1_mag_2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box1_P_2* updates
+            
+            # if p_box1_P_2 is starting this frame...
+            if p_box1_P_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1_P_2.frameNStart = frameN  # exact frame index
+                p_box1_P_2.tStart = t  # local t and not account for scr refresh
+                p_box1_P_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_P_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1_P_2.started')
+                # update status
+                p_box1_P_2.status = STARTED
+                p_box1_P_2.setAutoDraw(True)
+            
+            # if p_box1_P_2 is active this frame...
+            if p_box1_P_2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2_mag_2* updates
+            
+            # if p_box2_mag_2 is starting this frame...
+            if p_box2_mag_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2_mag_2.frameNStart = frameN  # exact frame index
+                p_box2_mag_2.tStart = t  # local t and not account for scr refresh
+                p_box2_mag_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_mag_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2_mag_2.started')
+                # update status
+                p_box2_mag_2.status = STARTED
+                p_box2_mag_2.setAutoDraw(True)
+            
+            # if p_box2_mag_2 is active this frame...
+            if p_box2_mag_2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2_P_2* updates
+            
+            # if p_box2_P_2 is starting this frame...
+            if p_box2_P_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2_P_2.frameNStart = frameN  # exact frame index
+                p_box2_P_2.tStart = t  # local t and not account for scr refresh
+                p_box2_P_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_P_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2_P_2.started')
+                # update status
+                p_box2_P_2.status = STARTED
+                p_box2_P_2.setAutoDraw(True)
+            
+            # if p_box2_P_2 is active this frame...
+            if p_box2_P_2.status == STARTED:
                 # update params
                 pass
             
@@ -6809,10 +6458,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
-                p_chosen_gamble.forceEnded = routineForceEnded = True
+                p_chosen_option.forceEnded = routineForceEnded = True
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in p_chosen_gamble.components:
+            for thisComponent in p_chosen_option.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -6821,24 +6470,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # --- Ending Routine "p_chosen_gamble" ---
-        for thisComponent in p_chosen_gamble.components:
+        # --- Ending Routine "p_chosen_option" ---
+        for thisComponent in p_chosen_option.components:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # store stop times for p_chosen_gamble
-        p_chosen_gamble.tStop = globalClock.getTime(format='float')
-        p_chosen_gamble.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('p_chosen_gamble.stopped', p_chosen_gamble.tStop)
-        # the Routine "p_chosen_gamble" was not non-slip safe, so reset the non-slip timer
+        # store stop times for p_chosen_option
+        p_chosen_option.tStop = globalClock.getTime(format='float')
+        p_chosen_option.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('p_chosen_option.stopped', p_chosen_option.tStop)
+        # the Routine "p_chosen_option" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
-        # --- Prepare to start Routine "p_gamble_outcome" ---
-        # create an object to store info about Routine p_gamble_outcome
-        p_gamble_outcome = data.Routine(
-            name='p_gamble_outcome',
+        # --- Prepare to start Routine "p_outcome" ---
+        # create an object to store info about Routine p_outcome
+        p_outcome = data.Routine(
+            name='p_outcome',
             components=[fixation_6, p_money_prompt, p_current_money_txt, practice_txt, p_outcome_square, p_outcome_text, p_outcome_rewa_text, p_prog_bar, p_next_trial_txt, p_next_trial_input],
         )
-        p_gamble_outcome.status = NOT_STARTED
+        p_outcome.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from p_gamble_result_code
@@ -6849,41 +6498,41 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         thisExp.addData('current_money_prac', current_money)
         
-        if p_userchoice == 'left':
-            if gambles[practice_trials.thisN][0] >= gamble_result[practice_trials.thisN]:
-                current_money += gambles[practice_trials.thisN][1]
-                outcome_txtW = 'Win!'
-                W_pos = 0.03
-                outcome_txtN = gambles_txt[practice_trials.thisN][1]
-                N_pos = -0.03
-                outcome_color = 'Green'
-                outcome = 1
-            else:
-                outcome_txtW = 'Loss!'
-                W_pos = 0
-                outcome_txtN = ''
-                N_pos = -1.5
-                outcome_color = 'Red'
-                outcome = 0
-        else:
-            if gambles[practice_trials.thisN][2] >= gamble_result[practice_trials.thisN]:
-                current_money += gambles[practice_trials.thisN][3]
-                outcome_txtW = 'Win!'
-                W_pos = 0.03
-                outcome_txtN = gambles_txt[practice_trials.thisN][3]
-                N_pos = -0.03
-                outcome_color = 'Green'
-                outcome = 1
-            else:
-                outcome_txtW = 'Loss!'
-                W_pos = 0
-                outcome_txtN = ''
-                N_pos = -1.5
-                outcome_color = 'Red'
-                outcome = 0
-        p_money_txt = f"$ {current_money:.2f}"
-        
-        thisExp.addData("outcome_prac", outcome)
+        #if p_userchoice == 'left':
+        #    if gambles[practice_trials.thisN][0] >= gamble_result[practice_trials.thisN]:
+        #        current_money += gambles[practice_trials.thisN][1]
+        #        outcome_txtW = 'Win!'
+        #        W_pos = 0.03
+        #        outcome_txtN = gambles_txt[practice_trials.thisN][1]
+        #        N_pos = -0.03
+        #        outcome_color = 'Green'
+        #        outcome = 1
+        #    else:
+        #        outcome_txtW = 'Loss!'
+        #        W_pos = 0
+        #        outcome_txtN = ''
+        #        N_pos = -1.5
+        #        outcome_color = 'Red'
+        #        outcome = 0
+        #else:
+        #    if gambles[practice_trials.thisN][2] >= gamble_result[practice_trials.thisN]:
+        #        current_money += gambles[practice_trials.thisN][3]
+        #        outcome_txtW = 'Win!'
+        #        W_pos = 0.03
+        #        outcome_txtN = gambles_txt[practice_trials.thisN][3]
+        #        N_pos = -0.03
+        #        outcome_color = 'Green'
+        #        outcome = 1
+        #    else:
+        #        outcome_txtW = 'Loss!'
+        #        W_pos = 0
+        #        outcome_txtN = ''
+        #        N_pos = -1.5
+        #        outcome_color = 'Red'
+        #        outcome = 0
+        #p_money_txt = f"$ {current_money:.2f}"
+        #
+        #thisExp.addData("outcome_prac", outcome)
         p_current_money_txt.setText(p_money_txt)
         p_outcome_square.setFillColor(outcome_color)
         p_outcome_square.setPos((choice_pos, 0))
@@ -6898,15 +6547,15 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         p_next_trial_input.keys = []
         p_next_trial_input.rt = []
         _p_next_trial_input_allKeys = []
-        # store start times for p_gamble_outcome
-        p_gamble_outcome.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        p_gamble_outcome.tStart = globalClock.getTime(format='float')
-        p_gamble_outcome.status = STARTED
-        thisExp.addData('p_gamble_outcome.started', p_gamble_outcome.tStart)
-        p_gamble_outcome.maxDuration = None
+        # store start times for p_outcome
+        p_outcome.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        p_outcome.tStart = globalClock.getTime(format='float')
+        p_outcome.status = STARTED
+        thisExp.addData('p_outcome.started', p_outcome.tStart)
+        p_outcome.maxDuration = None
         # keep track of which components have finished
-        p_gamble_outcomeComponents = p_gamble_outcome.components
-        for thisComponent in p_gamble_outcome.components:
+        p_outcomeComponents = p_outcome.components
+        for thisComponent in p_outcome.components:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -6918,11 +6567,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
         frameN = -1
         
-        # --- Run Routine "p_gamble_outcome" ---
+        # --- Run Routine "p_outcome" ---
         # if trial has changed, end Routine now
         if isinstance(practice_trials, data.TrialHandler2) and thisPractice_trial.thisN != practice_trials.thisTrial.thisN:
             continueRoutine = False
-        p_gamble_outcome.forceEnded = routineForceEnded = not continueRoutine
+        p_outcome.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # get current time
             t = routineTimer.getTime()
@@ -7158,10 +6807,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
-                p_gamble_outcome.forceEnded = routineForceEnded = True
+                p_outcome.forceEnded = routineForceEnded = True
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in p_gamble_outcome.components:
+            for thisComponent in p_outcome.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -7170,14 +6819,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # --- Ending Routine "p_gamble_outcome" ---
-        for thisComponent in p_gamble_outcome.components:
+        # --- Ending Routine "p_outcome" ---
+        for thisComponent in p_outcome.components:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # store stop times for p_gamble_outcome
-        p_gamble_outcome.tStop = globalClock.getTime(format='float')
-        p_gamble_outcome.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('p_gamble_outcome.stopped', p_gamble_outcome.tStop)
+        # store stop times for p_outcome
+        p_outcome.tStop = globalClock.getTime(format='float')
+        p_outcome.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('p_outcome.stopped', p_outcome.tStop)
         # check responses
         if p_next_trial_input.keys in ['', [], None]:  # No response was made
             p_next_trial_input.keys = None
@@ -7185,7 +6834,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if p_next_trial_input.keys != None:  # we had a response
             practice_trials.addData('p_next_trial_input.rt', p_next_trial_input.rt)
             practice_trials.addData('p_next_trial_input.duration', p_next_trial_input.duration)
-        # the Routine "p_gamble_outcome" was not non-slip safe, so reset the non-slip timer
+        # the Routine "p_outcome" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
         # --- Prepare to start Routine "iti" ---
@@ -8383,24 +8032,149 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # the Routine "gamble1_show" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
-        # --- Prepare to start Routine "gamble_show_iti" ---
-        # create an object to store info about Routine gamble_show_iti
-        gamble_show_iti = data.Routine(
-            name='gamble_show_iti',
-            components=[text_8, p_fixation_cross_4],
+        # --- Prepare to start Routine "p_options_show" ---
+        # create an object to store info about Routine p_options_show
+        p_options_show = data.Routine(
+            name='p_options_show',
+            components=[p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_choice],
         )
-        gamble_show_iti.status = NOT_STARTED
+        p_options_show.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        # store start times for gamble_show_iti
-        gamble_show_iti.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        gamble_show_iti.tStart = globalClock.getTime(format='float')
-        gamble_show_iti.status = STARTED
-        thisExp.addData('gamble_show_iti.started', gamble_show_iti.tStart)
-        gamble_show_iti.maxDuration = time_gamble_delay
+        # Run 'Begin Routine' code from code_9
+        # Determine the type of trial
+        
+        if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
+            sure_left = True
+            forced_trial = False
+        elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right
+            sure_left = False
+            forced_trial = False
+        elif (options_prac[practice_trials.thisN,0]==0) and (options_prac[practice_trials.thisN,1]==1): # forced gamble right
+            trial_side_left = False
+            forced_trial = True
+            forced_type_sure = False
+        elif (options_prac[practice_trials.thisN,4]==0) and (options_prac[practice_trials.thisN,5]==1): # forced gamble left
+            trial_side_left = True
+            forced_trial = True
+            forced_type_sure = False
+        elif (options_prac[practice_trials.thisN,1]==1): # forced sure left
+            trial_side_left = True
+            forced_trial = True
+            forced_type_sure = True
+        else: # forced sure right
+            trial_side_left = False
+            forced_trial = True
+            forced_type_sure = True
+        
+        
+        # Determine the coordonates and components of the boxes
+        
+        if not(forced_trial): # choice trial
+            x1 = -width
+            x2 = -width
+            x3 = width
+            x4 = width
+            if sure_left: # sure option on left side
+                y1 = 0
+                y2 = 2 # Not showing
+                y3 = height
+                y4 = -height
+                Mag1 = options_prac[practice_trials.thisN,0]
+                P1 = ""
+                Mag2 = 0
+                P2 = 0
+                Mag3 = options_prac[practice_trials.thisN,4]
+                P3 = options_prac[practice_trials.thisN,5]
+                Mag4 = options_prac[practice_trials.thisN,2]
+                P4 = options_prac[practice_trials.thisN,3]
+            else: # sure option on the right side
+                y1 = height
+                y2 = -height
+                y3 = 0
+                y4 = 2 # Not showing
+                Mag1 = options_prac[practice_trials.thisN,2]
+                P1 = options_prac[practice_trials.thisN,3]
+                Mag2 = options_prac[practice_trials.thisN,0]
+                P2 = options_prac[practice_trials.thisN,1]
+                Mag3 = options_prac[practice_trials.thisN,4]
+                P3 = options_prac[practice_trials.thisN,5]
+                Mag4 = 0
+                P4 = 0
+        else: # forced option
+            x1 = 0
+            x2 = 0
+            x3 = 0
+            x4 = 0
+            if forced_type_sure: # Forced sure option
+                y1 = 0
+                y2 = 2 # Not showing
+                y3 = 2 # Not showing
+                y4 = 2 # Not showing
+                if trial_side_left: # option on the left
+                    Mag1 = options_prac[practice_trials.thisN,0]
+                    P1 = options_prac[practice_trials.thisN,1]
+                else: # option on the right
+                    Mag1 = options_prac[practice_trials.thisN,4]
+                    P1 = options_prac[practice_trials.thisN,5]
+                Mag2 = 0
+                P2 = 0
+                Mag3 = 0
+                P3 = 0
+                Mag4 = 0
+                P4 = 0
+            else: # Forced gamble option
+                y1 = height
+                y2 = -height
+                y3 = 2 # Not showing
+                y4 = 2 # Not showing
+                if trial_side_left: # option on the left
+                    Mag1 = options_prac[practice_trials.thisN,2]
+                    P1 = options_prac[practice_trials.thisN,3]
+                    Mag2 = options_prac[practice_trials.thisN,0]
+                    P2 = options_prac[practice_trials.thisN,1]
+                else: # option on the right
+                    Mag1 = options_prac[practice_trials.thisN,4]
+                    P1 = options_prac[practice_trials.thisN,5]
+                    Mag2 = options_prac[practice_trials.thisN,2]
+                    P2 = options_prac[practice_trials.thisN,3]
+                Mag3 = 0
+                P3 = 0
+                Mag4 = 0
+                P4 = 0
+        p_box1.setPos((x1, y1))
+        p_box2.setPos((x2, y2))
+        p_box3.setPos((x3, y3))
+        p_box4.setPos((x4, y4))
+        p_box1_mag.setPos((x1, y1+0.03))
+        p_box1_mag.setText(Mag1)
+        p_box1_P.setPos((x1, y1-0.04))
+        p_box1_P.setText(P1)
+        p_box2_mag.setPos((x2, y2+0.03))
+        p_box2_mag.setText(Mag2)
+        p_box2_P.setPos((x2, y2-0.04))
+        p_box2_P.setText(P2)
+        p_box3_mag.setPos((x3, y3+0.03))
+        p_box3_mag.setText(Mag3)
+        p_box3_P.setPos((x3, y3-0.04))
+        p_box3_P.setText(P3)
+        p_box4_mag.setPos((x4, y4+0.03))
+        p_box4_mag.setText(Mag4)
+        p_box4_P.setPos((x4, y4-0.04))
+        p_box4_P.setText(P4)
+        # create starting attributes for p_choice
+        p_choice.keys = []
+        p_choice.rt = []
+        _p_choice_allKeys = []
+        # store start times for p_options_show
+        p_options_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        p_options_show.tStart = globalClock.getTime(format='float')
+        p_options_show.status = STARTED
+        thisExp.addData('p_options_show.started', p_options_show.tStart)
+        p_options_show.maxDuration = time_gamble_delay
         # keep track of which components have finished
-        gamble_show_itiComponents = gamble_show_iti.components
-        for thisComponent in gamble_show_iti.components:
+        p_options_showComponents = p_options_show.components
+        for thisComponent in p_options_show.components:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -8412,11 +8186,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
         frameN = -1
         
-        # --- Run Routine "gamble_show_iti" ---
+        # --- Run Routine "p_options_show" ---
         # if trial has changed, end Routine now
         if isinstance(trials, data.TrialHandler2) and thisTrial.thisN != trials.thisTrial.thisN:
             continueRoutine = False
-        gamble_show_iti.forceEnded = routineForceEnded = not continueRoutine
+        p_options_show.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # get current time
             t = routineTimer.getTime()
@@ -8425,29 +8199,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             # is it time to end the Routine? (based on local clock)
-            if tThisFlip > gamble_show_iti.maxDuration-frameTolerance:
-                gamble_show_iti.maxDurationReached = True
+            if tThisFlip > p_options_show.maxDuration-frameTolerance:
+                p_options_show.maxDurationReached = True
                 continueRoutine = False
-            
-            # *text_8* updates
-            
-            # if text_8 is starting this frame...
-            if text_8.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                text_8.frameNStart = frameN  # exact frame index
-                text_8.tStart = t  # local t and not account for scr refresh
-                text_8.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_8, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'text_8.started')
-                # update status
-                text_8.status = STARTED
-                text_8.setAutoDraw(True)
-            
-            # if text_8 is active this frame...
-            if text_8.status == STARTED:
-                # update params
-                pass
             
             # *p_fixation_cross_4* updates
             
@@ -8469,6 +8223,274 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *p_box1* updates
+            
+            # if p_box1 is starting this frame...
+            if p_box1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1.frameNStart = frameN  # exact frame index
+                p_box1.tStart = t  # local t and not account for scr refresh
+                p_box1.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1.started')
+                # update status
+                p_box1.status = STARTED
+                p_box1.setAutoDraw(True)
+            
+            # if p_box1 is active this frame...
+            if p_box1.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2* updates
+            
+            # if p_box2 is starting this frame...
+            if p_box2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2.frameNStart = frameN  # exact frame index
+                p_box2.tStart = t  # local t and not account for scr refresh
+                p_box2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2.started')
+                # update status
+                p_box2.status = STARTED
+                p_box2.setAutoDraw(True)
+            
+            # if p_box2 is active this frame...
+            if p_box2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box3* updates
+            
+            # if p_box3 is starting this frame...
+            if p_box3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box3.frameNStart = frameN  # exact frame index
+                p_box3.tStart = t  # local t and not account for scr refresh
+                p_box3.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box3.started')
+                # update status
+                p_box3.status = STARTED
+                p_box3.setAutoDraw(True)
+            
+            # if p_box3 is active this frame...
+            if p_box3.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4* updates
+            
+            # if p_box4 is starting this frame...
+            if p_box4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4.frameNStart = frameN  # exact frame index
+                p_box4.tStart = t  # local t and not account for scr refresh
+                p_box4.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4.started')
+                # update status
+                p_box4.status = STARTED
+                p_box4.setAutoDraw(True)
+            
+            # if p_box4 is active this frame...
+            if p_box4.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box1_mag* updates
+            
+            # if p_box1_mag is starting this frame...
+            if p_box1_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1_mag.frameNStart = frameN  # exact frame index
+                p_box1_mag.tStart = t  # local t and not account for scr refresh
+                p_box1_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1_mag.started')
+                # update status
+                p_box1_mag.status = STARTED
+                p_box1_mag.setAutoDraw(True)
+            
+            # if p_box1_mag is active this frame...
+            if p_box1_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box1_P* updates
+            
+            # if p_box1_P is starting this frame...
+            if p_box1_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1_P.frameNStart = frameN  # exact frame index
+                p_box1_P.tStart = t  # local t and not account for scr refresh
+                p_box1_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1_P.started')
+                # update status
+                p_box1_P.status = STARTED
+                p_box1_P.setAutoDraw(True)
+            
+            # if p_box1_P is active this frame...
+            if p_box1_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2_mag* updates
+            
+            # if p_box2_mag is starting this frame...
+            if p_box2_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2_mag.frameNStart = frameN  # exact frame index
+                p_box2_mag.tStart = t  # local t and not account for scr refresh
+                p_box2_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2_mag.started')
+                # update status
+                p_box2_mag.status = STARTED
+                p_box2_mag.setAutoDraw(True)
+            
+            # if p_box2_mag is active this frame...
+            if p_box2_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2_P* updates
+            
+            # if p_box2_P is starting this frame...
+            if p_box2_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2_P.frameNStart = frameN  # exact frame index
+                p_box2_P.tStart = t  # local t and not account for scr refresh
+                p_box2_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2_P.started')
+                # update status
+                p_box2_P.status = STARTED
+                p_box2_P.setAutoDraw(True)
+            
+            # if p_box2_P is active this frame...
+            if p_box2_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box3_mag* updates
+            
+            # if p_box3_mag is starting this frame...
+            if p_box3_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box3_mag.frameNStart = frameN  # exact frame index
+                p_box3_mag.tStart = t  # local t and not account for scr refresh
+                p_box3_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box3_mag.started')
+                # update status
+                p_box3_mag.status = STARTED
+                p_box3_mag.setAutoDraw(True)
+            
+            # if p_box3_mag is active this frame...
+            if p_box3_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box3_P* updates
+            
+            # if p_box3_P is starting this frame...
+            if p_box3_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box3_P.frameNStart = frameN  # exact frame index
+                p_box3_P.tStart = t  # local t and not account for scr refresh
+                p_box3_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box3_P.started')
+                # update status
+                p_box3_P.status = STARTED
+                p_box3_P.setAutoDraw(True)
+            
+            # if p_box3_P is active this frame...
+            if p_box3_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4_mag* updates
+            
+            # if p_box4_mag is starting this frame...
+            if p_box4_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4_mag.frameNStart = frameN  # exact frame index
+                p_box4_mag.tStart = t  # local t and not account for scr refresh
+                p_box4_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4_mag.started')
+                # update status
+                p_box4_mag.status = STARTED
+                p_box4_mag.setAutoDraw(True)
+            
+            # if p_box4_mag is active this frame...
+            if p_box4_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4_P* updates
+            
+            # if p_box4_P is starting this frame...
+            if p_box4_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4_P.frameNStart = frameN  # exact frame index
+                p_box4_P.tStart = t  # local t and not account for scr refresh
+                p_box4_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4_P.started')
+                # update status
+                p_box4_P.status = STARTED
+                p_box4_P.setAutoDraw(True)
+            
+            # if p_box4_P is active this frame...
+            if p_box4_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_choice* updates
+            waitOnFlip = False
+            
+            # if p_choice is starting this frame...
+            if p_choice.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_choice.frameNStart = frameN  # exact frame index
+                p_choice.tStart = t  # local t and not account for scr refresh
+                p_choice.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_choice, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_choice.started')
+                # update status
+                p_choice.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(p_choice.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(p_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if p_choice.status == STARTED and not waitOnFlip:
+                theseKeys = p_choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
+                _p_choice_allKeys.extend(theseKeys)
+                if len(_p_choice_allKeys):
+                    p_choice.keys = _p_choice_allKeys[-1].name  # just the last key pressed
+                    p_choice.rt = _p_choice_allKeys[-1].rt
+                    p_choice.duration = _p_choice_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -8488,10 +8510,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
-                gamble_show_iti.forceEnded = routineForceEnded = True
+                p_options_show.forceEnded = routineForceEnded = True
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in gamble_show_iti.components:
+            for thisComponent in p_options_show.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -8500,15 +8522,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # --- Ending Routine "gamble_show_iti" ---
-        for thisComponent in gamble_show_iti.components:
+        # --- Ending Routine "p_options_show" ---
+        for thisComponent in p_options_show.components:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # store stop times for gamble_show_iti
-        gamble_show_iti.tStop = globalClock.getTime(format='float')
-        gamble_show_iti.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('gamble_show_iti.stopped', gamble_show_iti.tStop)
-        # the Routine "gamble_show_iti" was not non-slip safe, so reset the non-slip timer
+        # store stop times for p_options_show
+        p_options_show.tStop = globalClock.getTime(format='float')
+        p_options_show.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('p_options_show.stopped', p_options_show.tStop)
+        # check responses
+        if p_choice.keys in ['', [], None]:  # No response was made
+            p_choice.keys = None
+        trials.addData('p_choice.keys',p_choice.keys)
+        if p_choice.keys != None:  # we had a response
+            trials.addData('p_choice.rt', p_choice.rt)
+            trials.addData('p_choice.duration', p_choice.duration)
+        # the Routine "p_options_show" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
         # --- Prepare to start Routine "gamble2_show" ---
@@ -8699,24 +8728,149 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # the Routine "gamble2_show" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
-        # --- Prepare to start Routine "gamble_show_iti" ---
-        # create an object to store info about Routine gamble_show_iti
-        gamble_show_iti = data.Routine(
-            name='gamble_show_iti',
-            components=[text_8, p_fixation_cross_4],
+        # --- Prepare to start Routine "p_options_show" ---
+        # create an object to store info about Routine p_options_show
+        p_options_show = data.Routine(
+            name='p_options_show',
+            components=[p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_choice],
         )
-        gamble_show_iti.status = NOT_STARTED
+        p_options_show.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        # store start times for gamble_show_iti
-        gamble_show_iti.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-        gamble_show_iti.tStart = globalClock.getTime(format='float')
-        gamble_show_iti.status = STARTED
-        thisExp.addData('gamble_show_iti.started', gamble_show_iti.tStart)
-        gamble_show_iti.maxDuration = time_gamble_delay
+        # Run 'Begin Routine' code from code_9
+        # Determine the type of trial
+        
+        if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
+            sure_left = True
+            forced_trial = False
+        elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right
+            sure_left = False
+            forced_trial = False
+        elif (options_prac[practice_trials.thisN,0]==0) and (options_prac[practice_trials.thisN,1]==1): # forced gamble right
+            trial_side_left = False
+            forced_trial = True
+            forced_type_sure = False
+        elif (options_prac[practice_trials.thisN,4]==0) and (options_prac[practice_trials.thisN,5]==1): # forced gamble left
+            trial_side_left = True
+            forced_trial = True
+            forced_type_sure = False
+        elif (options_prac[practice_trials.thisN,1]==1): # forced sure left
+            trial_side_left = True
+            forced_trial = True
+            forced_type_sure = True
+        else: # forced sure right
+            trial_side_left = False
+            forced_trial = True
+            forced_type_sure = True
+        
+        
+        # Determine the coordonates and components of the boxes
+        
+        if not(forced_trial): # choice trial
+            x1 = -width
+            x2 = -width
+            x3 = width
+            x4 = width
+            if sure_left: # sure option on left side
+                y1 = 0
+                y2 = 2 # Not showing
+                y3 = height
+                y4 = -height
+                Mag1 = options_prac[practice_trials.thisN,0]
+                P1 = ""
+                Mag2 = 0
+                P2 = 0
+                Mag3 = options_prac[practice_trials.thisN,4]
+                P3 = options_prac[practice_trials.thisN,5]
+                Mag4 = options_prac[practice_trials.thisN,2]
+                P4 = options_prac[practice_trials.thisN,3]
+            else: # sure option on the right side
+                y1 = height
+                y2 = -height
+                y3 = 0
+                y4 = 2 # Not showing
+                Mag1 = options_prac[practice_trials.thisN,2]
+                P1 = options_prac[practice_trials.thisN,3]
+                Mag2 = options_prac[practice_trials.thisN,0]
+                P2 = options_prac[practice_trials.thisN,1]
+                Mag3 = options_prac[practice_trials.thisN,4]
+                P3 = options_prac[practice_trials.thisN,5]
+                Mag4 = 0
+                P4 = 0
+        else: # forced option
+            x1 = 0
+            x2 = 0
+            x3 = 0
+            x4 = 0
+            if forced_type_sure: # Forced sure option
+                y1 = 0
+                y2 = 2 # Not showing
+                y3 = 2 # Not showing
+                y4 = 2 # Not showing
+                if trial_side_left: # option on the left
+                    Mag1 = options_prac[practice_trials.thisN,0]
+                    P1 = options_prac[practice_trials.thisN,1]
+                else: # option on the right
+                    Mag1 = options_prac[practice_trials.thisN,4]
+                    P1 = options_prac[practice_trials.thisN,5]
+                Mag2 = 0
+                P2 = 0
+                Mag3 = 0
+                P3 = 0
+                Mag4 = 0
+                P4 = 0
+            else: # Forced gamble option
+                y1 = height
+                y2 = -height
+                y3 = 2 # Not showing
+                y4 = 2 # Not showing
+                if trial_side_left: # option on the left
+                    Mag1 = options_prac[practice_trials.thisN,2]
+                    P1 = options_prac[practice_trials.thisN,3]
+                    Mag2 = options_prac[practice_trials.thisN,0]
+                    P2 = options_prac[practice_trials.thisN,1]
+                else: # option on the right
+                    Mag1 = options_prac[practice_trials.thisN,4]
+                    P1 = options_prac[practice_trials.thisN,5]
+                    Mag2 = options_prac[practice_trials.thisN,2]
+                    P2 = options_prac[practice_trials.thisN,3]
+                Mag3 = 0
+                P3 = 0
+                Mag4 = 0
+                P4 = 0
+        p_box1.setPos((x1, y1))
+        p_box2.setPos((x2, y2))
+        p_box3.setPos((x3, y3))
+        p_box4.setPos((x4, y4))
+        p_box1_mag.setPos((x1, y1+0.03))
+        p_box1_mag.setText(Mag1)
+        p_box1_P.setPos((x1, y1-0.04))
+        p_box1_P.setText(P1)
+        p_box2_mag.setPos((x2, y2+0.03))
+        p_box2_mag.setText(Mag2)
+        p_box2_P.setPos((x2, y2-0.04))
+        p_box2_P.setText(P2)
+        p_box3_mag.setPos((x3, y3+0.03))
+        p_box3_mag.setText(Mag3)
+        p_box3_P.setPos((x3, y3-0.04))
+        p_box3_P.setText(P3)
+        p_box4_mag.setPos((x4, y4+0.03))
+        p_box4_mag.setText(Mag4)
+        p_box4_P.setPos((x4, y4-0.04))
+        p_box4_P.setText(P4)
+        # create starting attributes for p_choice
+        p_choice.keys = []
+        p_choice.rt = []
+        _p_choice_allKeys = []
+        # store start times for p_options_show
+        p_options_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        p_options_show.tStart = globalClock.getTime(format='float')
+        p_options_show.status = STARTED
+        thisExp.addData('p_options_show.started', p_options_show.tStart)
+        p_options_show.maxDuration = time_gamble_delay
         # keep track of which components have finished
-        gamble_show_itiComponents = gamble_show_iti.components
-        for thisComponent in gamble_show_iti.components:
+        p_options_showComponents = p_options_show.components
+        for thisComponent in p_options_show.components:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -8728,11 +8882,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
         frameN = -1
         
-        # --- Run Routine "gamble_show_iti" ---
+        # --- Run Routine "p_options_show" ---
         # if trial has changed, end Routine now
         if isinstance(trials, data.TrialHandler2) and thisTrial.thisN != trials.thisTrial.thisN:
             continueRoutine = False
-        gamble_show_iti.forceEnded = routineForceEnded = not continueRoutine
+        p_options_show.forceEnded = routineForceEnded = not continueRoutine
         while continueRoutine:
             # get current time
             t = routineTimer.getTime()
@@ -8741,29 +8895,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             # is it time to end the Routine? (based on local clock)
-            if tThisFlip > gamble_show_iti.maxDuration-frameTolerance:
-                gamble_show_iti.maxDurationReached = True
+            if tThisFlip > p_options_show.maxDuration-frameTolerance:
+                p_options_show.maxDurationReached = True
                 continueRoutine = False
-            
-            # *text_8* updates
-            
-            # if text_8 is starting this frame...
-            if text_8.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                text_8.frameNStart = frameN  # exact frame index
-                text_8.tStart = t  # local t and not account for scr refresh
-                text_8.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_8, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'text_8.started')
-                # update status
-                text_8.status = STARTED
-                text_8.setAutoDraw(True)
-            
-            # if text_8 is active this frame...
-            if text_8.status == STARTED:
-                # update params
-                pass
             
             # *p_fixation_cross_4* updates
             
@@ -8785,6 +8919,274 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *p_box1* updates
+            
+            # if p_box1 is starting this frame...
+            if p_box1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1.frameNStart = frameN  # exact frame index
+                p_box1.tStart = t  # local t and not account for scr refresh
+                p_box1.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1.started')
+                # update status
+                p_box1.status = STARTED
+                p_box1.setAutoDraw(True)
+            
+            # if p_box1 is active this frame...
+            if p_box1.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2* updates
+            
+            # if p_box2 is starting this frame...
+            if p_box2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2.frameNStart = frameN  # exact frame index
+                p_box2.tStart = t  # local t and not account for scr refresh
+                p_box2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2.started')
+                # update status
+                p_box2.status = STARTED
+                p_box2.setAutoDraw(True)
+            
+            # if p_box2 is active this frame...
+            if p_box2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box3* updates
+            
+            # if p_box3 is starting this frame...
+            if p_box3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box3.frameNStart = frameN  # exact frame index
+                p_box3.tStart = t  # local t and not account for scr refresh
+                p_box3.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box3.started')
+                # update status
+                p_box3.status = STARTED
+                p_box3.setAutoDraw(True)
+            
+            # if p_box3 is active this frame...
+            if p_box3.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4* updates
+            
+            # if p_box4 is starting this frame...
+            if p_box4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4.frameNStart = frameN  # exact frame index
+                p_box4.tStart = t  # local t and not account for scr refresh
+                p_box4.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4.started')
+                # update status
+                p_box4.status = STARTED
+                p_box4.setAutoDraw(True)
+            
+            # if p_box4 is active this frame...
+            if p_box4.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box1_mag* updates
+            
+            # if p_box1_mag is starting this frame...
+            if p_box1_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1_mag.frameNStart = frameN  # exact frame index
+                p_box1_mag.tStart = t  # local t and not account for scr refresh
+                p_box1_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1_mag.started')
+                # update status
+                p_box1_mag.status = STARTED
+                p_box1_mag.setAutoDraw(True)
+            
+            # if p_box1_mag is active this frame...
+            if p_box1_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box1_P* updates
+            
+            # if p_box1_P is starting this frame...
+            if p_box1_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box1_P.frameNStart = frameN  # exact frame index
+                p_box1_P.tStart = t  # local t and not account for scr refresh
+                p_box1_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box1_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box1_P.started')
+                # update status
+                p_box1_P.status = STARTED
+                p_box1_P.setAutoDraw(True)
+            
+            # if p_box1_P is active this frame...
+            if p_box1_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2_mag* updates
+            
+            # if p_box2_mag is starting this frame...
+            if p_box2_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2_mag.frameNStart = frameN  # exact frame index
+                p_box2_mag.tStart = t  # local t and not account for scr refresh
+                p_box2_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2_mag.started')
+                # update status
+                p_box2_mag.status = STARTED
+                p_box2_mag.setAutoDraw(True)
+            
+            # if p_box2_mag is active this frame...
+            if p_box2_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box2_P* updates
+            
+            # if p_box2_P is starting this frame...
+            if p_box2_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box2_P.frameNStart = frameN  # exact frame index
+                p_box2_P.tStart = t  # local t and not account for scr refresh
+                p_box2_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box2_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box2_P.started')
+                # update status
+                p_box2_P.status = STARTED
+                p_box2_P.setAutoDraw(True)
+            
+            # if p_box2_P is active this frame...
+            if p_box2_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box3_mag* updates
+            
+            # if p_box3_mag is starting this frame...
+            if p_box3_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box3_mag.frameNStart = frameN  # exact frame index
+                p_box3_mag.tStart = t  # local t and not account for scr refresh
+                p_box3_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box3_mag.started')
+                # update status
+                p_box3_mag.status = STARTED
+                p_box3_mag.setAutoDraw(True)
+            
+            # if p_box3_mag is active this frame...
+            if p_box3_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box3_P* updates
+            
+            # if p_box3_P is starting this frame...
+            if p_box3_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box3_P.frameNStart = frameN  # exact frame index
+                p_box3_P.tStart = t  # local t and not account for scr refresh
+                p_box3_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box3_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box3_P.started')
+                # update status
+                p_box3_P.status = STARTED
+                p_box3_P.setAutoDraw(True)
+            
+            # if p_box3_P is active this frame...
+            if p_box3_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4_mag* updates
+            
+            # if p_box4_mag is starting this frame...
+            if p_box4_mag.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4_mag.frameNStart = frameN  # exact frame index
+                p_box4_mag.tStart = t  # local t and not account for scr refresh
+                p_box4_mag.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_mag, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4_mag.started')
+                # update status
+                p_box4_mag.status = STARTED
+                p_box4_mag.setAutoDraw(True)
+            
+            # if p_box4_mag is active this frame...
+            if p_box4_mag.status == STARTED:
+                # update params
+                pass
+            
+            # *p_box4_P* updates
+            
+            # if p_box4_P is starting this frame...
+            if p_box4_P.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_box4_P.frameNStart = frameN  # exact frame index
+                p_box4_P.tStart = t  # local t and not account for scr refresh
+                p_box4_P.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_box4_P, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_box4_P.started')
+                # update status
+                p_box4_P.status = STARTED
+                p_box4_P.setAutoDraw(True)
+            
+            # if p_box4_P is active this frame...
+            if p_box4_P.status == STARTED:
+                # update params
+                pass
+            
+            # *p_choice* updates
+            waitOnFlip = False
+            
+            # if p_choice is starting this frame...
+            if p_choice.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                p_choice.frameNStart = frameN  # exact frame index
+                p_choice.tStart = t  # local t and not account for scr refresh
+                p_choice.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_choice, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_choice.started')
+                # update status
+                p_choice.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(p_choice.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(p_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if p_choice.status == STARTED and not waitOnFlip:
+                theseKeys = p_choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
+                _p_choice_allKeys.extend(theseKeys)
+                if len(_p_choice_allKeys):
+                    p_choice.keys = _p_choice_allKeys[-1].name  # just the last key pressed
+                    p_choice.rt = _p_choice_allKeys[-1].rt
+                    p_choice.duration = _p_choice_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -8804,10 +9206,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
-                gamble_show_iti.forceEnded = routineForceEnded = True
+                p_options_show.forceEnded = routineForceEnded = True
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in gamble_show_iti.components:
+            for thisComponent in p_options_show.components:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -8816,15 +9218,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # --- Ending Routine "gamble_show_iti" ---
-        for thisComponent in gamble_show_iti.components:
+        # --- Ending Routine "p_options_show" ---
+        for thisComponent in p_options_show.components:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # store stop times for gamble_show_iti
-        gamble_show_iti.tStop = globalClock.getTime(format='float')
-        gamble_show_iti.tStopRefresh = tThisFlipGlobal
-        thisExp.addData('gamble_show_iti.stopped', gamble_show_iti.tStop)
-        # the Routine "gamble_show_iti" was not non-slip safe, so reset the non-slip timer
+        # store stop times for p_options_show
+        p_options_show.tStop = globalClock.getTime(format='float')
+        p_options_show.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('p_options_show.stopped', p_options_show.tStop)
+        # check responses
+        if p_choice.keys in ['', [], None]:  # No response was made
+            p_choice.keys = None
+        trials.addData('p_choice.keys',p_choice.keys)
+        if p_choice.keys != None:  # we had a response
+            trials.addData('p_choice.rt', p_choice.rt)
+            trials.addData('p_choice.duration', p_choice.duration)
+        # the Routine "p_options_show" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
         # --- Prepare to start Routine "gamble_choice" ---

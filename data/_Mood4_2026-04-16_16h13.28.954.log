@@ -1,0 +1,38 @@
+3.9410 	INFO 	Loaded monitor calibration from ['2025_03_10 10:13']
+4.1316 	EXP 	Created window1 = Window(allowGUI=True, allowStencil=False, autoLog=True, backendConf=UNKNOWN, backgroundFit=<method-wrapper '__getattribute__' of attributeSetter object at 0x7feb09c5f0d0>, backgroundImage=<method-wrapper '__getattribute__' of attributeSetter object at 0x7feb09c5f070>, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([0.3, 0.3, 0.3]), colorSpace='rgb', depthBits=8, fullscr=True, gamma=None, gammaErrorPolicy='raise', infoMsg=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x7feb09b3fc40>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([5120, 2880]), stencilBits=0, stereo=False, title='PsychoPy', units='height', useFBO=True, useRetina=True, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+4.1317 	EXP 	window1: backgroundImage = ''
+4.1317 	EXP 	window1: backgroundFit = 'none'
+6.1968 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1969 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1969 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1969 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1969 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1969 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1969 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1970 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1971 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1972 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1972 	INFO 	keyboard.Keyboard is using iohub backend.
+6.1972 	EXP 	Mood4: status = STARTED
+6.2883 	EXP 	Created text_9 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=0.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.029999999999999995, italic=False, languageStyle='LTR', name='text_9', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text=str(...), units='height', win=Window(...), wrapWidth=1)
+6.3129 	EXP 	Created Intro_text_show = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=0.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.04, italic=False, languageStyle='LTR', name='Intro_text_show', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+6.3165 	EXP 	Created Continue_txt = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.04, italic=False, languageStyle='LTR', name='Continue_txt', opacity=1, ori=0.0, pos=array([ 0. , -0.4]), rgb=UNKNOWN, text='Press <enter> to continue', units='height', win=Window(...), wrapWidth=1)
+6.3187 	EXP 	Created fixation_inst_5a = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, anchor=('center', 'center'), autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=-1.0, draggable=False, fillColor=array([-1, -1, -1]), fillColorSpace='rgb', fillRGB=array([-1, -1, -1]), interpolate=True, lineColor=array([-1., -1., -1.]), lineColorSpace='rgb', lineRGB=array([-1, -1, -1]), lineWidth=1.0, name='fixation_inst_5a', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([0.03, 0.03]), units='height', vertices=ndarray(...), win=Window(...), windingRule=None)
+6.3194 	EXP 	Created intro_sure = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, anchor=('center', 'center'), autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=-2.0, draggable=False, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=array([1, 1, 1]), interpolate=True, lineColor=array([1., 1., 1.]), lineColorSpace='rgb', lineRGB=array([1, 1, 1]), lineWidth=1.0, name='intro_sure', opacity=1, ori=0.0, pos=array([-0.335,  0.   ]), size=array([0.2, 0.2]), units='height', vertices=ndarray(...), win=Window(...))
+6.3199 	EXP 	Created intro_sure_txt = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoDraw=False, autoLog=True, bold=False, color=array([-1., -1., -1.]), colorSpace='rgb', contrast=1.0, depth=-3.0, draggable=False, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.055, italic=False, languageStyle='LTR', name='intro_sure_txt', opacity=1, ori=0.0, pos=array([-0.335,  0.   ]), rgb=UNKNOWN, text='', units='height', win=Window(...), wrapWidth=1)
+6.3205 	EXP 	Created intro_gambletop = Rect(__class__=<class 'psychopy.visual.rect.Rect'>, anchor=('center', 'center'), autoDraw=False, autoLog=True, closeShape=True, color=method-wrapper(...), colorSpace='rgb', contrast=None, depth=-4.0, draggable=False, fillColor=array([1, 1, 1]), fillColorSpace='rgb', fillRGB=array([1, 1, 1]), interpolate=True, lineColor=array([1., 1., 1.]), lineColorSpace='rgb', lineRGB=array([1, 1, 1]), lineWidth=1.0, name='intro_gambletop', opacity=1, ori=0.0, pos=array([0.335, 0.2  ]), size=array([0.2, 0.2]), units='height', vertices=ndarray(...), win=Window(...))
+6.3408 	INFO 	saved data to /Users/lucas/Documents/Experiments/Mood4/github_Mood4/data/_Mood4_2026-04-16_16h13.28.954.psydat
+6.3410 	INFO 	saved data to '/Users/lucas/Documents/Experiments/Mood4/github_Mood4/data/_Mood4_2026-04-16_16h13.28.954.csv'
