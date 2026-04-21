@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.4),
-    on Fri Apr 17 17:01:43 2026
+    on Tue Apr 21 16:59:23 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -53,17 +53,18 @@ time_chosen_option = 1
 time_gamble_result = 1 # time after which they go to the next trial
 time_iti = 1
 
-numBlocks = 4
-happyTrialIdx = np.hstack((3*np.ones(10*numBlocks), 2*np.ones(10*numBlocks)))
+numBlocks = 3
+happyTrialIdx = np.hstack((3*np.ones(14*numBlocks), 2*np.ones(12*numBlocks)))
 happyTrialIdx = happyTrialIdx[np.random.permutation(len(happyTrialIdx))]
 happyTrialIdx = np.cumsum(happyTrialIdx)-1
 
-happyTrial = np.zeros(50*numBlocks)
+happyTrial = np.zeros(66*numBlocks)
 for i in happyTrialIdx:
     happyTrial[int(i)] = 1
 
 happyTrial = (happyTrial != 0)
 
+print(np.size(happyTrial))
 
 #happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))
 happyTrialIdx_prac = np.hstack((3*np.ones(2*10), 2*np.ones(2*10)))
@@ -491,11 +492,11 @@ def setupDevices(expInfo, thisExp, win):
             deviceClass='keyboard',
             deviceName='key_resp_inst_10',
         )
-    if deviceManager.getDevice('choice') is None:
-        # initialise choice
-        choice = deviceManager.addDevice(
+    if deviceManager.getDevice('user_choice') is None:
+        # initialise user_choice
+        user_choice = deviceManager.addDevice(
             deviceClass='keyboard',
-            deviceName='choice',
+            deviceName='user_choice',
         )
     if deviceManager.getDevice('next_trial_input') is None:
         # initialise next_trial_input
@@ -733,7 +734,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-9.0);
     text_inst_5a = visual.TextStim(win=win, name='text_inst_5a',
-        text='On this trial you can either choose a certain reward of 0.5$ or a gamble with a 80% chance of getting a 0.25$ reward.\n\nPress the <left arrow key> to select the certain reward of 0.5$.',
+        text='On this trial you can either choose a certain reward of $0.50 or a gamble with a 80% chance of getting a $0.25 reward.\n\nPress the <left arrow key> to select the certain reward of $0.50.',
         font='Arial',
         pos=(0, -0.4), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -779,20 +780,27 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-1.0, interpolate=True)
-    intro_outcome_text = visual.TextStim(win=win, name='intro_outcome_text',
-        text='+0.50$',
+    intro_outcome_text_5 = visual.TextStim(win=win, name='intro_outcome_text_5',
+        text='Win!',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
+        pos=(0, 0.05), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
+    intro_outcome_text = visual.TextStim(win=win, name='intro_outcome_text',
+        text='+$0.50',
+        font='Arial',
+        pos=(0, -0.05), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-3.0);
     intro_next_trial_txt_2 = visual.TextStim(win=win, name='intro_next_trial_txt_2',
         text='Press the <space bar> to do another introductory trial',
         font='Arial',
         pos=(0, -0.35), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-3.0);
+        depth=-4.0);
     intro_next_trial_input_2 = keyboard.Keyboard(deviceName='intro_next_trial_input_2')
     
     # --- Initialize components for Routine "intro_iti" ---
@@ -946,17 +954,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_outcome_text_3 = visual.TextStim(win=win, name='intro_outcome_text_3',
         text='Loss!',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
+        pos=(0, 0.05), draggable=False, height=0.06, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
+    intro_outcome_text_2 = visual.TextStim(win=win, name='intro_outcome_text_2',
+        text='+$0.00',
+        font='Arial',
+        pos=(0, -0.05), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-3.0);
     intro_next_trial_txt = visual.TextStim(win=win, name='intro_next_trial_txt',
         text='Press the <space bar> to continue',
         font='Arial',
         pos=(0, -0.35), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-3.0);
+        depth=-4.0);
     intro_next_trial_input = keyboard.Keyboard(deviceName='intro_next_trial_input')
     
     # --- Initialize components for Routine "instructions6" ---
@@ -1014,7 +1029,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-4.0);
     instrutions_text = visual.TextStim(win=win, name='instrutions_text',
-        text='This is an example outcome screen \nfor a loss, also showing your \ncurrent total and the progress \nbar (about half way through the \nsession).\n\nPress <enter> to continue',
+        text='This is an example outcome screen \nfor a win, also showing your \ncurrent total and the progress \nbar (about half way through the \nsession).\n\nPress <enter> to continue',
         font='Arial',
         pos=(0.55, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='blue', colorSpace='rgb', opacity=None, 
@@ -1282,6 +1297,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-13.0);
     p_choice = keyboard.Keyboard(deviceName='p_choice')
+    practice_txt_2 = visual.TextStim(win=win, name='practice_txt_2',
+        text='Practice',
+        font='Arial',
+        pos=(-0.7, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-15.0);
+    p_Late_input = visual.TextStim(win=win, name='p_Late_input',
+        text='Choose an option by pressing the left or right arrow',
+        font='Arial',
+        pos=(0, -0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-16.0);
     
     # --- Initialize components for Routine "p_chosen_option" ---
     fixation_5 = visual.ShapeStim(
@@ -1375,6 +1404,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-13.0);
+    practice_txt_3 = visual.TextStim(win=win, name='practice_txt_3',
+        text='Practice',
+        font='Arial',
+        pos=(-0.7, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-14.0);
     
     # --- Initialize components for Routine "p_reward_outcome" ---
     # Run 'Begin Experiment' code from p_gamble_result_code
@@ -1389,7 +1425,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     practice_txt = visual.TextStim(win=win, name='practice_txt',
         text='Practice',
         font='Arial',
-        pos=(-0.6, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.7, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
@@ -1492,7 +1528,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         text="You have now completed the practice trials. \n\nPress 'c' to continue to the main trials.\n\nPress 'r' to repeat the practice trials.",
         font='Arial',
         pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
     key_resp_9 = keyboard.Keyboard(deviceName='key_resp_9')
@@ -1511,7 +1547,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         text='You have now completed the practice trials and will move on to the full task. \n\nPress <enter> to start',
         font='Arial',
         pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
     key_resp_inst_10 = keyboard.Keyboard(deviceName='key_resp_inst_10')
@@ -1617,7 +1653,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-13.0);
-    choice = keyboard.Keyboard(deviceName='choice')
+    user_choice = keyboard.Keyboard(deviceName='user_choice')
+    p_Late_input_2 = visual.TextStim(win=win, name='p_Late_input_2',
+        text='Choose an option by pressing the left or right arrow',
+        font='Arial',
+        pos=(0, -0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-15.0);
     
     # --- Initialize components for Routine "chosen_option" ---
     fixation_7 = visual.ShapeStim(
@@ -1767,35 +1810,35 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         startValue=None, size=(1.3, 0.05), pos=(0, 0), units=win.units,
         labels=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'), ticks=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), granularity=1.0,
         style='rating', styleTweaks=(), opacity=None,
-        labelColor='LightGray', markerColor='Red', lineColor='White', colorSpace='rgb',
+        labelColor='black', markerColor='Red', lineColor='black', colorSpace='rgb',
         font='Open Sans', labelHeight=0.04,
         flip=False, ori=0.0, depth=0, readOnly=False)
     low_end_text_2 = visual.TextStim(win=win, name='low_end_text_2',
         text='very unhappy',
         font='Arial',
         pos=(-0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
     high_end_text_2 = visual.TextStim(win=win, name='high_end_text_2',
         text='very happy',
         font='Arial',
         pos=(0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
     question_2 = visual.TextStim(win=win, name='question_2',
         text='How happy are you at this moment?',
         font='Arial',
         pos=(0, 0.3), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-3.0);
     exit_text = visual.TextStim(win=win, name='exit_text',
         text='Press <enter> to move to the next trial',
         font='Arial',
         pos=(0, -0.3), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
     key_resp_6 = keyboard.Keyboard(deviceName='key_resp_6')
@@ -1814,7 +1857,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         text='Break\n\nPress <enter> when you are ready to resume',
         font='Arial',
         pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
-        color='white', colorSpace='rgb', opacity=None, 
+        color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
     key_resp_10 = keyboard.Keyboard(deviceName='key_resp_10')
@@ -2697,7 +2740,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t1_outcome
     instructions_t1_outcome = data.Routine(
         name='instructions_t1_outcome',
-        components=[total_prompt_inst_5a, p_outcome_square_2, intro_outcome_text, intro_next_trial_txt_2, intro_next_trial_input_2],
+        components=[total_prompt_inst_5a, p_outcome_square_2, intro_outcome_text_5, intro_outcome_text, intro_next_trial_txt_2, intro_next_trial_input_2],
     )
     instructions_t1_outcome.status = NOT_STARTED
     continueRoutine = True
@@ -2777,6 +2820,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if p_outcome_square_2 is active this frame...
         if p_outcome_square_2.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_outcome_text_5* updates
+        
+        # if intro_outcome_text_5 is starting this frame...
+        if intro_outcome_text_5.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_outcome_text_5.frameNStart = frameN  # exact frame index
+            intro_outcome_text_5.tStart = t  # local t and not account for scr refresh
+            intro_outcome_text_5.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_outcome_text_5, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_outcome_text_5.started')
+            # update status
+            intro_outcome_text_5.status = STARTED
+            intro_outcome_text_5.setAutoDraw(True)
+        
+        # if intro_outcome_text_5 is active this frame...
+        if intro_outcome_text_5.status == STARTED:
             # update params
             pass
         
@@ -3560,7 +3623,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t2_outcome
     instructions_t2_outcome = data.Routine(
         name='instructions_t2_outcome',
-        components=[total_prompt_inst_5a_2, p_outcome_square_3, intro_outcome_text_3, intro_next_trial_txt, intro_next_trial_input],
+        components=[total_prompt_inst_5a_2, p_outcome_square_3, intro_outcome_text_3, intro_outcome_text_2, intro_next_trial_txt, intro_next_trial_input],
     )
     instructions_t2_outcome.status = NOT_STARTED
     continueRoutine = True
@@ -3660,6 +3723,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if intro_outcome_text_3 is active this frame...
         if intro_outcome_text_3.status == STARTED:
+            # update params
+            pass
+        
+        # *intro_outcome_text_2* updates
+        
+        # if intro_outcome_text_2 is starting this frame...
+        if intro_outcome_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            intro_outcome_text_2.frameNStart = frameN  # exact frame index
+            intro_outcome_text_2.tStart = t  # local t and not account for scr refresh
+            intro_outcome_text_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(intro_outcome_text_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'intro_outcome_text_2.started')
+            # update status
+            intro_outcome_text_2.status = STARTED
+            intro_outcome_text_2.setAutoDraw(True)
+        
+        # if intro_outcome_text_2 is active this frame...
+        if intro_outcome_text_2.status == STARTED:
             # update params
             pass
         
@@ -5444,7 +5527,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine p_options_show
         p_options_show = data.Routine(
             name='p_options_show',
-            components=[p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_choice],
+            components=[p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_choice, practice_txt_2, p_Late_input],
         )
         p_options_show.status = NOT_STARTED
         continueRoutine = True
@@ -5452,10 +5535,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from code_9
         # Determine the type of trial
         print(options_prac[practice_trials.thisN,:])
-        if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
+        if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,0]!=0) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
             sure_left = True
             forced_trial = False
-        elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right
+        elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,4]!=0) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right
             sure_left = False
             forced_trial = False
         elif (options_prac[practice_trials.thisN,0]==0) and (options_prac[practice_trials.thisN,1]==1): # forced gamble right
@@ -5475,6 +5558,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             forced_trial = True
             forced_type_sure = True
         
+        print(forced_trial)
         
         # Determine the coordonates and components of the boxes
         
@@ -5895,6 +5979,46 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # a response ends the routine
                     continueRoutine = False
             
+            # *practice_txt_2* updates
+            
+            # if practice_txt_2 is starting this frame...
+            if practice_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                practice_txt_2.frameNStart = frameN  # exact frame index
+                practice_txt_2.tStart = t  # local t and not account for scr refresh
+                practice_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(practice_txt_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'practice_txt_2.started')
+                # update status
+                practice_txt_2.status = STARTED
+                practice_txt_2.setAutoDraw(True)
+            
+            # if practice_txt_2 is active this frame...
+            if practice_txt_2.status == STARTED:
+                # update params
+                pass
+            
+            # *p_Late_input* updates
+            
+            # if p_Late_input is starting this frame...
+            if p_Late_input.status == NOT_STARTED and tThisFlip >= 5-frameTolerance:
+                # keep track of start time/frame for later
+                p_Late_input.frameNStart = frameN  # exact frame index
+                p_Late_input.tStart = t  # local t and not account for scr refresh
+                p_Late_input.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_Late_input, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_Late_input.started')
+                # update status
+                p_Late_input.status = STARTED
+                p_Late_input.setAutoDraw(True)
+            
+            # if p_Late_input is active this frame...
+            if p_Late_input.status == STARTED:
+                # update params
+                pass
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -5948,7 +6072,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine p_chosen_option
         p_chosen_option = data.Routine(
             name='p_chosen_option',
-            components=[fixation_5, p_box1_2, p_box2_2, p_box3_2, p_box4_2, p_box1_mag_2, p_box1_P_2, p_box2_mag_2, p_box2_P_2, p_box3_mag_2, p_box3_P_2, p_box4_mag_2, p_box4_P_2],
+            components=[fixation_5, p_box1_2, p_box2_2, p_box3_2, p_box4_2, p_box1_mag_2, p_box1_P_2, p_box2_mag_2, p_box2_P_2, p_box3_mag_2, p_box3_P_2, p_box4_mag_2, p_box4_P_2, practice_txt_3],
         )
         p_chosen_option.status = NOT_STARTED
         continueRoutine = True
@@ -6284,6 +6408,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *practice_txt_3* updates
+            
+            # if practice_txt_3 is starting this frame...
+            if practice_txt_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                practice_txt_3.frameNStart = frameN  # exact frame index
+                practice_txt_3.tStart = t  # local t and not account for scr refresh
+                practice_txt_3.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(practice_txt_3, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'practice_txt_3.started')
+                # update status
+                practice_txt_3.status = STARTED
+                practice_txt_3.setAutoDraw(True)
+            
+            # if practice_txt_3 is active this frame...
+            if practice_txt_3.status == STARTED:
+                # update params
+                pass
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -6409,7 +6553,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         p_outcome_square.setLineColor(outcome_color)
         p_outcome_text.setPos((0, 0.05))
         p_outcome_text.setText(outcome_txtW)
-        p_reward_txt.setText(f"${added_money:.2f}")
+        p_reward_txt.setText(f"+${added_money:.2f}")
         p_prog_bar.setProgress(p_progBar)
         # create starting attributes for p_next_trial_input
         p_next_trial_input.keys = []
@@ -7260,11 +7404,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             practice_trials.addData('key_resp_9.duration', key_resp_9.duration)
         # Run 'End Routine' code from saveChoice_15
         # For an unknown reason, psychopy routines do not skip the custom code part of a shipped rountine
-        if (practice_trials.thisN +1) % (npractice_trials/3) == 0:
+        if (practice_trials.thisN +1) % (npractice_trials) == 0:
             keys = event.getKeys()
             Input = keys[-1]
         
-            if Input == 'c' or (practice_trials.thisN +1) == npractice_trials:
+            if Input == 'c' or (practice_trials.thisN +1) == (npractice_trials*3):
                 practice_trials.finished = True
         
         #elif userChoice == 'r':
@@ -7675,7 +7819,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine options_show
         options_show = data.Routine(
             name='options_show',
-            components=[fixation_cross_2, box1, box2, box3, box4, box1_mag, box1_P, box2_mag, box2_P, box3_mag, box3_P, box4_mag, box4_P, choice],
+            components=[fixation_cross_2, box1, box2, box3, box4, box1_mag, box1_P, box2_mag, box2_P, box3_mag, box3_P, box4_mag, box4_P, user_choice, p_Late_input_2],
         )
         options_show.status = NOT_STARTED
         continueRoutine = True
@@ -7683,10 +7827,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from code_10
         # Determine the type of trial
         
-        if (options[trials.thisN,1]==1) and (options[trials.thisN,5]!=0): # Choice sure left
+        if (options[trials.thisN,1]==1) and (options[trials.thisN,0]!=0) and (options[trials.thisN,5]!=0): # Choice sure left
             sure_left = True
             forced_trial = False
-        elif (options[trials.thisN,5]==1) and (options[trials.thisN,3]!=0):  # Choice sure right
+        elif (options[trials.thisN,5]==1) and (options[trials.thisN,4]!=0) and (options[trials.thisN,3]!=0):  # Choice sure right
             sure_left = False
             forced_trial = False
         elif (options[trials.thisN,0]==0) and (options[trials.thisN,1]==1): # forced gamble right
@@ -7786,25 +7930,25 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         box3.setPos((x3, y3))
         box4.setPos((x4, y4))
         box1_mag.setPos((x1, y1+0.03))
-        box1_mag.setText(Mag1)
+        box1_mag.setText(f"${Mag1:.2f}")
         box1_P.setPos((x1, y1-0.04))
-        box1_P.setText(P1)
+        box1_P.setText(f"{P1*100:.0f}%")
         box2_mag.setPos((x2, y2+0.03))
-        box2_mag.setText(Mag2)
+        box2_mag.setText(f"${Mag2:.2f}")
         box2_P.setPos((x2, y2-0.04))
-        box2_P.setText(P2)
+        box2_P.setText(f"{P2*100:.0f}%")
         box3_mag.setPos((x3, y3+0.03))
-        box3_mag.setText(Mag3)
+        box3_mag.setText(f"${Mag3:.2f}")
         box3_P.setPos((x3, y3-0.04))
-        box3_P.setText(P3)
+        box3_P.setText(f"{P3*100:.0f}%")
         box4_mag.setPos((x4, y4+0.03))
-        box4_mag.setText(Mag4)
+        box4_mag.setText(f"${Mag4:.2f}")
         box4_P.setPos((x4, y4-0.04))
-        box4_P.setText(P4)
-        # create starting attributes for choice
-        choice.keys = []
-        choice.rt = []
-        _choice_allKeys = []
+        box4_P.setText(f"{P4*100:.0f}%")
+        # create starting attributes for user_choice
+        user_choice.keys = []
+        user_choice.rt = []
+        _user_choice_allKeys = []
         # store start times for options_show
         options_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         options_show.tStart = globalClock.getTime(format='float')
@@ -8098,33 +8242,53 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *choice* updates
+            # *user_choice* updates
             waitOnFlip = False
             
-            # if choice is starting this frame...
-            if choice.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if user_choice is starting this frame...
+            if user_choice.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                choice.frameNStart = frameN  # exact frame index
-                choice.tStart = t  # local t and not account for scr refresh
-                choice.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(choice, 'tStartRefresh')  # time at next scr refresh
+                user_choice.frameNStart = frameN  # exact frame index
+                user_choice.tStart = t  # local t and not account for scr refresh
+                user_choice.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(user_choice, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'choice.started')
+                thisExp.timestampOnFlip(win, 'user_choice.started')
                 # update status
-                choice.status = STARTED
+                user_choice.status = STARTED
                 # keyboard checking is just starting
                 waitOnFlip = True
-                win.callOnFlip(choice.clock.reset)  # t=0 on next screen flip
-                win.callOnFlip(choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
-            if choice.status == STARTED and not waitOnFlip:
-                theseKeys = choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
-                _choice_allKeys.extend(theseKeys)
-                if len(_choice_allKeys):
-                    choice.keys = _choice_allKeys[-1].name  # just the last key pressed
-                    choice.rt = _choice_allKeys[-1].rt
-                    choice.duration = _choice_allKeys[-1].duration
+                win.callOnFlip(user_choice.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(user_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if user_choice.status == STARTED and not waitOnFlip:
+                theseKeys = user_choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
+                _user_choice_allKeys.extend(theseKeys)
+                if len(_user_choice_allKeys):
+                    user_choice.keys = _user_choice_allKeys[-1].name  # just the last key pressed
+                    user_choice.rt = _user_choice_allKeys[-1].rt
+                    user_choice.duration = _user_choice_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
+            
+            # *p_Late_input_2* updates
+            
+            # if p_Late_input_2 is starting this frame...
+            if p_Late_input_2.status == NOT_STARTED and tThisFlip >= 5-frameTolerance:
+                # keep track of start time/frame for later
+                p_Late_input_2.frameNStart = frameN  # exact frame index
+                p_Late_input_2.tStart = t  # local t and not account for scr refresh
+                p_Late_input_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_Late_input_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_Late_input_2.started')
+                # update status
+                p_Late_input_2.status = STARTED
+                p_Late_input_2.setAutoDraw(True)
+            
+            # if p_Late_input_2 is active this frame...
+            if p_Late_input_2.status == STARTED:
+                # update params
+                pass
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -8166,12 +8330,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         options_show.tStopRefresh = tThisFlipGlobal
         thisExp.addData('options_show.stopped', options_show.tStop)
         # check responses
-        if choice.keys in ['', [], None]:  # No response was made
-            choice.keys = None
-        trials.addData('choice.keys',choice.keys)
-        if choice.keys != None:  # we had a response
-            trials.addData('choice.rt', choice.rt)
-            trials.addData('choice.duration', choice.duration)
+        if user_choice.keys in ['', [], None]:  # No response was made
+            user_choice.keys = None
+        trials.addData('user_choice.keys',user_choice.keys)
+        if user_choice.keys != None:  # we had a response
+            trials.addData('user_choice.rt', user_choice.rt)
+            trials.addData('user_choice.duration', user_choice.duration)
         # the Routine "options_show" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
@@ -8197,27 +8361,27 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             y2 = 2
             choice = 1
         
-        thisExp.addData('choice_prac', choice)
+        thisExp.addData('choice', choice)
         box1_2.setPos((x1, y1))
         box2_2.setPos((x2, y2))
         box3_2.setPos((x3, y3))
         box4_2.setPos((x4, y4))
         box1_mag_2.setPos((x1, y1+0.03))
-        box1_mag_2.setText(Mag1)
+        box1_mag_2.setText(f"${Mag1:.2f}")
         box1_P_2.setPos((x1, y1-0.04))
-        box1_P_2.setText(P1)
+        box1_P_2.setText(f"{P1*100:.0f}%")
         box2_mag_2.setPos((x2, y2+0.03))
-        box2_mag_2.setText(Mag2)
+        box2_mag_2.setText(f"${Mag2:.2f}")
         box2_P_2.setPos((x2, y2-0.04))
-        box2_P_2.setText(P2)
+        box2_P_2.setText(f"{P2*100:.0f}%")
         box3_mag_2.setPos((x3, y3+0.03))
-        box3_mag_2.setText(Mag3)
+        box3_mag_2.setText(f"${Mag3:.2f}")
         box3_P_2.setPos((x3, y3-0.04))
-        box3_P_2.setText(P3)
+        box3_P_2.setText(f"{P3*100:.0f}%")
         box4_mag_2.setPos((x4, y4+0.03))
-        box4_mag_2.setText(Mag4)
+        box4_mag_2.setText(f"${Mag4:.2f}")
         box4_P_2.setPos((x4, y4-0.04))
-        box4_P_2.setText(P4)
+        box4_P_2.setText(f"{P4*100:.0f}%")
         # store start times for chosen_option
         chosen_option.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         chosen_option.tStart = globalClock.getTime(format='float')
@@ -9321,7 +9485,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         thisExp.addData('trial_break.started', trial_break.tStart)
         trial_break.maxDuration = None
         # skip Routine trial_break if its 'Skip if' condition is True
-        trial_break.skipped = continueRoutine and not ((trials.thisN % 37 != 0) | (trials.thisN != 148))
+        trial_break.skipped = continueRoutine and not ((trials.thisN % 66 != 0) | (trials.thisN != 198))
         continueRoutine = trial_break.skipped
         # keep track of which components have finished
         trial_breakComponents = trial_break.components
@@ -9463,7 +9627,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         thisExp.addData('repeat_iti_2.started', repeat_iti_2.tStart)
         repeat_iti_2.maxDuration = time_iti
         # skip Routine repeat_iti_2 if its 'Skip if' condition is True
-        repeat_iti_2.skipped = continueRoutine and not ((trials.thisN % 37 != 0) | (trials.thisN != 148))
+        repeat_iti_2.skipped = continueRoutine and not ((trials.thisN % 66 != 0) | (trials.thisN != 198))
         continueRoutine = repeat_iti_2.skipped
         # keep track of which components have finished
         repeat_iti_2Components = repeat_iti_2.components
