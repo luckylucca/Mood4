@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.4),
-    on Tue Apr 21 16:59:23 2026
+    on Wed Apr 22 19:13:31 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -64,8 +64,6 @@ for i in happyTrialIdx:
 
 happyTrial = (happyTrial != 0)
 
-print(np.size(happyTrial))
-
 #happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))
 happyTrialIdx_prac = np.hstack((3*np.ones(2*10), 2*np.ones(2*10)))
 happyTrialIdx_prac = happyTrialIdx_prac[np.random.permutation(len(happyTrialIdx_prac))]
@@ -79,7 +77,8 @@ happyTrial_prac = (happyTrial_prac != 0)
 
 
 npractice_trials = 10   # Number of practice trails
-ntrials        = 198    # Number of trails
+ntrials          = 198    # Number of trails
+reward_scaler    = 0.2 # Compared to the juice amounts in the real exp
 #ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials
 #reward         = np.linspace(0, 0.5, 11) # All possible reward amounts
 #proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials
@@ -125,6 +124,8 @@ reward_vec = np.array([[0.15, 1.00, 0.00, 0.50, 0.25, 0.50],
  [0.00, 1.00, 0.00, 0.70, 0.40, 0.30],
  [0.00, 1.00, 0.00, 0.50, 0.35, 0.50],
  [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]])
+
+reward_vec[:, [0, 2, 4]] = np.round(reward_vec[:, [0, 2, 4]] * reward_scaler, 2)
 
 options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]
 options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
@@ -1549,7 +1550,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=0.0);
+        depth=-1.0);
     key_resp_inst_10 = keyboard.Keyboard(deviceName='key_resp_inst_10')
     
     # --- Initialize components for Routine "first_delay" ---
@@ -1757,7 +1758,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "reward_outcome" ---
     # Run 'Begin Experiment' code from gamble_result_code
-    p_progVal = 1
+    progVal = 1
     money_prompt = visual.TextStim(win=win, name='money_prompt',
         text='',
         font='Arial',
@@ -1779,13 +1780,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-3.0);
+    reward_txt = visual.TextStim(win=win, name='reward_txt',
+        text='',
+        font='Arial',
+        pos=(0, -0.05), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-4.0);
     prog_bar = visual.Progress(
         win, name='prog_bar',
         progress=0.0,
         pos=(-0.5, -0.45), size=(1, 0.03), anchor='center-left', units='height',
         barColor='black', backColor=None, borderColor='black', colorSpace='rgb',
         lineWidth=4.0, opacity=1.0, ori=0.0,
-        depth=-4
+        depth=-5
     )
     next_trial_txt = visual.TextStim(win=win, name='next_trial_txt',
         text='Press the <space bar> to initiate the next trial.',
@@ -1793,7 +1801,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         pos=(0, -0.35), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-5.0);
+        depth=-6.0);
     next_trial_input = keyboard.Keyboard(deviceName='next_trial_input')
     
     # --- Initialize components for Routine "iti" ---
@@ -5534,7 +5542,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # update component parameters for each repeat
         # Run 'Begin Routine' code from code_9
         # Determine the type of trial
-        print(options_prac[practice_trials.thisN,:])
+        
+        pies = options_prac[practice_trials.thisN,:]
+        thisExp.addData('options', pies)
+        gamble_resulty = gamble_result_prac[practice_trials.thisN]
+        thisExp.addData('gamble_result', gamble_resulty)
+        
         if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,0]!=0) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
             sure_left = True
             forced_trial = False
@@ -5557,8 +5570,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             trial_side_left = False
             forced_trial = True
             forced_type_sure = True
-        
-        print(forced_trial)
         
         # Determine the coordonates and components of the boxes
         
@@ -6078,8 +6089,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from p_chosen_option_code
-        p_inputs = event.getKeys()
-        p_userchoice = p_inputs[-1]
+        p_inputs = p_choice.keys
+        p_userchoice = p_inputs
         
         if p_userchoice == 'left':
             y3 = 2
@@ -6535,6 +6546,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     else: # gamble loose
                         outcome_txtW = 'Loss!'
                         outcome = 0
+                else: # right side option
+                    if options_prac[practice_trials.thisN][5]>=gamble_result_prac[practice_trials.thisN]: # gamble win
+                        outcome_txtW = 'Win!'
+                        added_money = options_prac[practice_trials.thisN][4]
+                        outcome = 1
+                    else: # gamble loose
+                        outcome_txtW = 'Loss!'
+                        outcome = 0
         
         if outcome == -1 or outcome == 1:
             outcome_color = 'green'
@@ -6544,8 +6563,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         current_money += added_money
         
         #p_money_txt = f"$ {current_money:.2f}"
-        #
+        
         thisExp.addData("outcome_prac", outcome)
+        thisExp.addData("added_prac", added_money)
         p_money_prompt.setText(f"Current total: ${current_money:.2f}")
         p_outcome_square.setFillColor(outcome_color)
         p_outcome_square.setPos((0, 0))
@@ -7403,7 +7423,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             practice_trials.addData('key_resp_9.rt', key_resp_9.rt)
             practice_trials.addData('key_resp_9.duration', key_resp_9.duration)
         # Run 'End Routine' code from saveChoice_15
-        # For an unknown reason, psychopy routines do not skip the custom code part of a shipped rountine
+        # For an unknown reason, psychopy routines do not skip the custom code part of a skiped rountine
         if (practice_trials.thisN +1) % (npractice_trials) == 0:
             keys = event.getKeys()
             Input = keys[-1]
@@ -7546,6 +7566,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions12.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    # Run 'Begin Routine' code from money_reset
+    current_money = start_money
     # create starting attributes for key_resp_inst_10
     key_resp_inst_10.keys = []
     key_resp_inst_10.rt = []
@@ -7826,6 +7848,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # update component parameters for each repeat
         # Run 'Begin Routine' code from code_10
         # Determine the type of trial
+        
+        pies = options[trials.thisN,:]
+        thisExp.addData('options', pies)
+        gamble_resulty = gamble_result[trials.thisN]
+        thisExp.addData('gamble_result', gamble_resulty)
         
         if (options[trials.thisN,1]==1) and (options[trials.thisN,0]!=0) and (options[trials.thisN,5]!=0): # Choice sure left
             sure_left = True
@@ -8349,8 +8376,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from chosen_option_code
-        p_inputs = event.getKeys()
-        p_userchoice = p_inputs[-1]
+        p_inputs = user_choice.keys
+        p_userchoice = p_inputs
         
         if p_userchoice == 'left':
             y3 = 2
@@ -8725,29 +8752,30 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine reward_outcome
         reward_outcome = data.Routine(
             name='reward_outcome',
-            components=[money_prompt, outcome_square, outcome_text_3, prog_bar, next_trial_txt, next_trial_input],
+            components=[money_prompt, outcome_square, outcome_text_3, reward_txt, prog_bar, next_trial_txt, next_trial_input],
         )
         reward_outcome.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from gamble_result_code
-        p_progBar = p_progVal/npractice_trials
-        p_progVal += 1
+        progBar = progVal/ntrials
+        progVal += 1
         
         event.clearEvents()
         
         thisExp.addData('current_money', current_money)
         
+        added_money = 0
         if p_userchoice == 'left':
             if not(forced_trial): # choice trial
                 if sure_left: # sure option choosen
                     outcome_txtW = 'Win!'
-                    current_money += options[trials.thisN][0]
+                    added_money = options[trials.thisN][0]
                     outcome = -1
                 else: # gamble choosen
                     if options[trials.thisN][3] >= gamble_result[trials.thisN]: # gamble win
                         outcome_txtW = 'Win!'
-                        current_money += options[trials.thisN][2]
+                        added_money = options[trials.thisN][2]
                         outcome = 1
                     else: # gamble loose
                         outcome_txtW = 'Loss!'
@@ -8756,12 +8784,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             if not(forced_trial): # choice trial
                 if not(sure_left): # sure option choosen
                     outcome_txtW = 'Win!'
-                    current_money += options[trials.thisN][4]
+                    added_money = options[trials.thisN][4]
                     outcome = -1
                 else: # gamble choosen
                     if options[trials.thisN][5] >= gamble_result[trials.thisN]: # gamble win
                         outcome_txtW = 'Win!'
-                        current_money += options[trials.thisN][4]
+                        added_money = options[trials.thisN][4]
                         outcome = 1
                     else: # gamble loose
                         outcome_txtW = 'Loss!'
@@ -8772,14 +8800,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 outcome_txtW = 'Win!'
                 outcome = -1
                 if trial_side_left: # left side option
-                    current_money += options[trials.thisN][0]
+                    added_money = options[trials.thisN][0]
                 else: # right side option
-                    current_money += options[trials.thisN][4]
+                    added_money = options[trials.thisN][4]
             else: # forced gamble
                 if trial_side_left:
                     if options[trials.thisN][3]>=gamble_result[trials.thisN]: # gamble win
                         outcome_txtW = 'Win!'
-                        current_money += options[trials.thisN][2]
+                        added_money = options[trials.thisN][2]
+                        outcome = 1
+                    else: # gamble loose
+                        outcome_txtW = 'Loss!'
+                        outcome = 0
+                else: # right side option
+                    if options[trials.thisN][5]>=gamble_result[trials.thisN]: # gamble win
+                        outcome_txtW = 'Win!'
+                        added_money = options[trials.thisN][4]
                         outcome = 1
                     else: # gamble loose
                         outcome_txtW = 'Loss!'
@@ -8790,16 +8826,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         else:
             outcome_color = 'red'
         
+        current_money += added_money
+        
         #p_money_txt = f"$ {current_money:.2f}"
         #
         thisExp.addData("outcome", outcome)
+        thisExp.addData("added_money", added_money)
         money_prompt.setText(f"Current total: ${current_money:.2f}")
         outcome_square.setFillColor(outcome_color)
         outcome_square.setPos((0, 0))
         outcome_square.setSize((2*option_size, 2*option_size))
         outcome_square.setLineColor(outcome_color)
-        outcome_text_3.setPos((0, 0))
+        outcome_text_3.setPos((0, 0.05))
         outcome_text_3.setText(outcome_txtW)
+        reward_txt.setText(f"+${added_money:.2f}")
         prog_bar.setProgress(progBar)
         # create starting attributes for next_trial_input
         next_trial_input.keys = []
@@ -8895,6 +8935,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # if outcome_text_3 is active this frame...
             if outcome_text_3.status == STARTED:
+                # update params
+                pass
+            
+            # *reward_txt* updates
+            
+            # if reward_txt is starting this frame...
+            if reward_txt.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                reward_txt.frameNStart = frameN  # exact frame index
+                reward_txt.tStart = t  # local t and not account for scr refresh
+                reward_txt.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(reward_txt, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'reward_txt.started')
+                # update status
+                reward_txt.status = STARTED
+                reward_txt.setAutoDraw(True)
+            
+            # if reward_txt is active this frame...
+            if reward_txt.status == STARTED:
                 # update params
                 pass
             
@@ -9485,7 +9545,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         thisExp.addData('trial_break.started', trial_break.tStart)
         trial_break.maxDuration = None
         # skip Routine trial_break if its 'Skip if' condition is True
-        trial_break.skipped = continueRoutine and not ((trials.thisN % 66 != 0) | (trials.thisN != 198))
+        trial_break.skipped = continueRoutine and not (((trials.thisN+1) % 66 != 0) or (trials.thisN+1 == ntrials))
         continueRoutine = trial_break.skipped
         # keep track of which components have finished
         trial_breakComponents = trial_break.components
@@ -9627,7 +9687,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         thisExp.addData('repeat_iti_2.started', repeat_iti_2.tStart)
         repeat_iti_2.maxDuration = time_iti
         # skip Routine repeat_iti_2 if its 'Skip if' condition is True
-        repeat_iti_2.skipped = continueRoutine and not ((trials.thisN % 66 != 0) | (trials.thisN != 198))
+        repeat_iti_2.skipped = continueRoutine and not (((trials.thisN+1) % 66 != 0) | (trials.thisN+1 == ntrials))
         continueRoutine = repeat_iti_2.skipped
         # keep track of which components have finished
         repeat_iti_2Components = repeat_iti_2.components
