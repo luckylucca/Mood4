@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2026.1.3),
-    on Fri Apr 24 13:07:15 2026
+    on Mon Apr 27 17:10:34 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -131,37 +131,50 @@ options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]
 options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
 options2 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
 options3 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
-options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:30]
+options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:31]
 options = np.vstack((options1, options2, options3)) # All this is done to respect the pseudorandomization of the task
 
-#gambles_txt = []
-#for n in range(ntotal_trials):
-#    gamble1 = f"{gambles[n, 0]:.0f}%"  # Gamble1
-#    if gambles[n, 1] == reward[2]:
-#        gamble2 = f"BIG"
-##        gamble2 = f"BIG (${gambles[n, 1]:.2f})"
-#    elif gambles[n, 1] == reward[1]:
-#        gamble2 = f"MEDIUM"
-##        gamble2 = f"MEDIUM (${gambles[n, 1]:.2f})"
-#    else:
-#        gamble2 = f"SMALL"
-##        gamble2 = f"SMALL (${gambles[n, 1]:.2f})"
-#        
-#    gamble3 = f"{gambles[n, 2]:.0f}%"  # Gamble2
-#    if gambles[n, 3] == reward[2]:
-#        gamble4 = f"BIG"
-##        gamble4 = f"BIG (${gambles[n, 3]:.2f})"
-#    elif gambles[n, 3] == reward[1]:
-#        gamble4 = f"MEDIUM"
-#        gamble4 = f"MEDIUM (${gambles[n, 3]:.2f})"
-#    else:
-#        gamble4 = f"SMALL"
-##        gamble4 = f"SMALL (${gambles[n, 3]:.2f})"
-#    
-#    gambles_txt.append([gamble1, gamble2, gamble3, gamble4])
+# Format functions:
 
-#thisExp.addData("Gambles", gambles[3*npractice_trials:][:]) No need: each gamble is saved to the exp on each trial loop
-#thisExp.addData("Practice gamble", gambles[0:3*npractice_trials][:])
+def mag(x):
+    return f"${x:.2f}"
+
+def prob(x):
+    if x == 0:
+        return ""
+    else:
+        return f"{x*100:.0f}%"
+
+def trial_type(trial_array):
+    sure_left = False
+    forced_trial = False
+    trial_side_left = False
+    forced_type_sure = False
+    
+    if (trial_array[1]==1) and (trial_array[0]!=0) and (trial_array[5]!=0): # Choice sure left
+        sure_left = True
+        forced_trial = False
+    elif (trial_array[5]==1) and (trial_array[4]!=0) and (trial_array[3]!=0):  # Choice sure right
+        sure_left = False
+        forced_trial = False
+    elif (trial_array[0]==0) and (trial_array[1]==1): # forced gamble right
+        trial_side_left = False
+        forced_trial = True
+        forced_type_sure = False
+    elif (trial_array[4]==0) and (trial_array[5]==1): # forced gamble left
+        trial_side_left = True
+        forced_trial = True
+        forced_type_sure = False
+    elif (trial_array[1]==1): # forced sure left
+        trial_side_left = True
+        forced_trial = True
+        forced_type_sure = True
+    else: # forced sure right
+        trial_side_left = False
+        forced_trial = True
+        forced_type_sure = True
+        
+    return sure_left, forced_trial, trial_side_left, forced_type_sure
 # --- Setup global variables (available in all functions) ---
 # create a device manager to handle hardware (keyboards, mice, mirophones, speakers, etc.)
 deviceManager = hardware.DeviceManager()
@@ -509,9 +522,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "consent" ---
     text_9 = visual.TextStim(win=win, name='text_9',
-        text='This is an academic research project conducted through the University of Pennsylvania. In this Happiness Task, you will play a decision making game. In this game, you will make decisions about two options presented before you. The task takes ~35 minutes. You must be at least 18 years old to participate. Your participation in this research is voluntary, which means you can choose whether or not to participate without adverse consequences. Your anonymity is assured: the researchers who have requested your participation will not receive any personal information about you except your worker ID, gender, and age. The worker IDs will not be shared with anyone outside the research team nor associated with the collected data. The de-identified data may be stored and distributed for future research studies without additional informed consent. If you have questions about this research, please contact Nicole Rust by emailing nrust@psych.upenn.edu. If you have questions, concerns, or complaints regarding your participation in this research study, or if you have any questions about your rights as a research subject and you cannot reach a member of the study team, you may contact the Office of Regulatory Affairs at the University of Pennsylvania by calling (215) 898-2614 or emailing irb@pobox.upenn.edu.\n\nBy clicking this box below you acknowledge that you have read the above details and consent to participate in this study.',
+        text='This is an academic research project conducted through the University of Pennsylvania. In this happiness task, you will play a decision making game. The task takes ~40 minutes.\n\nYou must be at least 18 years old to participate. Your participation in this research is voluntary, which means you can choose whether or not to participate without adverse consequences. Your anonymity is assured: the researchers who have requested your participation will not receive any personal information about you except your worker ID, gender, and age. The worker IDs will not be shared with anyone outside the research team nor associated with the collected data. The de-identified data may be stored and distributed for future research studies without additional informed consent. If you have questions about this research, please contact Nicole Rust by emailing nrust@psych.upenn.edu. If you have questions, concerns, or complaints regarding your participation in this research study, or if you have any questions about your rights as a research subject and you cannot reach a member of the study team, you may contact the Office of Regulatory Affairs at the University of Pennsylvania by calling (215) 898-2614 or emailing irb@pobox.upenn.edu.\n\nBy clicking this box below you acknowledge that you have read the above details and consent to participate in this study.',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.03, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -540,7 +553,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     Intro_text_show = visual.TextStim(win=win, name='Intro_text_show',
         text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -585,14 +598,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_gambletop_txt = visual.TextStim(win=win, name='intro_gambletop_txt',
         text='',
         font='Arial',
-        pos=(width, height + 0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
     intro_gambletop_p = visual.TextStim(win=win, name='intro_gambletop_p',
         text='',
         font='Arial',
-        pos=(width, height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
@@ -606,24 +619,31 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_gamblelow_txt = visual.TextStim(win=win, name='intro_gamblelow_txt',
         text=f"${0:.2f}",
         font='Arial',
-        pos=(width, -height+0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-8.0);
     intro_gamblelow_p = visual.TextStim(win=win, name='intro_gamblelow_p',
         text='20%',
         font='Arial',
-        pos=(width, -height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-9.0);
-    text_inst_5a = visual.TextStim(win=win, name='text_inst_5a',
-        text='On this trial you can either choose a certain reward of $0.50 or a gamble with a 80% chance of getting a $0.25 reward.\n\nPress the <left arrow key> to select the certain reward of $0.50.',
+    Input_txt = visual.TextStim(win=win, name='Input_txt',
+        text='Press the <left arrow key> to select the $0.50',
         font='Arial',
-        pos=(0, -0.4), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-10.0);
+    Guide_txt = visual.TextStim(win=win, name='Guide_txt',
+        text='On this trial, you can choose either a guaranteed $0.50 reward or an 80% chance to win $0.25.',
+        font='Arial',
+        pos=(0, 0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-11.0);
     choice_inst_5a = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "instructions_t1_chosen_gamble" ---
@@ -644,7 +664,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_sure_txt_2 = visual.TextStim(win=win, name='intro_sure_txt_2',
         text='',
         font='Arial',
-        pos=(-width, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
@@ -681,7 +701,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_next_trial_txt_2 = visual.TextStim(win=win, name='intro_next_trial_txt_2',
         text='Press the <space bar> to do another introductory trial',
         font='Arial',
-        pos=(0, -0.35), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -735,38 +755,45 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_gambletop_txt_2 = visual.TextStim(win=win, name='intro_gambletop_txt_2',
         text='',
         font='Arial',
-        pos=(width, height + 0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
     intro_gambletop_p_2 = visual.TextStim(win=win, name='intro_gambletop_p_2',
         text='',
         font='Arial',
-        pos=(width, height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
     intro_gamblelow_txt_2 = visual.TextStim(win=win, name='intro_gamblelow_txt_2',
         text=f"${0:.2f}",
         font='Arial',
-        pos=(width, -height+0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-7.0);
     intro_gamblelow_p_2 = visual.TextStim(win=win, name='intro_gamblelow_p_2',
         text='20%',
         font='Arial',
-        pos=(width, -height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-8.0);
-    text_inst_5b = visual.TextStim(win=win, name='text_inst_5b',
-        text='On this trial you can either choose to win a $0.15 reward for certain, or choose a 80% chance of getting a $0.50 reward.\n\nPress the <right arrow key> to select the gamble.',
+    input_txt_2 = visual.TextStim(win=win, name='input_txt_2',
+        text='Press the <right arrow key> to select the gamble',
         font='Arial',
-        pos=(0, -0.4), draggable=False, height=0.03, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-9.0);
+    Guide_txt_2 = visual.TextStim(win=win, name='Guide_txt_2',
+        text='On this trial, you can choose either a guaranteed $0.15 reward or an 80% chance to win $0.50.',
+        font='Arial',
+        pos=(0, 0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-10.0);
     choice_inst_5b = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "instructions_t2_chosen_gamble" ---
@@ -794,28 +821,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_gambletop_txt_3 = visual.TextStim(win=win, name='intro_gambletop_txt_3',
         text='',
         font='Arial',
-        pos=(width, height + 0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-3.0);
     intro_gambletop_p_3 = visual.TextStim(win=win, name='intro_gambletop_p_3',
         text='',
         font='Arial',
-        pos=(width, height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
     intro_gamblelow_txt_3 = visual.TextStim(win=win, name='intro_gamblelow_txt_3',
         text=f"${0:.2f}",
         font='Arial',
-        pos=(width, -height+0.03), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
     intro_gamblelow_p_3 = visual.TextStim(win=win, name='intro_gamblelow_p_3',
         text='20%',
         font='Arial',
-        pos=(width, -height-0.04), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
@@ -852,7 +879,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_next_trial_txt = visual.TextStim(win=win, name='intro_next_trial_txt',
         text='Press the <space bar> to continue',
         font='Arial',
-        pos=(0, -0.35), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -862,7 +889,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_text = visual.TextStim(win=win, name='instructions_text',
         text='On the outcome screen, your total earnings will appear at the top, and a progress bar at the bottom will show how far along you are in the task.\n\nThe next screen will show you an example.',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -913,9 +940,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-4.0);
     instrutions_text = visual.TextStim(win=win, name='instrutions_text',
-        text='This is an example outcome screen \nfor a win, also showing your \ncurrent total and the progress \nbar (about half way through the \nsession).\n\nPress <enter> to continue',
+        text='This is an example outcome screen for a win, also showing your current total and the progress bar (about half way through the session).\n\nPress <enter> to continue',
         font='Arial',
-        pos=(0.55, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0.55, 0), draggable=False, height=0.04, wrapWidth=0.6, ori=0.0, 
         color='blue', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
@@ -939,7 +966,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_text_3 = visual.TextStim(win=win, name='instructions_text_3',
         text='At various points throughout the task you will be asked to rate your happiness. When you are asked to make a happiness rating, click a number 1-20 to reflect your rating from 1 (very unhappy) to 20 (very happy). ',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -963,21 +990,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     happiness_rating_overall = visual.Slider(win=win, name='happiness_rating_overall',
         startValue=None, size=(1.3, 0.05), pos=(0, 0), units=win.units,
         labels=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'), ticks=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), granularity=1.0,
-        style='rating', styleTweaks=(), opacity=None,
+        style='rating', styleTweaks=[], opacity=None,
         labelColor='black', markerColor='Red', lineColor='black', colorSpace='rgb',
-        font='Open Sans', labelHeight=0.04,
+        font='Arial', labelHeight=0.04,
         flip=False, ori=0.0, depth=-1, readOnly=False)
     low_end_text_3 = visual.TextStim(win=win, name='low_end_text_3',
         text='very unhappy',
         font='Arial',
-        pos=(-0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
     high_end_text_3 = visual.TextStim(win=win, name='high_end_text_3',
         text='very happy',
         font='Arial',
-        pos=(0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-3.0);
@@ -985,7 +1012,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     exit_text_4 = visual.TextStim(win=win, name='exit_text_4',
         text='Click to enter your answer. Press <enter> to move to the next screen.',
         font='Arial',
-        pos=(0, -0.3), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
@@ -994,7 +1021,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_text_6 = visual.TextStim(win=win, name='instructions_text_6',
         text='Just now, you were asked to think about your life overall. Now, think about just right now. How happy are you at this moment?\n\nDuring the task you will be asked this question many times. It is VERY important that you use as much of the rating scale as you can. \n\nIn a moment you will complete some practice trials. The least happy you remember being during the practice session should correspond to somewhere in the lower half of the rating scale. The most happy you remember being should correspond to somewhere in the upper half.',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -1011,21 +1038,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     happiness_rating_baseline = visual.Slider(win=win, name='happiness_rating_baseline',
         startValue=None, size=(1.3, 0.05), pos=(0, 0), units=win.units,
         labels=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'), ticks=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), granularity=1.0,
-        style='rating', styleTweaks=(), opacity=None,
+        style='rating', styleTweaks=[], opacity=None,
         labelColor='black', markerColor='Red', lineColor='black', colorSpace='rgb',
-        font='Open Sans', labelHeight=0.04,
+        font='Arial', labelHeight=0.04,
         flip=False, ori=0.0, depth=0, readOnly=False)
     low_end_text_5 = visual.TextStim(win=win, name='low_end_text_5',
         text='very unhappy',
         font='Arial',
-        pos=(-0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
     high_end_text_5 = visual.TextStim(win=win, name='high_end_text_5',
         text='very happy',
         font='Arial',
-        pos=(0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
@@ -1039,7 +1066,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     exit_text_3 = visual.TextStim(win=win, name='exit_text_3',
         text='Click to select your answer. Press <enter> to continue to the next screen.',
         font='Arial',
-        pos=(0, -0.3), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -1049,7 +1076,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_text_2 = visual.TextStim(win=win, name='instructions_text_2',
         text='It would be best to complete the entire task with minimal breaks. If you need to take a break, please do so on the break screen.',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -1066,7 +1093,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_text_7 = visual.TextStim(win=win, name='instructions_text_7',
         text='You will now complete 10 practice trials. Try to remember the least and most happy you feel during the practice trials to guide your happiness ratings throughout the task.',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -1191,7 +1218,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     p_Late_input = visual.TextStim(win=win, name='p_Late_input',
         text='Choose an option by pressing the left or right arrow',
         font='Arial',
-        pos=(0, -0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-16.0);
@@ -1343,9 +1370,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         depth=-6
     )
     p_next_trial_txt = visual.TextStim(win=win, name='p_next_trial_txt',
-        text='Press the <space bar> to initiate the next trial. ',
+        text='Press the <space bar> to initiate the next trial',
         font='Arial',
-        pos=(0, -0.35), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-7.0);
@@ -1364,21 +1391,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     happiness_rating_prac = visual.Slider(win=win, name='happiness_rating_prac',
         startValue=None, size=(1.3, 0.05), pos=(0, 0), units=win.units,
         labels=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'), ticks=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), granularity=1.0,
-        style='rating', styleTweaks=(), opacity=None,
+        style='rating', styleTweaks=[], opacity=None,
         labelColor='black', markerColor='Red', lineColor='black', colorSpace='rgb',
-        font='Open Sans', labelHeight=0.04,
+        font='Arial', labelHeight=0.04,
         flip=False, ori=0.0, depth=0, readOnly=False)
     low_end_text_4 = visual.TextStim(win=win, name='low_end_text_4',
         text='very unhappy',
         font='Arial',
-        pos=(-0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
     high_end_text_4 = visual.TextStim(win=win, name='high_end_text_4',
         text='very happy',
         font='Arial',
-        pos=(0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
@@ -1392,7 +1419,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     exit_text_2 = visual.TextStim(win=win, name='exit_text_2',
         text='Press <enter> to move to the next trial',
         font='Arial',
-        pos=(0, -0.3), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -1409,9 +1436,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "repeat_practice" ---
     repeat_practice_txt = visual.TextStim(win=win, name='repeat_practice_txt',
-        text="You have now completed the practice trials. \n\nPress 'c' to continue to the main trials.\n\nPress 'r' to repeat the practice trials.",
+        text="You have now completed the practice trials. \n\nPress 'c' to continue to the main trials\n\nPress 'r' to repeat the practice trials",
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -1430,7 +1457,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_text_8 = visual.TextStim(win=win, name='instructions_text_8',
         text='You have now completed the practice trials and will move on to the full task. \n\nPress <enter> to start',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -1541,7 +1568,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     p_Late_input_2 = visual.TextStim(win=win, name='p_Late_input_2',
         text='Choose an option by pressing the left or right arrow',
         font='Arial',
-        pos=(0, -0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-15.0);
@@ -1677,9 +1704,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         depth=-5
     )
     next_trial_txt = visual.TextStim(win=win, name='next_trial_txt',
-        text='Press the <space bar> to initiate the next trial.',
+        text='Press the <space bar> to initiate the next trial',
         font='Arial',
-        pos=(0, -0.35), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
@@ -1698,21 +1725,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     happiness_rating = visual.Slider(win=win, name='happiness_rating',
         startValue=None, size=(1.3, 0.05), pos=(0, 0), units=win.units,
         labels=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'), ticks=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), granularity=1.0,
-        style='rating', styleTweaks=(), opacity=None,
+        style='rating', styleTweaks=[], opacity=None,
         labelColor='black', markerColor='Red', lineColor='black', colorSpace='rgb',
-        font='Open Sans', labelHeight=0.04,
+        font='Arial', labelHeight=0.04,
         flip=False, ori=0.0, depth=0, readOnly=False)
     low_end_text_2 = visual.TextStim(win=win, name='low_end_text_2',
         text='very unhappy',
         font='Arial',
-        pos=(-0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
     high_end_text_2 = visual.TextStim(win=win, name='high_end_text_2',
         text='very happy',
         font='Arial',
-        pos=(0.5, -0.15), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0.65, 0.07), draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
@@ -1726,7 +1753,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     exit_text = visual.TextStim(win=win, name='exit_text',
         text='Press <enter> to move to the next trial',
         font='Arial',
-        pos=(0, -0.3), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -1745,7 +1772,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     break_txt = visual.TextStim(win=win, name='break_txt',
         text='Break\n\nPress <enter> when you are ready to resume',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.05, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -1762,9 +1789,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Thank_you" ---
     thankYouText = visual.TextStim(win=win, name='thankYouText',
-        text='You have completed the task. Thank you for your participation!\n\nPlease do not close your browser until the screen says to do so.\n\nThe page should automatically redirect you to Prolific once you exit the experiment. In case there is an error, please note the following completion code: C1D29EVY.\n\n(Press enter to exit the experiment)',
+        text='You have completed the task. Thank you for your participation!\n\nPlease do not close your browser until the screen says to do so.\n\nThe page should automatically redirect you to Prolific once you exit the experiment. In case there is an error, please note the following completion code: C1D29EVY.\n\nPress <enter> to exit the experiment',
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
@@ -2182,7 +2209,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t1_target_on_choice
     instructions_t1_target_on_choice = data.Routine(
         name='instructions_t1_target_on_choice',
-        components=[fixation_inst_5a, intro_sure, intro_sure_txt, intro_gambletop, intro_gambletop_txt, intro_gambletop_p, intro_gamblelow, intro_gamblelow_txt, intro_gamblelow_p, text_inst_5a, choice_inst_5a],
+        components=[fixation_inst_5a, intro_sure, intro_sure_txt, intro_gambletop, intro_gambletop_txt, intro_gambletop_p, intro_gamblelow, intro_gamblelow_txt, intro_gamblelow_p, Input_txt, Guide_txt, choice_inst_5a],
     )
     instructions_t1_target_on_choice.status = NOT_STARTED
     continueRoutine = True
@@ -2192,8 +2219,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     Intro_gamble_mag = 0.25
     Intro_gamble_p = 0.80
     intro_sure_txt.setText(f"${Intro_sure:.2f}")
+    intro_gambletop_txt.setPos((width, height))
     intro_gambletop_txt.setText(f"${Intro_gamble_mag:.2f}")
+    intro_gambletop_p.setPos((width+0.2, height))
     intro_gambletop_p.setText(f"{Intro_gamble_p*100:.0f}%")
+    intro_gamblelow_txt.setPos((width, -height))
+    intro_gamblelow_p.setPos((width+0.2, -height))
     # create starting attributes for choice_inst_5a
     choice_inst_5a.keys = []
     choice_inst_5a.rt = []
@@ -2409,23 +2440,43 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *text_inst_5a* updates
+        # *Input_txt* updates
         
-        # if text_inst_5a is starting this frame...
-        if text_inst_5a.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if Input_txt is starting this frame...
+        if Input_txt.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            text_inst_5a.frameNStart = frameN  # exact frame index
-            text_inst_5a.tStart = t  # local t and not account for scr refresh
-            text_inst_5a.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(text_inst_5a, 'tStartRefresh')  # time at next scr refresh
+            Input_txt.frameNStart = frameN  # exact frame index
+            Input_txt.tStart = t  # local t and not account for scr refresh
+            Input_txt.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(Input_txt, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'text_inst_5a.started')
+            thisExp.timestampOnFlip(win, 'Input_txt.started')
             # update status
-            text_inst_5a.status = STARTED
-            text_inst_5a.setAutoDraw(True)
+            Input_txt.status = STARTED
+            Input_txt.setAutoDraw(True)
         
-        # if text_inst_5a is active this frame...
-        if text_inst_5a.status == STARTED:
+        # if Input_txt is active this frame...
+        if Input_txt.status == STARTED:
+            # update params
+            pass
+        
+        # *Guide_txt* updates
+        
+        # if Guide_txt is starting this frame...
+        if Guide_txt.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            Guide_txt.frameNStart = frameN  # exact frame index
+            Guide_txt.tStart = t  # local t and not account for scr refresh
+            Guide_txt.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(Guide_txt, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'Guide_txt.started')
+            # update status
+            Guide_txt.status = STARTED
+            Guide_txt.setAutoDraw(True)
+        
+        # if Guide_txt is active this frame...
+        if Guide_txt.status == STARTED:
             # update params
             pass
         
@@ -2519,6 +2570,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t1_chosen_gamble.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    intro_sure_txt_2.setPos((-width, 0))
     intro_sure_txt_2.setText(f"${Intro_sure:.2f}")
     # store start times for instructions_t1_chosen_gamble
     instructions_t1_chosen_gamble.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
@@ -3004,14 +3056,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions_t2_target_on_choice
     instructions_t2_target_on_choice = data.Routine(
         name='instructions_t2_target_on_choice',
-        components=[fixation_inst_5b, intro_sure_3, intro_gambletop_2, intro_gamblelow_2, intro_sure_txt_3, intro_gambletop_txt_2, intro_gambletop_p_2, intro_gamblelow_txt_2, intro_gamblelow_p_2, text_inst_5b, choice_inst_5b],
+        components=[fixation_inst_5b, intro_sure_3, intro_gambletop_2, intro_gamblelow_2, intro_sure_txt_3, intro_gambletop_txt_2, intro_gambletop_p_2, intro_gamblelow_txt_2, intro_gamblelow_p_2, input_txt_2, Guide_txt_2, choice_inst_5b],
     )
     instructions_t2_target_on_choice.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
     intro_sure_txt_3.setText('$0.15')
+    intro_gambletop_txt_2.setPos((width, height))
     intro_gambletop_txt_2.setText(f"${0.5:.2f}")
+    intro_gambletop_p_2.setPos((width+0.2, height))
     intro_gambletop_p_2.setText(f"{80:.0f}%")
+    intro_gamblelow_txt_2.setPos((width, -height))
+    intro_gamblelow_p_2.setPos((width+0.2, -height))
     # create starting attributes for choice_inst_5b
     choice_inst_5b.keys = []
     choice_inst_5b.rt = []
@@ -3227,23 +3283,43 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *text_inst_5b* updates
+        # *input_txt_2* updates
         
-        # if text_inst_5b is starting this frame...
-        if text_inst_5b.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if input_txt_2 is starting this frame...
+        if input_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            text_inst_5b.frameNStart = frameN  # exact frame index
-            text_inst_5b.tStart = t  # local t and not account for scr refresh
-            text_inst_5b.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(text_inst_5b, 'tStartRefresh')  # time at next scr refresh
+            input_txt_2.frameNStart = frameN  # exact frame index
+            input_txt_2.tStart = t  # local t and not account for scr refresh
+            input_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(input_txt_2, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'text_inst_5b.started')
+            thisExp.timestampOnFlip(win, 'input_txt_2.started')
             # update status
-            text_inst_5b.status = STARTED
-            text_inst_5b.setAutoDraw(True)
+            input_txt_2.status = STARTED
+            input_txt_2.setAutoDraw(True)
         
-        # if text_inst_5b is active this frame...
-        if text_inst_5b.status == STARTED:
+        # if input_txt_2 is active this frame...
+        if input_txt_2.status == STARTED:
+            # update params
+            pass
+        
+        # *Guide_txt_2* updates
+        
+        # if Guide_txt_2 is starting this frame...
+        if Guide_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            Guide_txt_2.frameNStart = frameN  # exact frame index
+            Guide_txt_2.tStart = t  # local t and not account for scr refresh
+            Guide_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(Guide_txt_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'Guide_txt_2.started')
+            # update status
+            Guide_txt_2.status = STARTED
+            Guide_txt_2.setAutoDraw(True)
+        
+        # if Guide_txt_2 is active this frame...
+        if Guide_txt_2.status == STARTED:
             # update params
             pass
         
@@ -3337,8 +3413,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t2_chosen_gamble.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    intro_gambletop_txt_3.setPos((width, height))
     intro_gambletop_txt_3.setText(f"${0.5:.2f}")
+    intro_gambletop_p_3.setPos((width+0.2, height))
     intro_gambletop_p_3.setText(f"{80:.0f}%")
+    intro_gamblelow_txt_3.setPos((width, -height))
+    intro_gamblelow_p_3.setPos((width+0.2, -height))
     # store start times for instructions_t2_chosen_gamble
     instructions_t2_chosen_gamble.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     instructions_t2_chosen_gamble.tStart = globalClock.getTime(format='float')
@@ -5518,50 +5598,30 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from code_9
-        # Determine the type of trial
-        
-        pies = options_prac[practice_trials.thisN,:]
-        thisExp.addData('options', pies)
+        trial_array = options_prac[practice_trials.thisN,:]
+        thisExp.addData('options', trial_array)
         gamble_resulty = gamble_result_prac[practice_trials.thisN]
         thisExp.addData('gamble_result', gamble_resulty)
         
-        if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,0]!=0) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left
-            sure_left = True
-            forced_trial = False
-        elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,4]!=0) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right
-            sure_left = False
-            forced_trial = False
-        elif (options_prac[practice_trials.thisN,0]==0) and (options_prac[practice_trials.thisN,1]==1): # forced gamble right
-            trial_side_left = False
-            forced_trial = True
-            forced_type_sure = False
-        elif (options_prac[practice_trials.thisN,4]==0) and (options_prac[practice_trials.thisN,5]==1): # forced gamble left
-            trial_side_left = True
-            forced_trial = True
-            forced_type_sure = False
-        elif (options_prac[practice_trials.thisN,1]==1): # forced sure left
-            trial_side_left = True
-            forced_trial = True
-            forced_type_sure = True
-        else: # forced sure right
-            trial_side_left = False
-            forced_trial = True
-            forced_type_sure = True
+        # Determine the type of trial
+        
+        [sure_left, forced_trial, trial_side_left, forced_type_sure] = trial_type(trial_array)
         
         # Determine the coordonates and components of the boxes
         
+        x1 = -width
+        x2 = -width
+        x3 = width
+        x4 = width
         if not(forced_trial): # choice trial
-            x1 = -width
-            x2 = -width
-            x3 = width
-            x4 = width
+            allowed_keys = ["left", "right"]
             if sure_left: # sure option on left side
                 y1 = 0
                 y2 = 2 # Not showing
                 y3 = height
                 y4 = -height
                 Mag1 = options_prac[practice_trials.thisN,0]
-                P1 = 1
+                P1 = 0
                 Mag2 = 0
                 P2 = 0
                 Mag3 = options_prac[practice_trials.thisN,4]
@@ -5578,74 +5638,97 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 Mag2 = options_prac[practice_trials.thisN,0]
                 P2 = options_prac[practice_trials.thisN,1]
                 Mag3 = options_prac[practice_trials.thisN,4]
-                P3 = options_prac[practice_trials.thisN,5]
-                Mag4 = 0
-                P4 = 0
-        else: # forced option
-            x1 = 0
-            x2 = 0
-            x3 = 0
-            x4 = 0
-            if forced_type_sure: # Forced sure option
-                y1 = 0
-                y2 = 2 # Not showing
-                y3 = 2 # Not showing
-                y4 = 2 # Not showing
-                if trial_side_left: # option on the left
-                    Mag1 = options_prac[practice_trials.thisN,0]
-                    P1 = options_prac[practice_trials.thisN,1]
-                else: # option on the right
-                    Mag1 = options_prac[practice_trials.thisN,4]
-                    P1 = options_prac[practice_trials.thisN,5]
-                Mag2 = 0
-                P2 = 0
-                Mag3 = 0
                 P3 = 0
                 Mag4 = 0
                 P4 = 0
-            else: # Forced gamble option
-                y1 = height
-                y2 = -height
-                y3 = 2 # Not showing
-                y4 = 2 # Not showing
+        else: # forced option
+            if forced_type_sure: # Forced sure option
                 if trial_side_left: # option on the left
+                    y1 = 0
+                    y2 = 2 # Not showing
+                    y3 = 2 # Not showing
+                    y4 = 2 # Not showing
+                    Mag1 = options_prac[practice_trials.thisN,0]
+                    P1 = 0
+                    Mag2 = 0
+                    P2 = 0
+                    Mag3 = 0
+                    P3 = 0
+                    Mag4 = 0
+                    P4 = 0
+                    allowed_keys = ["left", "left"]
+                else: # option on the right
+                    y3 = 0
+                    y1 = 2 # Not showing
+                    y2 = 2 # Not showing
+                    y4 = 2 # Not showing
+                    Mag3 = options_prac[practice_trials.thisN,4]
+                    P3 = 0
+                    Mag1 = 0
+                    P1 = 0
+                    Mag2 = 0
+                    P2 = 0
+                    Mag4 = 0
+                    P4 = 0
+                    allowed_keys = ["right", "right"]
+        
+            else: # Forced gamble option
+                if trial_side_left: # option on the left
+                    y1 = height
+                    y2 = -height
+                    y3 = 2 # Not showing
+                    y4 = 2 # Not showing
                     Mag1 = options_prac[practice_trials.thisN,2]
                     P1 = options_prac[practice_trials.thisN,3]
                     Mag2 = options_prac[practice_trials.thisN,0]
                     P2 = options_prac[practice_trials.thisN,1]
+                    Mag3 = 0
+                    P3 = 0
+                    Mag4 = 0
+                    P4 = 0
+                    allowed_keys = ["left", "left"]
                 else: # option on the right
-                    Mag1 = options_prac[practice_trials.thisN,4]
-                    P1 = options_prac[practice_trials.thisN,5]
-                    Mag2 = options_prac[practice_trials.thisN,2]
-                    P2 = options_prac[practice_trials.thisN,3]
-                Mag3 = 0
-                P3 = 0
-                Mag4 = 0
-                P4 = 0
+                    y1 = 2 # Not showing
+                    y2 = 2 # Not showing
+                    y3 = height
+                    y4 = -height
+                    Mag3 = options_prac[practice_trials.thisN,4]
+                    P3 = options_prac[practice_trials.thisN,5]
+                    Mag4 = options_prac[practice_trials.thisN,2]
+                    P4 = options_prac[practice_trials.thisN,3]
+                    Mag1 = 0
+                    P1 = 0
+                    Mag2 = 0
+                    P2 = 0
+                    allowed_keys = ["right", "right"]
+        
         p_box1.setPos((x1, y1))
         p_box2.setPos((x2, y2))
         p_box3.setPos((x3, y3))
         p_box4.setPos((x4, y4))
-        p_box1_mag.setPos((x1, y1+0.03))
-        p_box1_mag.setText(f"${Mag1:.2f}")
-        p_box1_P.setPos((x1, y1-0.04))
-        p_box1_P.setText(f"{P1*100:.0f}%")
-        p_box2_mag.setPos((x2, y2+0.03))
-        p_box2_mag.setText(f"${Mag2:.2f}")
-        p_box2_P.setPos((x2, y2-0.04))
-        p_box2_P.setText(f"{P2*100:.0f}%")
-        p_box3_mag.setPos((x3, y3+0.03))
-        p_box3_mag.setText(f"${Mag3:.2f}")
-        p_box3_P.setPos((x3, y3-0.04))
-        p_box3_P.setText(f"{P3*100:.0f}%")
-        p_box4_mag.setPos((x4, y4+0.03))
-        p_box4_mag.setText(f"${Mag4:.2f}")
-        p_box4_P.setPos((x4, y4-0.04))
-        p_box4_P.setText(f"{P4*100:.0f}%")
+        p_box1_mag.setPos((x1, y1))
+        p_box1_mag.setText(mag(Mag1))
+        p_box1_P.setPos((x1-0.2, y1))
+        p_box1_P.setText(prob(P1))
+        p_box2_mag.setPos((x2, y2))
+        p_box2_mag.setText(mag(Mag2))
+        p_box2_P.setPos((x2-0.2, y2))
+        p_box2_P.setText(prob(P2))
+        p_box3_mag.setPos((x3, y3))
+        p_box3_mag.setText(mag(Mag3))
+        p_box3_P.setPos((x3+0.2, y3))
+        p_box3_P.setText(prob(P3))
+        p_box4_mag.setPos((x4, y4))
+        p_box4_mag.setText(mag(Mag4))
+        p_box4_P.setPos((x4+0.2, y4))
+        p_box4_P.setText(prob(P4))
         # create starting attributes for p_choice
         p_choice.keys = []
         p_choice.rt = []
         _p_choice_allKeys = []
+        # allowedKeys looks like a variable, so make sure it exists locally
+        if 'allowed_keys' in globals():
+            allowed_keys = globals()['allowed_keys']
         # store start times for p_options_show
         p_options_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         p_options_show.tStart = globalClock.getTime(format='float')
@@ -5954,12 +6037,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 thisExp.timestampOnFlip(win, 'p_choice.started')
                 # update status
                 p_choice.status = STARTED
+                # allowed keys looks like a variable named `allowed_keys`
+                if not type(allowed_keys) in [list, tuple, np.ndarray]:
+                    if not isinstance(allowed_keys, str):
+                        allowed_keys = str(allowed_keys)
+                    elif not ',' in allowed_keys:
+                        allowed_keys = (allowed_keys,)
+                    else:
+                        allowed_keys = eval(allowed_keys)
                 # keyboard checking is just starting
                 waitOnFlip = True
                 win.callOnFlip(p_choice.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(p_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if p_choice.status == STARTED and not waitOnFlip:
-                theseKeys = p_choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = p_choice.getKeys(keyList=list(allowed_keys), ignoreKeys=["escape"], waitRelease=False)
                 _p_choice_allKeys.extend(theseKeys)
                 if len(_p_choice_allKeys):
                     p_choice.keys = _p_choice_allKeys[-1].name  # just the last key pressed
@@ -6087,22 +6178,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         p_box2_2.setPos((x2, y2))
         p_box3_2.setPos((x3, y3))
         p_box4_2.setPos((x4, y4))
-        p_box1_mag_2.setPos((x1, y1+0.03))
-        p_box1_mag_2.setText(f"${Mag1:.2f}")
-        p_box1_P_2.setPos((x1, y1-0.04))
-        p_box1_P_2.setText(f"{P1*100:.0f}%")
-        p_box2_mag_2.setPos((x2, y2+0.03))
-        p_box2_mag_2.setText(f"${Mag2:.2f}")
-        p_box2_P_2.setPos((x2, y2-0.04))
-        p_box2_P_2.setText(f"{P2*100:.0f}%")
-        p_box3_mag_2.setPos((x3, y3+0.03))
-        p_box3_mag_2.setText(f"${Mag3:.2f}")
-        p_box3_P_2.setPos((x3, y3-0.04))
-        p_box3_P_2.setText(f"{P3*100:.0f}%")
-        p_box4_mag_2.setPos((x4, y4+0.03))
-        p_box4_mag_2.setText(f"${Mag4:.2f}")
-        p_box4_P_2.setPos((x4, y4-0.04))
-        p_box4_P_2.setText(f"{P4*100:.0f}%")
+        p_box1_mag_2.setPos((x1, y1))
+        p_box1_mag_2.setText(mag(Mag1))
+        p_box1_P_2.setPos((x1-0.2, y1))
+        p_box1_P_2.setText(prob(P1))
+        p_box2_mag_2.setPos((x2, y2))
+        p_box2_mag_2.setText(mag(Mag2))
+        p_box2_P_2.setPos((x2-0.2, y2))
+        p_box2_P_2.setText(prob(P2))
+        p_box3_mag_2.setPos((x3, y3))
+        p_box3_mag_2.setText(mag(Mag3))
+        p_box3_P_2.setPos((x3+0.2, y3))
+        p_box3_P_2.setText(prob(P3))
+        p_box4_mag_2.setPos((x4, y4))
+        p_box4_mag_2.setText(mag(Mag4))
+        p_box4_P_2.setPos((x4+0.2, y4))
+        p_box4_P_2.setText(prob(P4))
         # store start times for p_chosen_option
         p_chosen_option.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         p_chosen_option.tStart = globalClock.getTime(format='float')
@@ -7435,12 +7526,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
             if Input == 'c' or (practice_trials.thisN +1) == (npractice_trials*3):
                 practice_trials.finished = True
-        
-        #elif userChoice == 'r':
-        #    practice_trials.finished = False
-        #print(event.getKeys)
-        #print(userChoice)
-        #print(userChoice == 'l')
+            else:
+                p_progVal = 1
         # the Routine "repeat_practice" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
@@ -7882,51 +7969,30 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from code_10
-        # Determine the type of trial
-        
-        pies = options[trials.thisN,:]
-        thisExp.addData('options', pies)
+        trial_array = options[trials.thisN,:]
+        thisExp.addData('options', trial_array)
         gamble_resulty = gamble_result[trials.thisN]
         thisExp.addData('gamble_result', gamble_resulty)
         
-        if (options[trials.thisN,1]==1) and (options[trials.thisN,0]!=0) and (options[trials.thisN,5]!=0): # Choice sure left
-            sure_left = True
-            forced_trial = False
-        elif (options[trials.thisN,5]==1) and (options[trials.thisN,4]!=0) and (options[trials.thisN,3]!=0):  # Choice sure right
-            sure_left = False
-            forced_trial = False
-        elif (options[trials.thisN,0]==0) and (options[trials.thisN,1]==1): # forced gamble right
-            trial_side_left = False
-            forced_trial = True
-            forced_type_sure = False
-        elif (options[trials.thisN,4]==0) and (options[trials.thisN,5]==1): # forced gamble left
-            trial_side_left = True
-            forced_trial = True
-            forced_type_sure = False
-        elif options[trials.thisN,1]==1: # forced sure left
-            trial_side_left = True
-            forced_trial = True
-            forced_type_sure = True
-        else: # forced sure right
-            trial_side_left = False
-            forced_trial = True
-            forced_type_sure = True
+        # Determine the type of trial
         
+        [sure_left, forced_trial, trial_side_left, forced_type_sure] = trial_type(trial_array)
         
         # Determine the coordonates and components of the boxes
         
+        x1 = -width
+        x2 = -width
+        x3 = width
+        x4 = width
         if not(forced_trial): # choice trial
-            x1 = -width
-            x2 = -width
-            x3 = width
-            x4 = width
+            allowed_keys = ["left", "right"]
             if sure_left: # sure option on left side
                 y1 = 0
                 y2 = 2 # Not showing
                 y3 = height
                 y4 = -height
                 Mag1 = options[trials.thisN,0]
-                P1 = 1
+                P1 = 0
                 Mag2 = 0
                 P2 = 0
                 Mag3 = options[trials.thisN,4]
@@ -7943,70 +8009,89 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 Mag2 = options[trials.thisN,0]
                 P2 = options[trials.thisN,1]
                 Mag3 = options[trials.thisN,4]
-                P3 = options[trials.thisN,5]
-                Mag4 = 0
-                P4 = 0
-        else: # forced option
-            x1 = 0
-            x2 = 0
-            x3 = 0
-            x4 = 0
-            if forced_type_sure: # Forced sure option
-                y1 = 0
-                y2 = 2 # Not showing
-                y3 = 2 # Not showing
-                y4 = 2 # Not showing
-                if trial_side_left: # option on the left
-                    Mag1 = options[trials.thisN,0]
-                    P1 = options[trials.thisN,1]
-                else: # option on the right
-                    Mag1 = options[trials.thisN,4]
-                    P1 = options[trials.thisN,5]
-                Mag2 = 0
-                P2 = 0
-                Mag3 = 0
                 P3 = 0
                 Mag4 = 0
                 P4 = 0
-            else: # Forced gamble option
-                y1 = height
-                y2 = -height
-                y3 = 2 # Not showing
-                y4 = 2 # Not showing
+        else: # forced option
+            if forced_type_sure: # Forced sure option
                 if trial_side_left: # option on the left
+                    y1 = 0
+                    y2 = 2 # Not showing
+                    y3 = 2 # Not showing
+                    y4 = 2 # Not showing
+                    Mag1 = options[trials.thisN,0]
+                    P1 = 0
+                    Mag2 = 0
+                    P2 = 0
+                    Mag3 = 0
+                    P3 = 0
+                    Mag4 = 0
+                    P4 = 0
+                    allowed_keys = ["left", "left"]
+                else: # option on the right
+                    y3 = 0
+                    y1 = 2 # Not showing
+                    y2 = 2 # Not showing
+                    y4 = 2 # Not showing
+                    Mag3 = options[trials.thisN,4]
+                    P3 = 0
+                    Mag1 = 0
+                    P1 = 0
+                    Mag2 = 0
+                    P2 = 0
+                    Mag4 = 0
+                    P4 = 0
+                    allowed_keys = ["right", "right"]
+        
+            else: # Forced gamble option
+                if trial_side_left: # option on the left
+                    y1 = height
+                    y2 = -height
+                    y3 = 2 # Not showing
+                    y4 = 2 # Not showing
                     Mag1 = options[trials.thisN,2]
                     P1 = options[trials.thisN,3]
                     Mag2 = options[trials.thisN,0]
                     P2 = options[trials.thisN,1]
+                    Mag3 = 0
+                    P3 = 0
+                    Mag4 = 0
+                    P4 = 0
+                    allowed_keys = ["left", "left"]
                 else: # option on the right
-                    Mag1 = options[trials.thisN,4]
-                    P1 = options[trials.thisN,5]
-                    Mag2 = options[trials.thisN,2]
-                    P2 = options[trials.thisN,3]
-                Mag3 = 0
-                P3 = 0
-                Mag4 = 0
-                P4 = 0
+                    y1 = 2 # Not showing
+                    y2 = 2 # Not showing
+                    y3 = height
+                    y4 = -height
+                    Mag3 = options[trials.thisN,4]
+                    P3 = options[trials.thisN,5]
+                    Mag4 = options[trials.thisN,2]
+                    P4 = options[trials.thisN,3]
+                    Mag1 = 0
+                    P1 = 0
+                    Mag2 = 0
+                    P2 = 0
+                    allowed_keys = ["right", "right"]
         box1.setPos((x1, y1))
         box2.setPos((x2, y2))
         box3.setPos((x3, y3))
         box4.setPos((x4, y4))
-        box1_mag.setPos((x1, y1+0.03))
-        box1_mag.setText(f"${Mag1:.2f}")
-        box1_P.setPos((x1, y1-0.04))
-        box1_P.setText(f"{P1*100:.0f}%")
-        box2_mag.setPos((x2, y2+0.03))
-        box2_mag.setText(f"${Mag2:.2f}")
-        box2_P.setPos((x2, y2-0.04))
-        box2_P.setText(f"{P2*100:.0f}%")
-        box3_mag.setPos((x3, y3+0.03))
-        box3_mag.setText(f"${Mag3:.2f}")
-        box3_P.setPos((x3, y3-0.04))
-        box3_P.setText(f"{P3*100:.0f}%")
-        box4_mag.setPos((x4, y4+0.03))
-        box4_mag.setText(f"${Mag4:.2f}")
-        box4_P.setPos((x4, y4-0.04))
-        box4_P.setText(f"{P4*100:.0f}%")
+        box1_mag.setPos((x1, y1))
+        box1_mag.setText(mag(Mag1))
+        box1_P.setPos((x1-0.2, y1))
+        box1_P.setText(prob(P1))
+        box2_mag.setPos((x2, y2))
+        box2_mag.setText(mag(Mag2))
+        box2_P.setPos((x2-0.2, y2))
+        box2_P.setText(prob(P2))
+        box3_mag.setPos((x3, y3))
+        box3_mag.setText(mag(Mag3))
+        box3_P.setPos((x3+0.2, y3))
+        box3_P.setText(prob(P3))
+        box4_mag.setPos((x4, y4))
+        box4_mag.setText(mag(Mag4))
+        box4_P.setPos((x4+0.2, y4))
+        box4_P.setText(prob(P4))
         # create starting attributes for user_choice
         user_choice.keys = []
         user_choice.rt = []
@@ -8432,22 +8517,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         box2_2.setPos((x2, y2))
         box3_2.setPos((x3, y3))
         box4_2.setPos((x4, y4))
-        box1_mag_2.setPos((x1, y1+0.03))
-        box1_mag_2.setText(f"${Mag1:.2f}")
-        box1_P_2.setPos((x1, y1-0.04))
-        box1_P_2.setText(f"{P1*100:.0f}%")
-        box2_mag_2.setPos((x2, y2+0.03))
-        box2_mag_2.setText(f"${Mag2:.2f}")
-        box2_P_2.setPos((x2, y2-0.04))
-        box2_P_2.setText(f"{P2*100:.0f}%")
-        box3_mag_2.setPos((x3, y3+0.03))
-        box3_mag_2.setText(f"${Mag3:.2f}")
-        box3_P_2.setPos((x3, y3-0.04))
-        box3_P_2.setText(f"{P3*100:.0f}%")
-        box4_mag_2.setPos((x4, y4+0.03))
-        box4_mag_2.setText(f"${Mag4:.2f}")
-        box4_P_2.setPos((x4, y4-0.04))
-        box4_P_2.setText(f"{P4*100:.0f}%")
+        box1_mag_2.setPos((x1, y1))
+        box1_mag_2.setText(mag(Mag1))
+        box1_P_2.setPos((x1-0.2, y1))
+        box1_P_2.setText(prob(P1))
+        box2_mag_2.setPos((x2, y2))
+        box2_mag_2.setText(mag(Mag2))
+        box2_P_2.setPos((x2-0.2, y2))
+        box2_P_2.setText(prob(P2))
+        box3_mag_2.setPos((x3, y3))
+        box3_mag_2.setText(mag(Mag3))
+        box3_P_2.setPos((x3+0.2, y3))
+        box3_P_2.setText(prob(P3))
+        box4_mag_2.setPos((x4, y4))
+        box4_mag_2.setText(mag(Mag4))
+        box4_P_2.setPos((x4+0.2, y4))
+        box4_P_2.setText(prob(P4))
         # store start times for chosen_option
         chosen_option.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         chosen_option.tStart = globalClock.getTime(format='float')

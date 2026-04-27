@@ -120,7 +120,7 @@
         <Param val="$Intro_text" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <TextComponent name="Continue_txt" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
@@ -331,7 +331,7 @@
         <Param val="intro_gambletop_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, height + 0.03)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -358,7 +358,7 @@
         <Param val="intro_gambletop_p" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, height-0.04)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width+0.2, height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -414,7 +414,7 @@
         <Param val="intro_gamblelow_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, -height+0.03)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, -height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -441,7 +441,7 @@
         <Param val="intro_gamblelow_p" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, -height-0.04)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width+0.2, -height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -454,7 +454,7 @@
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-      <TextComponent name="text_inst_5a" plugin="None">
+      <TextComponent name="Input_txt" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -464,8 +464,8 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.03" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="text_inst_5a" valType="code" updates="None" name="name"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="Input_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
@@ -476,10 +476,37 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="On this trial you can either choose a certain reward of \$0.50 or a gamble with a 80% chance of getting a \$0.25 reward.&amp;#10;&amp;#10;Press the &lt;left arrow key&gt; to select the certain reward of \$0.50." valType="str" updates="constant" name="text"/>
+        <Param val="Press the &lt;left arrow key&gt; to select the \$0.50" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="Guide_txt" plugin="None">
+        <Param val="black" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="Guide_txt" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0.4)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="On this trial, you can choose either a guaranteed \$0.50 reward or an 80% chance to win \$0.25." valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="choice_inst_5a" plugin="None">
         <Param val="'left'" valType="list" updates="constant" name="allowedKeys"/>
@@ -642,7 +669,7 @@
         <Param val="intro_next_trial_txt_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -653,7 +680,7 @@
         <Param val="Press the &lt;space bar&gt; to do another introductory trial" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="intro_next_trial_input_2" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
@@ -849,7 +876,7 @@
         <Param val="intro_gambletop_txt_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, height + 0.03)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -876,7 +903,7 @@
         <Param val="intro_gambletop_p_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, height-0.04)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width+0.2, height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -903,7 +930,7 @@
         <Param val="intro_gamblelow_txt_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, -height+0.03)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, -height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -930,7 +957,7 @@
         <Param val="intro_gamblelow_p_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, -height-0.04)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width+0.2, -height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -943,7 +970,7 @@
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-      <TextComponent name="text_inst_5b" plugin="None">
+      <TextComponent name="input_txt_2" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -953,8 +980,8 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.03" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="text_inst_5b" valType="code" updates="None" name="name"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="input_txt_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
@@ -965,10 +992,37 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="On this trial you can either choose to win a \$0.15 reward for certain, or choose a 80% chance of getting a \$0.50 reward.&amp;#10;&amp;#10;Press the &lt;right arrow key&gt; to select the gamble." valType="str" updates="constant" name="text"/>
+        <Param val="Press the &lt;right arrow key&gt; to select the gamble" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="Guide_txt_2" plugin="None">
+        <Param val="black" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="Guide_txt_2" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0.4)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="On this trial, you can choose either a guaranteed \$0.15 reward or an 80% chance to win \$0.50." valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="choice_inst_5b" plugin="None">
         <Param val="'right'" valType="list" updates="constant" name="allowedKeys"/>
@@ -1868,7 +1922,7 @@
         <Param val="On the outcome screen, your total earnings will appear at the top, and a progress bar at the bottom will show how far along you are in the task.&amp;#10;&amp;#10;The next screen will show you an example." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <TextComponent name="Continue_txt_2" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
@@ -2094,10 +2148,10 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="This is an example outcome screen &amp;#10;for a win, also showing your &amp;#10;current total and the progress &amp;#10;bar (about half way through the &amp;#10;session).&amp;#10;&amp;#10;Press &lt;enter&gt; to continue" valType="str" updates="constant" name="text"/>
+        <Param val="This is an example outcome screen for a win, also showing your current total and the progress bar (about half way through the session).&amp;#10;&amp;#10;Press &lt;enter&gt; to continue" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="0.6" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_inst_6" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -2219,7 +2273,7 @@
         <Param val="At various points throughout the task you will be asked to rate your happiness. When you are asked to make a happiness rating, click a number 1-20 to reflect your rating from 1 (very unhappy) to 20 (very happy). " valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <TextComponent name="Continue_txt_3" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
@@ -2310,7 +2364,7 @@
         <Param val="Just now, you were asked to think about your life overall. Now, think about just right now. How happy are you at this moment?&amp;#10;&amp;#10;During the task you will be asked this question many times. It is VERY important that you use as much of the rating scale as you can. &amp;#10;&amp;#10;In a moment you will complete some practice trials. The least happy you remember being during the practice session should correspond to somewhere in the lower half of the rating scale. The most happy you remember being should correspond to somewhere in the upper half." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <TextComponent name="Continue_txt_4" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
@@ -2401,7 +2455,7 @@
         <Param val="You will now complete 10 practice trials. Try to remember the least and most happy you feel during the practice trials to guide your happiness ratings throughout the task." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <TextComponent name="Continue_txt_5" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
@@ -3128,7 +3182,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="Red" valType="color" updates="constant" name="fillColor"/>
         <Param val="False" valType="bool" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="1" valType="num" updates="constant" name="granularity"/>
         <Param val="" valType="code" updates="None" name="initVal"/>
@@ -3149,7 +3203,7 @@
         <Param val="False" valType="bool" updates="constant" name="storeHistory"/>
         <Param val="True" valType="bool" updates="constant" name="storeRating"/>
         <Param val="True" valType="bool" updates="constant" name="storeRatingTime"/>
-        <Param val="()" valType="list" updates="constant" name="styleTweaks"/>
+        <Param val="[]" valType="list" updates="constant" name="styleTweaks"/>
         <Param val="rating" valType="str" updates="constant" name="styles"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)" valType="list" updates="constant" name="ticks"/>
@@ -3166,11 +3220,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="low_end_text_4" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -3193,11 +3247,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="high_end_text_4" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -3247,11 +3301,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="exit_text_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.3)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -3262,7 +3316,7 @@
         <Param val="Press &lt;enter&gt; to move to the next trial" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_5" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -3328,7 +3382,7 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="repeat_practice_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
@@ -3340,10 +3394,10 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="You have now completed the practice trials. &amp;#10;&amp;#10;Press 'c' to continue to the main trials.&amp;#10;&amp;#10;Press 'r' to repeat the practice trials." valType="str" updates="constant" name="text"/>
+        <Param val="You have now completed the practice trials. &amp;#10;&amp;#10;Press 'c' to continue to the main trials&amp;#10;&amp;#10;Press 'r' to repeat the practice trials" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_9" plugin="None">
         <Param val="'c', 'r'" valType="list" updates="constant" name="allowedKeys"/>
@@ -3376,8 +3430,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="if ((((practice_trials.thisN + 1) % npractice_trials) === 0)) {&amp;#10;    keys = psychoJS.eventManager.getKeys();&amp;#10;    Input = keys.slice((- 1))[0];&amp;#10;    if (((Input === &quot;c&quot;) || ((practice_trials.thisN + 1) === (npractice_trials * 3)))) {&amp;#10;        practice_trials.finished = true;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="# For an unknown reason, psychopy routines do not skip the custom code part of a skiped rountine&amp;#10;if (practice_trials.thisN +1) % (npractice_trials) == 0:&amp;#10;    keys = event.getKeys()&amp;#10;    Input = keys[-1]&amp;#10;&amp;#10;    if Input == 'c' or (practice_trials.thisN +1) == (npractice_trials*3):&amp;#10;        practice_trials.finished = True&amp;#10;&amp;#10;#elif userChoice == 'r':&amp;#10;#    practice_trials.finished = False&amp;#10;#print(event.getKeys)&amp;#10;#print(userChoice)&amp;#10;#print(userChoice == 'l')" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="if ((((practice_trials.thisN + 1) % npractice_trials) === 0)) {&amp;#10;    keys = psychoJS.eventManager.getKeys();&amp;#10;    Input = keys.slice((- 1))[0];&amp;#10;    if (((Input === &quot;c&quot;) || ((practice_trials.thisN + 1) === (npractice_trials * 3)))) {&amp;#10;        practice_trials.finished = true;&amp;#10;    } else {&amp;#10;        p_progVal = 1;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="# For an unknown reason, psychopy routines do not skip the custom code part of a skiped rountine&amp;#10;if (practice_trials.thisN +1) % (npractice_trials) == 0:&amp;#10;    keys = event.getKeys()&amp;#10;    Input = keys[-1]&amp;#10;&amp;#10;    if Input == 'c' or (practice_trials.thisN +1) == (npractice_trials*3):&amp;#10;        practice_trials.finished = True&amp;#10;    else:&amp;#10;        p_progVal = 1" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="saveChoice_15" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -3441,7 +3495,7 @@
         <Param val="You have now completed the practice trials and will move on to the full task. &amp;#10;&amp;#10;Press &lt;enter&gt; to start" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_inst_10" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -3906,7 +3960,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="Red" valType="color" updates="constant" name="fillColor"/>
         <Param val="False" valType="bool" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="1" valType="num" updates="constant" name="granularity"/>
         <Param val="" valType="code" updates="None" name="initVal"/>
@@ -3927,7 +3981,7 @@
         <Param val="False" valType="bool" updates="constant" name="storeHistory"/>
         <Param val="True" valType="bool" updates="constant" name="storeRating"/>
         <Param val="True" valType="bool" updates="constant" name="storeRatingTime"/>
-        <Param val="()" valType="list" updates="constant" name="styleTweaks"/>
+        <Param val="[]" valType="list" updates="constant" name="styleTweaks"/>
         <Param val="rating" valType="str" updates="constant" name="styles"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)" valType="list" updates="constant" name="ticks"/>
@@ -3944,11 +3998,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="low_end_text_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -3971,11 +4025,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="high_end_text_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4025,11 +4079,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="exit_text" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.3)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4040,7 +4094,7 @@
         <Param val="Press &lt;enter&gt; to move to the next trial" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_6" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -4121,7 +4175,7 @@
         <Param val="Break&amp;#10;&amp;#10;Press &lt;enter&gt; when you are ready to resume" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_10" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -4170,7 +4224,7 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="thankYouText" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
@@ -4182,10 +4236,10 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="You have completed the task. Thank you for your participation!&amp;#10;&amp;#10;Please do not close your browser until the screen says to do so.&amp;#10;&amp;#10;The page should automatically redirect you to Prolific once you exit the experiment. In case there is an error, please note the following completion code: C1D29EVY.&amp;#10;&amp;#10;(Press enter to exit the experiment)" valType="str" updates="constant" name="text"/>
+        <Param val="You have completed the task. Thank you for your participation!&amp;#10;&amp;#10;Please do not close your browser until the screen says to do so.&amp;#10;&amp;#10;The page should automatically redirect you to Prolific once you exit the experiment. In case there is an error, please note the following completion code: C1D29EVY.&amp;#10;&amp;#10;Press &lt;enter&gt; to exit the experiment" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_11" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -4343,7 +4397,7 @@
         <Param val="intro_gambletop_txt_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, height + 0.03)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4370,7 +4424,7 @@
         <Param val="intro_gambletop_p_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, height-0.04)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width+0.2, height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4397,7 +4451,7 @@
         <Param val="intro_gamblelow_txt_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, -height+0.03)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width, -height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4424,7 +4478,7 @@
         <Param val="intro_gamblelow_p_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(width, -height-0.04)" valType="list" updates="constant" name="pos"/>
+        <Param val="(width+0.2, -height)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4527,7 +4581,7 @@
         <Param val="intro_sure_txt_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-width, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-width, 0)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4682,7 +4736,7 @@
         <Param val="intro_next_trial_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -4979,10 +5033,10 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="This is an academic research project conducted through the University of Pennsylvania. In this Happiness Task, you will play a decision making game. In this game, you will make decisions about two options presented before you. The task takes ~35 minutes. You must be at least 18 years old to participate. Your participation in this research is voluntary, which means you can choose whether or not to participate without adverse consequences. Your anonymity is assured: the researchers who have requested your participation will not receive any personal information about you except your worker ID, gender, and age. The worker IDs will not be shared with anyone outside the research team nor associated with the collected data. The de-identified data may be stored and distributed for future research studies without additional informed consent. If you have questions about this research, please contact Nicole Rust by emailing nrust@psych.upenn.edu. If you have questions, concerns, or complaints regarding your participation in this research study, or if you have any questions about your rights as a research subject and you cannot reach a member of the study team, you may contact the Office of Regulatory Affairs at the University of Pennsylvania by calling (215) 898-2614 or emailing irb@pobox.upenn.edu.&amp;#10;&amp;#10;By clicking this box below you acknowledge that you have read the above details and consent to participate in this study." valType="str" updates="constant" name="text"/>
+        <Param val="This is an academic research project conducted through the University of Pennsylvania. In this happiness task, you will play a decision making game. The task takes ~40 minutes.&amp;#10;&amp;#10;You must be at least 18 years old to participate. Your participation in this research is voluntary, which means you can choose whether or not to participate without adverse consequences. Your anonymity is assured: the researchers who have requested your participation will not receive any personal information about you except your worker ID, gender, and age. The worker IDs will not be shared with anyone outside the research team nor associated with the collected data. The de-identified data may be stored and distributed for future research studies without additional informed consent. If you have questions about this research, please contact Nicole Rust by emailing nrust@psych.upenn.edu. If you have questions, concerns, or complaints regarding your participation in this research study, or if you have any questions about your rights as a research subject and you cannot reach a member of the study team, you may contact the Office of Regulatory Affairs at the University of Pennsylvania by calling (215) 898-2614 or emailing irb@pobox.upenn.edu.&amp;#10;&amp;#10;By clicking this box below you acknowledge that you have read the above details and consent to participate in this study." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <ButtonComponent name="button" plugin="None">
         <Param val="center" valType="str" updates="constant" name="anchor"/>
@@ -5021,8 +5075,8 @@
         <Param val="" valType="code" updates="None" name="validator"/>
       </ButtonComponent>
       <CodeComponent name="initialize_variables" plugin="None">
-        <Param val="import numpy as np # Keep in mind that by default, numpy version is 1.26&amp;#10;import time&amp;#10;import sys&amp;#10;&amp;#10;# Set happiness trials&amp;#10;# numBlocks = 4&amp;#10;# happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))&amp;#10;# print(sys.version)&amp;#10;&amp;#10;start_money = 5 # Start amount&amp;#10;option_size = 0.25&amp;#10;width = 0.335&amp;#10;height = 0.2&amp;#10;time_first_delay = 2&amp;#10;time_gamble_show = 1 # in seconds&amp;#10;time_chosen_option = 1&amp;#10;time_gamble_result = 1 # time after which they go to the next trial&amp;#10;time_iti = 1&amp;#10;&amp;#10;numBlocks = 3&amp;#10;happyTrialIdx = np.hstack((3*np.ones(14*numBlocks), 2*np.ones(12*numBlocks)))&amp;#10;happyTrialIdx = happyTrialIdx[np.random.permutation(len(happyTrialIdx))]&amp;#10;happyTrialIdx = np.cumsum(happyTrialIdx)-1&amp;#10;&amp;#10;happyTrial = np.zeros(66*numBlocks)&amp;#10;for i in happyTrialIdx:&amp;#10;    happyTrial[int(i)] = 1&amp;#10;&amp;#10;happyTrial = (happyTrial != 0)&amp;#10;&amp;#10;#happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))&amp;#10;happyTrialIdx_prac = np.hstack((3*np.ones(2*10), 2*np.ones(2*10)))&amp;#10;happyTrialIdx_prac = happyTrialIdx_prac[np.random.permutation(len(happyTrialIdx_prac))]&amp;#10;happyTrialIdx_prac = np.cumsum(happyTrialIdx_prac)-1&amp;#10;&amp;#10;happyTrial_prac = np.zeros(100)&amp;#10;for i in happyTrialIdx_prac:&amp;#10;    happyTrial_prac[int(i)] = 1&amp;#10;&amp;#10;happyTrial_prac = (happyTrial_prac != 0)&amp;#10;&amp;#10;&amp;#10;npractice_trials = 10   # Number of practice trails&amp;#10;ntrials          = 198    # Number of trails&amp;#10;reward_scaler    = 0.2 # Compared to the juice amounts in the real exp&amp;#10;#ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials&amp;#10;#reward         = np.linspace(0, 0.5, 11) # All possible reward amounts&amp;#10;#proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials&amp;#10;#divider        = np.ceil(ntotal_trials*2/len(reward))&amp;#10;#reward_vec     = np.repeat(reward, divider).reshape(-1,1)&amp;#10;#reward_vec     = np.random.permutation(reward_vec)&amp;#10;#sure_option    = reward_vec[0:ntotal_trials]&amp;#10;#gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)&amp;#10;gamble_result  = np.random.randint(101, size=(ntrials,1))/100&amp;#10;gamble_result_prac = np.random.randint(101, size=(npractice_trials*3,1))/100&amp;#10;#sure_side      = np.random.randint(2, size=(ntotal_trials,1))&amp;#10;&amp;#10;reward_vec = np.array([[0.15, 1.00, 0.00, 0.50, 0.25, 0.50],&amp;#10; [0.15, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10; [0.15, 1.00, 0.00, 0.80, 0.25, 0.20],&amp;#10; [0.15, 1.00, 0.00, 0.40, 0.30, 0.60],&amp;#10; [0.15, 1.00, 0.00, 0.60, 0.30, 0.40],&amp;#10; [0.15, 1.00, 0.00, 0.80, 0.30, 0.20],&amp;#10; [0.25, 1.00, 0.00, 0.30, 0.35, 0.70],&amp;#10; [0.25, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10; [0.25, 1.00, 0.00, 0.70, 0.35, 0.30],&amp;#10; [0.35, 1.00, 0.00, 0.20, 0.40, 0.80],&amp;#10; [0.35, 1.00, 0.00, 0.30, 0.40, 0.70],&amp;#10; [0.35, 1.00, 0.00, 0.50, 0.40, 0.50],&amp;#10; [0.15, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10; [0.15, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10; [0.15, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10; [0.15, 1.00, 0.00, 0.80, 0.50, 0.20],&amp;#10; [0.15, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10; [0.25, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10; [0.25, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10; [0.25, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10; [0.25, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10; [0.25, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10; [0.25, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10; [0.35, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10; [0.35, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10; [0.35, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10; [0.35, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10; [0.25, 1.00, 0.00, 0.00, 0.00, 0.00],&amp;#10; [0.00, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10; [0.00, 1.00, 0.00, 0.10, 0.30, 0.90],&amp;#10; [0.00, 1.00, 0.00, 0.70, 0.40, 0.30],&amp;#10; [0.00, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10; [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]])&amp;#10;&amp;#10;reward_vec[:, [0, 2, 4]] = np.round(reward_vec[:, [0, 2, 4]] * reward_scaler, 2)&amp;#10;&amp;#10;options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]&amp;#10;options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options2 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options3 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:30]&amp;#10;options = np.vstack((options1, options2, options3)) # All this is done to respect the pseudorandomization of the task&amp;#10;&amp;#10;#gambles_txt = []&amp;#10;#for n in range(ntotal_trials):&amp;#10;#    gamble1 = f&quot;{gambles[n, 0]:.0f}%&quot;  # Gamble1&amp;#10;#    if gambles[n, 1] == reward[2]:&amp;#10;#        gamble2 = f&quot;BIG&quot;&amp;#10;##        gamble2 = f&quot;BIG (${gambles[n, 1]:.2f})&quot;&amp;#10;#    elif gambles[n, 1] == reward[1]:&amp;#10;#        gamble2 = f&quot;MEDIUM&quot;&amp;#10;##        gamble2 = f&quot;MEDIUM (${gambles[n, 1]:.2f})&quot;&amp;#10;#    else:&amp;#10;#        gamble2 = f&quot;SMALL&quot;&amp;#10;##        gamble2 = f&quot;SMALL (${gambles[n, 1]:.2f})&quot;&amp;#10;#        &amp;#10;#    gamble3 = f&quot;{gambles[n, 2]:.0f}%&quot;  # Gamble2&amp;#10;#    if gambles[n, 3] == reward[2]:&amp;#10;#        gamble4 = f&quot;BIG&quot;&amp;#10;##        gamble4 = f&quot;BIG (${gambles[n, 3]:.2f})&quot;&amp;#10;#    elif gambles[n, 3] == reward[1]:&amp;#10;#        gamble4 = f&quot;MEDIUM&quot;&amp;#10;#        gamble4 = f&quot;MEDIUM (${gambles[n, 3]:.2f})&quot;&amp;#10;#    else:&amp;#10;#        gamble4 = f&quot;SMALL&quot;&amp;#10;##        gamble4 = f&quot;SMALL (${gambles[n, 3]:.2f})&quot;&amp;#10;#    &amp;#10;#    gambles_txt.append([gamble1, gamble2, gamble3, gamble4])&amp;#10;&amp;#10;#thisExp.addData(&quot;Gambles&quot;, gambles[3*npractice_trials:][:]) No need: each gamble is saved to the exp on each trial loop&amp;#10;#thisExp.addData(&quot;Practice gamble&quot;, gambles[0:3*npractice_trials][:])" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="// Keep in mind that by default, numpy version is 1.26&amp;#10;// import time&amp;#10;// import sys&amp;#10;&amp;#10;import * as _ from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.js';&amp;#10;&amp;#10;// Set happiness trials&amp;#10;// numBlocks = 4&amp;#10;// happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))&amp;#10;// print(sys.version)&amp;#10;&amp;#10;// Declare global variables so they can be accessed in any routine&amp;#10;var sure_left = false;&amp;#10;var forced_trial = false;&amp;#10;var trial_side_left = false;&amp;#10;var forced_type_sure = false;&amp;#10;var x1, x2, x3, x4;&amp;#10;var y1, y2, y3, y4;&amp;#10;var Mag1, P1, Mag2, P2, Mag3, P3, Mag4, P4;&amp;#10;&amp;#10;// Add these to your Begin Experiment globals&amp;#10;var p_progBar = 0;&amp;#10;var p_progVal = 1&amp;#10;var progBar = 0;&amp;#10;var progVal = 1;&amp;#10;var added_money = 0;&amp;#10;var outcome_txtW = '';&amp;#10;var choice = 10;&amp;#10;var outcome = 0;&amp;#10;var outcome_color = 'white';&amp;#10;// Make sure current_money is also declared globally! (e.g., var current_money = 5;)&amp;#10;&amp;#10;let start_money = 5; // Start amount&amp;#10;let option_size = 0.25;&amp;#10;let width = 0.335;&amp;#10;let height = 0.2;&amp;#10;let time_first_delay = 2;&amp;#10;let time_gamble_show = 1; // in seconds&amp;#10;let time_chosen_option = 1;&amp;#10;let time_gamble_result = 1; // time after which they go to the next trial&amp;#10;let time_iti = 1;&amp;#10;&amp;#10;var current_money = 5;&amp;#10;&amp;#10;let numBlocks = 3;&amp;#10;&amp;#10;// Helper function to replicate np.cumsum(arr) - 1&amp;#10;function cumSumMinusOne(arr) {&amp;#10;    let result = [];&amp;#10;    let sum = 0;&amp;#10;    for (let i = 0; i &lt; arr.length; i++) {&amp;#10;        sum += arr[i];&amp;#10;        result.push(sum - 1);&amp;#10;    }&amp;#10;    return result;&amp;#10;}&amp;#10;&amp;#10;// Create arrays of 3s and 2s, combine them (np.hstack)&amp;#10;let happy_part1 = Array(14 * numBlocks).fill(3);&amp;#10;let happy_part2 = Array(12 * numBlocks).fill(2);&amp;#10;let happyTrialIdx = happy_part1.concat(happy_part2);&amp;#10;&amp;#10;// np.random.permutation&amp;#10;happyTrialIdx = _.shuffle(happyTrialIdx);&amp;#10;happyTrialIdx = cumSumMinusOne(happyTrialIdx);&amp;#10;&amp;#10;let happyTrial = Array(66 * numBlocks).fill(0);&amp;#10;for (let i = 0; i &lt; happyTrialIdx.length; i++) {&amp;#10;    happyTrial[happyTrialIdx[i]] = 1;&amp;#10;}&amp;#10;happyTrial = happyTrial.map(x =&gt; x !== 0);&amp;#10;&amp;#10;// happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))&amp;#10;let happy_prac_part1 = Array(2 * 10).fill(3);&amp;#10;let happy_prac_part2 = Array(2 * 10).fill(2);&amp;#10;let happyTrialIdx_prac = happy_prac_part1.concat(happy_prac_part2);&amp;#10;&amp;#10;happyTrialIdx_prac = _.shuffle(happyTrialIdx_prac);&amp;#10;happyTrialIdx_prac = cumSumMinusOne(happyTrialIdx_prac);&amp;#10;&amp;#10;let happyTrial_prac = Array(100).fill(0);&amp;#10;for (let i = 0; i &lt; happyTrialIdx_prac.length; i++) {&amp;#10;    happyTrial_prac[happyTrialIdx_prac[i]] = 1;&amp;#10;}&amp;#10;happyTrial_prac = happyTrial_prac.map(x =&gt; x !== 0);&amp;#10;&amp;#10;&amp;#10;let npractice_trials = 10;   // Number of practice trails&amp;#10;let ntrials          = 198;  // Number of trails&amp;#10;let reward_scaler    = 0.2;  // Compared to the juice amounts in the real exp&amp;#10;&amp;#10;// ntotal_trials  = ntrials + (npractice_trials*3) // Allow max 3 reapeats of the practice trials&amp;#10;// reward         = np.linspace(0, 0.5, 11) // All possible reward amounts&amp;#10;// proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 // Generate the probabilities for each ntrials&amp;#10;// divider        = np.ceil(ntotal_trials*2/len(reward))&amp;#10;// reward_vec     = np.repeat(reward, divider).reshape(-1,1)&amp;#10;// reward_vec     = np.random.permutation(reward_vec)&amp;#10;// sure_option    = reward_vec[0:ntotal_trials]&amp;#10;// gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)&amp;#10;&amp;#10;// Generate random integers between 0 and 100, then divide by 100 (replicating np.random.randint(101)/100)&amp;#10;let gamble_result = Array.from({length: ntrials}, () =&gt; [Math.floor(Math.random() * 101) / 100]);&amp;#10;let gamble_result_prac = Array.from({length: npractice_trials * 3}, () =&gt; [Math.floor(Math.random() * 101) / 100]);&amp;#10;&amp;#10;// sure_side      = np.random.randint(2, size=(ntotal_trials,1))&amp;#10;&amp;#10;let reward_vec = [&amp;#10;    [0.15, 1.00, 0.00, 0.50, 0.25, 0.50],&amp;#10;    [0.15, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10;    [0.15, 1.00, 0.00, 0.80, 0.25, 0.20],&amp;#10;    [0.15, 1.00, 0.00, 0.40, 0.30, 0.60],&amp;#10;    [0.15, 1.00, 0.00, 0.60, 0.30, 0.40],&amp;#10;    [0.15, 1.00, 0.00, 0.80, 0.30, 0.20],&amp;#10;    [0.25, 1.00, 0.00, 0.30, 0.35, 0.70],&amp;#10;    [0.25, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10;    [0.25, 1.00, 0.00, 0.70, 0.35, 0.30],&amp;#10;    [0.35, 1.00, 0.00, 0.20, 0.40, 0.80],&amp;#10;    [0.35, 1.00, 0.00, 0.30, 0.40, 0.70],&amp;#10;    [0.35, 1.00, 0.00, 0.50, 0.40, 0.50],&amp;#10;    [0.15, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10;    [0.15, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10;    [0.15, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10;    [0.15, 1.00, 0.00, 0.80, 0.50, 0.20],&amp;#10;    [0.15, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10;    [0.25, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10;    [0.25, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10;    [0.25, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10;    [0.25, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10;    [0.25, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10;    [0.25, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10;    [0.35, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10;    [0.35, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10;    [0.35, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10;    [0.35, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10;    [0.25, 1.00, 0.00, 0.00, 0.00, 0.00],&amp;#10;    [0.00, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10;    [0.00, 1.00, 0.00, 0.10, 0.30, 0.90],&amp;#10;    [0.00, 1.00, 0.00, 0.70, 0.40, 0.30],&amp;#10;    [0.00, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10;    [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]&amp;#10;];&amp;#10;&amp;#10;// Scale and round columns 0, 2, and 4&amp;#10;for (let i = 0; i &lt; reward_vec.length; i++) {&amp;#10;    reward_vec[i][0] = parseFloat((reward_vec[i][0] * reward_scaler).toFixed(2));&amp;#10;    reward_vec[i][2] = parseFloat((reward_vec[i][2] * reward_scaler).toFixed(2));&amp;#10;    reward_vec[i][4] = parseFloat((reward_vec[i][4] * reward_scaler).toFixed(2));&amp;#10;}&amp;#10;&amp;#10;// Replicate options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]&amp;#10;let options_vec_reversed = reward_vec.map(row =&gt; [row[2], row[3], row[4], row[5], row[0], row[1]]);&amp;#10;&amp;#10;// Replicate np.vstack&amp;#10;let vstacked_options = reward_vec.concat(options_vec_reversed);&amp;#10;&amp;#10;// Replicate np.random.permutation&amp;#10;// Note: We use [...array] to create a copy so _.shuffle doesn't just shuffle the same reference 3 times&amp;#10;let options1 = _.shuffle([...vstacked_options]);&amp;#10;let options2 = _.shuffle([...vstacked_options]);&amp;#10;let options3 = _.shuffle([...vstacked_options]);&amp;#10;&amp;#10;// Slice from index 1 to 30 (equivalent to [1:30] in Python)&amp;#10;let options_prac = _.shuffle([...vstacked_options]).slice(1, 30);&amp;#10;&amp;#10;// Final np.vstack&amp;#10;let options = options1.concat(options2, options3);&amp;#10;&amp;#10;&amp;#10;// gambles_txt = []&amp;#10;// for n in range(ntotal_trials):&amp;#10;//     gamble1 = f&quot;{gambles[n, 0]:.0f}%&quot;  // Gamble1&amp;#10;//     if gambles[n, 1] == reward[2]:&amp;#10;//         gamble2 = f&quot;BIG&quot;&amp;#10;// //      gamble2 = f&quot;BIG (${gambles[n, 1]:.2f})&quot;&amp;#10;//     elif gambles[n, 1] == reward[1]:&amp;#10;//         gamble2 = f&quot;MEDIUM&quot;&amp;#10;// //      gamble2 = f&quot;MEDIUM (${gambles[n, 1]:.2f})&quot;&amp;#10;//     else:&amp;#10;//         gamble2 = f&quot;SMALL&quot;&amp;#10;// //      gamble2 = f&quot;SMALL (${gambles[n, 1]:.2f})&quot;&amp;#10;//         &amp;#10;//     gamble3 = f&quot;{gambles[n, 2]:.0f}%&quot;  // Gamble2&amp;#10;//     if gambles[n, 3] == reward[2]:&amp;#10;//         gamble4 = f&quot;BIG&quot;&amp;#10;// //      gamble4 = f&quot;BIG (${gambles[n, 3]:.2f})&quot;&amp;#10;//     elif gambles[n, 3] == reward[1]:&amp;#10;//         gamble4 = f&quot;MEDIUM&quot;&amp;#10;//         gamble4 = f&quot;MEDIUM (${gambles[n, 3]:.2f})&quot;&amp;#10;//     else:&amp;#10;//         gamble4 = f&quot;SMALL&quot;&amp;#10;// //      gamble4 = f&quot;SMALL (${gambles[n, 3]:.2f})&quot;&amp;#10;//     &amp;#10;//     gambles_txt.append([gamble1, gamble2, gamble3, gamble4])&amp;#10;&amp;#10;// thisExp.addData(&quot;Gambles&quot;, gambles[3*npractice_trials:][:]) No need: each gamble is saved to the exp on each trial loop&amp;#10;// thisExp.addData(&quot;Practice gamble&quot;, gambles[0:3*npractice_trials][:])" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="import numpy as np # Keep in mind that by default, numpy version is 1.26&amp;#10;import time&amp;#10;import sys&amp;#10;&amp;#10;# Set happiness trials&amp;#10;# numBlocks = 4&amp;#10;# happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))&amp;#10;# print(sys.version)&amp;#10;&amp;#10;start_money = 5 # Start amount&amp;#10;option_size = 0.25&amp;#10;width = 0.335&amp;#10;height = 0.2&amp;#10;time_first_delay = 2&amp;#10;time_gamble_show = 1 # in seconds&amp;#10;time_chosen_option = 1&amp;#10;time_gamble_result = 1 # time after which they go to the next trial&amp;#10;time_iti = 1&amp;#10;&amp;#10;numBlocks = 3&amp;#10;happyTrialIdx = np.hstack((3*np.ones(14*numBlocks), 2*np.ones(12*numBlocks)))&amp;#10;happyTrialIdx = happyTrialIdx[np.random.permutation(len(happyTrialIdx))]&amp;#10;happyTrialIdx = np.cumsum(happyTrialIdx)-1&amp;#10;&amp;#10;happyTrial = np.zeros(66*numBlocks)&amp;#10;for i in happyTrialIdx:&amp;#10;    happyTrial[int(i)] = 1&amp;#10;&amp;#10;happyTrial = (happyTrial != 0)&amp;#10;&amp;#10;#happyTrialIdx_prac = np.ceil(np.linspace(2, 9*10, 3*10))&amp;#10;happyTrialIdx_prac = np.hstack((3*np.ones(2*10), 2*np.ones(2*10)))&amp;#10;happyTrialIdx_prac = happyTrialIdx_prac[np.random.permutation(len(happyTrialIdx_prac))]&amp;#10;happyTrialIdx_prac = np.cumsum(happyTrialIdx_prac)-1&amp;#10;&amp;#10;happyTrial_prac = np.zeros(100)&amp;#10;for i in happyTrialIdx_prac:&amp;#10;    happyTrial_prac[int(i)] = 1&amp;#10;&amp;#10;happyTrial_prac = (happyTrial_prac != 0)&amp;#10;&amp;#10;&amp;#10;npractice_trials = 10   # Number of practice trails&amp;#10;ntrials          = 198    # Number of trails&amp;#10;reward_scaler    = 0.2 # Compared to the juice amounts in the real exp&amp;#10;#ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials&amp;#10;#reward         = np.linspace(0, 0.5, 11) # All possible reward amounts&amp;#10;#proba_vec      = np.random.randint(51, size=(ntotal_trials,1))*2 # Generate the probabilities for each ntrials&amp;#10;#divider        = np.ceil(ntotal_trials*2/len(reward))&amp;#10;#reward_vec     = np.repeat(reward, divider).reshape(-1,1)&amp;#10;#reward_vec     = np.random.permutation(reward_vec)&amp;#10;#sure_option    = reward_vec[0:ntotal_trials]&amp;#10;#gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)&amp;#10;gamble_result  = np.random.randint(101, size=(ntrials,1))/100&amp;#10;gamble_result_prac = np.random.randint(101, size=(npractice_trials*3,1))/100&amp;#10;#sure_side      = np.random.randint(2, size=(ntotal_trials,1))&amp;#10;&amp;#10;reward_vec = np.array([[0.15, 1.00, 0.00, 0.50, 0.25, 0.50],&amp;#10; [0.15, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10; [0.15, 1.00, 0.00, 0.80, 0.25, 0.20],&amp;#10; [0.15, 1.00, 0.00, 0.40, 0.30, 0.60],&amp;#10; [0.15, 1.00, 0.00, 0.60, 0.30, 0.40],&amp;#10; [0.15, 1.00, 0.00, 0.80, 0.30, 0.20],&amp;#10; [0.25, 1.00, 0.00, 0.30, 0.35, 0.70],&amp;#10; [0.25, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10; [0.25, 1.00, 0.00, 0.70, 0.35, 0.30],&amp;#10; [0.35, 1.00, 0.00, 0.20, 0.40, 0.80],&amp;#10; [0.35, 1.00, 0.00, 0.30, 0.40, 0.70],&amp;#10; [0.35, 1.00, 0.00, 0.50, 0.40, 0.50],&amp;#10; [0.15, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10; [0.15, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10; [0.15, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10; [0.15, 1.00, 0.00, 0.80, 0.50, 0.20],&amp;#10; [0.15, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10; [0.25, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10; [0.25, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10; [0.25, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10; [0.25, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10; [0.25, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10; [0.25, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10; [0.35, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10; [0.35, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10; [0.35, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10; [0.35, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10; [0.25, 1.00, 0.00, 0.00, 0.00, 0.00],&amp;#10; [0.00, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10; [0.00, 1.00, 0.00, 0.10, 0.30, 0.90],&amp;#10; [0.00, 1.00, 0.00, 0.70, 0.40, 0.30],&amp;#10; [0.00, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10; [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]])&amp;#10;&amp;#10;reward_vec[:, [0, 2, 4]] = np.round(reward_vec[:, [0, 2, 4]] * reward_scaler, 2)&amp;#10;&amp;#10;options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]&amp;#10;options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options2 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options3 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))&amp;#10;options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:31]&amp;#10;options = np.vstack((options1, options2, options3)) # All this is done to respect the pseudorandomization of the task&amp;#10;&amp;#10;# Format functions:&amp;#10;&amp;#10;def mag(x):&amp;#10;    return f&quot;${x:.2f}&quot;&amp;#10;&amp;#10;def prob(x):&amp;#10;    if x == 0:&amp;#10;        return &quot;&quot;&amp;#10;    else:&amp;#10;        return f&quot;{x*100:.0f}%&quot;&amp;#10;&amp;#10;def trial_type(trial_array):&amp;#10;    sure_left = False&amp;#10;    forced_trial = False&amp;#10;    trial_side_left = False&amp;#10;    forced_type_sure = False&amp;#10;    &amp;#10;    if (trial_array[1]==1) and (trial_array[0]!=0) and (trial_array[5]!=0): # Choice sure left&amp;#10;        sure_left = True&amp;#10;        forced_trial = False&amp;#10;    elif (trial_array[5]==1) and (trial_array[4]!=0) and (trial_array[3]!=0):  # Choice sure right&amp;#10;        sure_left = False&amp;#10;        forced_trial = False&amp;#10;    elif (trial_array[0]==0) and (trial_array[1]==1): # forced gamble right&amp;#10;        trial_side_left = False&amp;#10;        forced_trial = True&amp;#10;        forced_type_sure = False&amp;#10;    elif (trial_array[4]==0) and (trial_array[5]==1): # forced gamble left&amp;#10;        trial_side_left = True&amp;#10;        forced_trial = True&amp;#10;        forced_type_sure = False&amp;#10;    elif (trial_array[1]==1): # forced sure left&amp;#10;        trial_side_left = True&amp;#10;        forced_trial = True&amp;#10;        forced_type_sure = True&amp;#10;    else: # forced sure right&amp;#10;        trial_side_left = False&amp;#10;        forced_trial = True&amp;#10;        forced_type_sure = True&amp;#10;        &amp;#10;    return sure_left, forced_trial, trial_side_left, forced_type_sure" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="// Keep in mind that by default, numpy version is 1.26&amp;#10;// import time&amp;#10;// import sys&amp;#10;&amp;#10;import * as _ from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.js';&amp;#10;&amp;#10;// Set happiness trials&amp;#10;// numBlocks = 4&amp;#10;// happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))&amp;#10;// print(sys.version)&amp;#10;&amp;#10;// Declare global variables so they can be accessed in any routine&amp;#10;var sure_left = false;&amp;#10;var forced_trial = false;&amp;#10;var trial_side_left = false;&amp;#10;var forced_type_sure = false;&amp;#10;var x1, x2, x3, x4;&amp;#10;var y1, y2, y3, y4;&amp;#10;var Mag1, P1, Mag2, P2, Mag3, P3, Mag4, P4;&amp;#10;&amp;#10;// Add these to your Begin Experiment globals&amp;#10;var p_progBar = 0;&amp;#10;var p_progVal = 1&amp;#10;var progBar = 0;&amp;#10;var progVal = 1;&amp;#10;var added_money = 0;&amp;#10;var outcome_txtW = '';&amp;#10;var choice = 10;&amp;#10;var outcome = 0;&amp;#10;var outcome_color = 'white';&amp;#10;// Make sure current_money is also declared globally! (e.g., var current_money = 5;)&amp;#10;&amp;#10;// Variable declarations (using 'var' to ensure global scope across routines)&amp;#10;var start_money = 5; // Start amount&amp;#10;var option_size = 0.25;&amp;#10;var width = 0.335;&amp;#10;var height = 0.2;&amp;#10;var time_first_delay = 2;&amp;#10;var time_gamble_show = 1; // in seconds&amp;#10;var time_chosen_option = 1;&amp;#10;var time_gamble_result = 1; // time after which they go to the next trial&amp;#10;var time_iti = 1;&amp;#10;&amp;#10;var numBlocks = 3;&amp;#10;&amp;#10;// Helper function to replicate np.cumsum(arr) - 1&amp;#10;function cumSumMinusOne(arr) {&amp;#10;    let result = [];&amp;#10;    let sum = 0;&amp;#10;    for (let i = 0; i &lt; arr.length; i++) {&amp;#10;        sum += arr[i];&amp;#10;        result.push(sum - 1);&amp;#10;    }&amp;#10;    return result;&amp;#10;}&amp;#10;&amp;#10;// Create arrays of 3s and 2s, combine them (np.hstack)&amp;#10;let happy_part1 = Array(14 * numBlocks).fill(3);&amp;#10;let happy_part2 = Array(12 * numBlocks).fill(2);&amp;#10;let happyTrialIdx = happy_part1.concat(happy_part2);&amp;#10;&amp;#10;// Shuffle and cumsum&amp;#10;happyTrialIdx = _.shuffle(happyTrialIdx);&amp;#10;happyTrialIdx = cumSumMinusOne(happyTrialIdx);&amp;#10;&amp;#10;var happyTrial = Array(66 * numBlocks).fill(0);&amp;#10;for (let i = 0; i &lt; happyTrialIdx.length; i++) {&amp;#10;    happyTrial[happyTrialIdx[i]] = 1;&amp;#10;}&amp;#10;happyTrial = happyTrial.map(x =&gt; x !== 0);&amp;#10;&amp;#10;// Practice trials setup&amp;#10;let happy_prac_part1 = Array(2 * 10).fill(3);&amp;#10;let happy_prac_part2 = Array(2 * 10).fill(2);&amp;#10;let happyTrialIdx_prac = happy_prac_part1.concat(happy_prac_part2);&amp;#10;&amp;#10;happyTrialIdx_prac = _.shuffle(happyTrialIdx_prac);&amp;#10;happyTrialIdx_prac = cumSumMinusOne(happyTrialIdx_prac);&amp;#10;&amp;#10;var happyTrial_prac = Array(100).fill(0);&amp;#10;for (let i = 0; i &lt; happyTrialIdx_prac.length; i++) {&amp;#10;    happyTrial_prac[happyTrialIdx_prac[i]] = 1;&amp;#10;}&amp;#10;happyTrial_prac = happyTrial_prac.map(x =&gt; x !== 0);&amp;#10;&amp;#10;&amp;#10;var npractice_trials = 10;   // Number of practice trails&amp;#10;var ntrials          = 198;  // Number of trails&amp;#10;var reward_scaler    = 0.2;  // Compared to the juice amounts in the real exp&amp;#10;&amp;#10;// Generate random probabilities&amp;#10;var gamble_result = Array.from({length: ntrials}, () =&gt; [Math.floor(Math.random() * 101) / 100]);&amp;#10;var gamble_result_prac = Array.from({length: npractice_trials * 3}, () =&gt; [Math.floor(Math.random() * 101) / 100]);&amp;#10;&amp;#10;var reward_vec = [&amp;#10;    [0.15, 1.00, 0.00, 0.50, 0.25, 0.50],&amp;#10;    [0.15, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10;    [0.15, 1.00, 0.00, 0.80, 0.25, 0.20],&amp;#10;    [0.15, 1.00, 0.00, 0.40, 0.30, 0.60],&amp;#10;    [0.15, 1.00, 0.00, 0.60, 0.30, 0.40],&amp;#10;    [0.15, 1.00, 0.00, 0.80, 0.30, 0.20],&amp;#10;    [0.25, 1.00, 0.00, 0.30, 0.35, 0.70],&amp;#10;    [0.25, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10;    [0.25, 1.00, 0.00, 0.70, 0.35, 0.30],&amp;#10;    [0.35, 1.00, 0.00, 0.20, 0.40, 0.80],&amp;#10;    [0.35, 1.00, 0.00, 0.30, 0.40, 0.70],&amp;#10;    [0.35, 1.00, 0.00, 0.50, 0.40, 0.50],&amp;#10;    [0.15, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10;    [0.15, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10;    [0.15, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10;    [0.15, 1.00, 0.00, 0.80, 0.50, 0.20],&amp;#10;    [0.15, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10;    [0.25, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10;    [0.25, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10;    [0.25, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10;    [0.25, 1.00, 0.00, 0.60, 0.50, 0.40],&amp;#10;    [0.25, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10;    [0.25, 1.00, 0.00, 0.90, 0.50, 0.10],&amp;#10;    [0.35, 1.00, 0.00, 0.10, 0.50, 0.90],&amp;#10;    [0.35, 1.00, 0.00, 0.30, 0.50, 0.70],&amp;#10;    [0.35, 1.00, 0.00, 0.50, 0.50, 0.50],&amp;#10;    [0.35, 1.00, 0.00, 0.70, 0.50, 0.30],&amp;#10;    [0.25, 1.00, 0.00, 0.00, 0.00, 0.00],&amp;#10;    [0.00, 1.00, 0.00, 0.70, 0.25, 0.30],&amp;#10;    [0.00, 1.00, 0.00, 0.10, 0.30, 0.90],&amp;#10;    [0.00, 1.00, 0.00, 0.70, 0.40, 0.30],&amp;#10;    [0.00, 1.00, 0.00, 0.50, 0.35, 0.50],&amp;#10;    [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]&amp;#10;];&amp;#10;&amp;#10;// Scale and round columns 0, 2, and 4&amp;#10;for (let i = 0; i &lt; reward_vec.length; i++) {&amp;#10;    reward_vec[i][0] = parseFloat((reward_vec[i][0] * reward_scaler).toFixed(2));&amp;#10;    reward_vec[i][2] = parseFloat((reward_vec[i][2] * reward_scaler).toFixed(2));&amp;#10;    reward_vec[i][4] = parseFloat((reward_vec[i][4] * reward_scaler).toFixed(2));&amp;#10;}&amp;#10;&amp;#10;let options_vec_reversed = reward_vec.map(row =&gt; [row[2], row[3], row[4], row[5], row[0], row[1]]);&amp;#10;let vstacked_options = reward_vec.concat(options_vec_reversed);&amp;#10;&amp;#10;var options1 = _.shuffle([...vstacked_options]);&amp;#10;var options2 = _.shuffle([...vstacked_options]);&amp;#10;var options3 = _.shuffle([...vstacked_options]);&amp;#10;&amp;#10;// Sliced to match your new Python array limits [1:31]&amp;#10;var options_prac = _.shuffle([...vstacked_options]).slice(1, 31);&amp;#10;var options = options1.concat(options2, options3);&amp;#10;&amp;#10;&amp;#10;// ==========================================&amp;#10;// Formatting Functions&amp;#10;// ==========================================&amp;#10;&amp;#10;window.mag = function(x) {&amp;#10;    return &quot;$&quot; + parseFloat(x).toFixed(2);&amp;#10;};&amp;#10;&amp;#10;window.prob = function(x) {&amp;#10;    if (x === 0) {&amp;#10;        return &quot;&quot;;&amp;#10;    } else {&amp;#10;        return (x * 100).toFixed(0) + &quot;%&quot;;&amp;#10;    }&amp;#10;};&amp;#10;&amp;#10;window.trial_type = function(trial_array) {&amp;#10;    let sure_left = false;&amp;#10;    let forced_trial = false;&amp;#10;    let trial_side_left = false;&amp;#10;    let forced_type_sure = false;&amp;#10;    &amp;#10;    if ((trial_array[1] === 1) &amp;&amp; (trial_array[0] !== 0) &amp;&amp; (trial_array[5] !== 0)) { &amp;#10;        sure_left = true;&amp;#10;        forced_trial = false;&amp;#10;    } else if ((trial_array[5] === 1) &amp;&amp; (trial_array[4] !== 0) &amp;&amp; (trial_array[3] !== 0)) {  &amp;#10;        sure_left = false;&amp;#10;        forced_trial = false;&amp;#10;    } else if ((trial_array[0] === 0) &amp;&amp; (trial_array[1] === 1)) { &amp;#10;        trial_side_left = false;&amp;#10;        forced_trial = true;&amp;#10;        forced_type_sure = false;&amp;#10;    } else if ((trial_array[4] === 0) &amp;&amp; (trial_array[5] === 1)) { &amp;#10;        trial_side_left = true;&amp;#10;        forced_trial = true;&amp;#10;        forced_type_sure = false;&amp;#10;    } else if (trial_array[1] === 1) { &amp;#10;        trial_side_left = true;&amp;#10;        forced_trial = true;&amp;#10;        forced_type_sure = true;&amp;#10;    } else { &amp;#10;        trial_side_left = false;&amp;#10;        forced_trial = true;&amp;#10;        forced_type_sure = true;&amp;#10;    }&amp;#10;    &amp;#10;    // JavaScript cannot return raw multiple variables like Python.&amp;#10;    // Instead, we return them packaged inside an Object.&amp;#10;    return {&amp;#10;        sure_left: sure_left,&amp;#10;        forced_trial: forced_trial,&amp;#10;        trial_side_left: trial_side_left,&amp;#10;        forced_type_sure: forced_type_sure&amp;#10;    };&amp;#10;};" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="startTime = time.strftime(&quot;%Y-%m-%d_%H.%M.%S&quot;)&amp;#10;thisExp.addData(&quot;dateTime&quot;, startTime) " valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="let startTime = new Date().toISOString().replace('T', '_').replace(/:/g, '.').split('.')[0];&amp;#10;console.log(&quot;dateTime:&quot;, startTime);" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -5091,7 +5145,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="Red" valType="color" updates="constant" name="fillColor"/>
         <Param val="False" valType="bool" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="1" valType="num" updates="constant" name="granularity"/>
         <Param val="" valType="code" updates="None" name="initVal"/>
@@ -5112,7 +5166,7 @@
         <Param val="False" valType="bool" updates="constant" name="storeHistory"/>
         <Param val="True" valType="bool" updates="constant" name="storeRating"/>
         <Param val="True" valType="bool" updates="constant" name="storeRatingTime"/>
-        <Param val="()" valType="list" updates="constant" name="styleTweaks"/>
+        <Param val="[]" valType="list" updates="constant" name="styleTweaks"/>
         <Param val="rating" valType="str" updates="constant" name="styles"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)" valType="list" updates="constant" name="ticks"/>
@@ -5129,11 +5183,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="low_end_text_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5156,11 +5210,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="high_end_text_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5202,11 +5256,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="exit_text_4" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.3)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5217,7 +5271,7 @@
         <Param val="Click to enter your answer. Press &lt;enter&gt; to move to the next screen." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <CodeComponent name="code_4" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
@@ -5263,7 +5317,7 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="Red" valType="color" updates="constant" name="fillColor"/>
         <Param val="False" valType="bool" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="1" valType="num" updates="constant" name="granularity"/>
         <Param val="" valType="code" updates="None" name="initVal"/>
@@ -5284,7 +5338,7 @@
         <Param val="False" valType="bool" updates="constant" name="storeHistory"/>
         <Param val="True" valType="bool" updates="constant" name="storeRating"/>
         <Param val="True" valType="bool" updates="constant" name="storeRatingTime"/>
-        <Param val="()" valType="list" updates="constant" name="styleTweaks"/>
+        <Param val="[]" valType="list" updates="constant" name="styleTweaks"/>
         <Param val="rating" valType="str" updates="constant" name="styles"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)" valType="list" updates="constant" name="ticks"/>
@@ -5301,11 +5355,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="low_end_text_5" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5328,11 +5382,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="high_end_text_5" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0.5, -0.15)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0.65, 0.07)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5382,11 +5436,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="exit_text_3" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.3)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5397,7 +5451,7 @@
         <Param val="Click to select your answer. Press &lt;enter&gt; to continue to the next screen." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_8" plugin="None">
         <Param val="'return'" valType="list" updates="constant" name="allowedKeys"/>
@@ -5478,7 +5532,7 @@
         <Param val="It would be best to complete the entire task with minimal breaks. If you need to take a break, please do so on the break screen." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <TextComponent name="Continue_txt_6" plugin="None">
         <Param val="black" valType="color" updates="constant" name="color"/>
@@ -5549,8 +5603,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// Reset the GLOBAL variables for this specific trial&amp;#10;// Notice we are NOT using 'let' or 'var' here anymore!&amp;#10;sure_left = false;&amp;#10;forced_trial = false;&amp;#10;trial_side_left = false;&amp;#10;forced_type_sure = false;&amp;#10;&amp;#10;// Get current trial index&amp;#10;let trialN = practice_trials.thisN;&amp;#10;&amp;#10;// Get the current row (pie options)&amp;#10;let pies = options_prac[trialN];&amp;#10;psychoJS.experiment.addData('options', pies);&amp;#10;&amp;#10;// Get the current gamble result&amp;#10;let gamble_resulty = gamble_result_prac[trialN][0]; &amp;#10;psychoJS.experiment.addData('gamble_result', gamble_resulty);&amp;#10;&amp;#10;&amp;#10;// Determine the type of trial&amp;#10;if ((options_prac[trialN][1] === 1) &amp;&amp; (options_prac[trialN][0] !== 0) &amp;&amp; (options_prac[trialN][5] !== 0)) { &amp;#10;    // Choice sure left&amp;#10;    sure_left = true;&amp;#10;    forced_trial = false;&amp;#10;} &amp;#10;else if ((options_prac[trialN][5] === 1) &amp;&amp; (options_prac[trialN][4] !== 0) &amp;&amp; (options_prac[trialN][3] !== 0)) {  &amp;#10;    // Choice sure right&amp;#10;    sure_left = false;&amp;#10;    forced_trial = false;&amp;#10;} &amp;#10;else if ((options_prac[trialN][0] === 0) &amp;&amp; (options_prac[trialN][1] === 1)) { &amp;#10;    // forced gamble right&amp;#10;    trial_side_left = false;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = false;&amp;#10;} &amp;#10;else if ((options_prac[trialN][4] === 0) &amp;&amp; (options_prac[trialN][5] === 1)) { &amp;#10;    // forced gamble left&amp;#10;    trial_side_left = true;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = false;&amp;#10;} &amp;#10;else if (options_prac[trialN][1] === 1) { &amp;#10;    // forced sure left&amp;#10;    trial_side_left = true;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = true;&amp;#10;} &amp;#10;else { &amp;#10;    // forced sure right&amp;#10;    trial_side_left = false;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = true;&amp;#10;}&amp;#10;&amp;#10;&amp;#10;// Determine the coordinates and components of the boxes&amp;#10;if (!forced_trial) { &amp;#10;    // choice trial&amp;#10;    x1 = -width;&amp;#10;    x2 = -width;&amp;#10;    x3 = width;&amp;#10;    x4 = width;&amp;#10;    &amp;#10;    if (sure_left) { &amp;#10;        y1 = 0;&amp;#10;        y2 = 2; // Not showing&amp;#10;        y3 = height;&amp;#10;        y4 = -height;&amp;#10;        Mag1 = options_prac[trialN][0];&amp;#10;        P1 = 1;&amp;#10;        Mag2 = 0;&amp;#10;        P2 = 0;&amp;#10;        Mag3 = options_prac[trialN][4];&amp;#10;        P3 = options_prac[trialN][5];&amp;#10;        Mag4 = options_prac[trialN][2];&amp;#10;        P4 = options_prac[trialN][3];&amp;#10;    } else { &amp;#10;        y1 = height;&amp;#10;        y2 = -height;&amp;#10;        y3 = 0;&amp;#10;        y4 = 2; // Not showing&amp;#10;        Mag1 = options_prac[trialN][2];&amp;#10;        P1 = options_prac[trialN][3];&amp;#10;        Mag2 = options_prac[trialN][0];&amp;#10;        P2 = options_prac[trialN][1];&amp;#10;        Mag3 = options_prac[trialN][4];&amp;#10;        P3 = options_prac[trialN][5];&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    }&amp;#10;} &amp;#10;else { &amp;#10;    // forced option&amp;#10;    x1 = 0;&amp;#10;    x2 = 0;&amp;#10;    x3 = 0;&amp;#10;    x4 = 0;&amp;#10;    &amp;#10;    if (forced_type_sure) { &amp;#10;        y1 = 0;&amp;#10;        y2 = 2; &amp;#10;        y3 = 2; &amp;#10;        y4 = 2; &amp;#10;        &amp;#10;        if (trial_side_left) { &amp;#10;            Mag1 = options_prac[trialN][0];&amp;#10;            P1 = options_prac[trialN][1];&amp;#10;        } else { &amp;#10;            Mag1 = options_prac[trialN][4];&amp;#10;            P1 = options_prac[trialN][5];&amp;#10;        }&amp;#10;        Mag2 = 0;&amp;#10;        P2 = 0;&amp;#10;        Mag3 = 0;&amp;#10;        P3 = 0;&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    } &amp;#10;    else { &amp;#10;        y1 = height;&amp;#10;        y2 = -height;&amp;#10;        y3 = 2; &amp;#10;        y4 = 2; &amp;#10;        &amp;#10;        if (trial_side_left) { &amp;#10;            Mag1 = options_prac[trialN][2];&amp;#10;            P1 = options_prac[trialN][3];&amp;#10;            Mag2 = options_prac[trialN][0];&amp;#10;            P2 = options_prac[trialN][1];&amp;#10;        } else { &amp;#10;            Mag1 = options_prac[trialN][4];&amp;#10;            P1 = options_prac[trialN][5];&amp;#10;            Mag2 = options_prac[trialN][2];&amp;#10;            P2 = options_prac[trialN][3];&amp;#10;        }&amp;#10;        Mag3 = 0;&amp;#10;        P3 = 0;&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    }&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# Determine the type of trial&amp;#10;&amp;#10;pies = options_prac[practice_trials.thisN,:]&amp;#10;thisExp.addData('options', pies)&amp;#10;gamble_resulty = gamble_result_prac[practice_trials.thisN]&amp;#10;thisExp.addData('gamble_result', gamble_resulty)&amp;#10;&amp;#10;if (options_prac[practice_trials.thisN,1]==1) and (options_prac[practice_trials.thisN,0]!=0) and (options_prac[practice_trials.thisN,5]!=0): # Choice sure left&amp;#10;    sure_left = True&amp;#10;    forced_trial = False&amp;#10;elif (options_prac[practice_trials.thisN,5]==1) and (options_prac[practice_trials.thisN,4]!=0) and (options_prac[practice_trials.thisN,3]!=0):  # Choice sure right&amp;#10;    sure_left = False&amp;#10;    forced_trial = False&amp;#10;elif (options_prac[practice_trials.thisN,0]==0) and (options_prac[practice_trials.thisN,1]==1): # forced gamble right&amp;#10;    trial_side_left = False&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = False&amp;#10;elif (options_prac[practice_trials.thisN,4]==0) and (options_prac[practice_trials.thisN,5]==1): # forced gamble left&amp;#10;    trial_side_left = True&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = False&amp;#10;elif (options_prac[practice_trials.thisN,1]==1): # forced sure left&amp;#10;    trial_side_left = True&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = True&amp;#10;else: # forced sure right&amp;#10;    trial_side_left = False&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = True&amp;#10;&amp;#10;# Determine the coordonates and components of the boxes&amp;#10;&amp;#10;if not(forced_trial): # choice trial&amp;#10;    x1 = -width&amp;#10;    x2 = -width&amp;#10;    x3 = width&amp;#10;    x4 = width&amp;#10;    if sure_left: # sure option on left side&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        y3 = height&amp;#10;        y4 = -height&amp;#10;        Mag1 = options_prac[practice_trials.thisN,0]&amp;#10;        P1 = 1&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = options_prac[practice_trials.thisN,4]&amp;#10;        P3 = options_prac[practice_trials.thisN,5]&amp;#10;        Mag4 = options_prac[practice_trials.thisN,2]&amp;#10;        P4 = options_prac[practice_trials.thisN,3]&amp;#10;    else: # sure option on the right side&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        y3 = 0&amp;#10;        y4 = 2 # Not showing&amp;#10;        Mag1 = options_prac[practice_trials.thisN,2]&amp;#10;        P1 = options_prac[practice_trials.thisN,3]&amp;#10;        Mag2 = options_prac[practice_trials.thisN,0]&amp;#10;        P2 = options_prac[practice_trials.thisN,1]&amp;#10;        Mag3 = options_prac[practice_trials.thisN,4]&amp;#10;        P3 = options_prac[practice_trials.thisN,5]&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;else: # forced option&amp;#10;    x1 = 0&amp;#10;    x2 = 0&amp;#10;    x3 = 0&amp;#10;    x4 = 0&amp;#10;    if forced_type_sure: # Forced sure option&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        y3 = 2 # Not showing&amp;#10;        y4 = 2 # Not showing&amp;#10;        if trial_side_left: # option on the left&amp;#10;            Mag1 = options_prac[practice_trials.thisN,0]&amp;#10;            P1 = options_prac[practice_trials.thisN,1]&amp;#10;        else: # option on the right&amp;#10;            Mag1 = options_prac[practice_trials.thisN,4]&amp;#10;            P1 = options_prac[practice_trials.thisN,5]&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = 0&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;    else: # Forced gamble option&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        y3 = 2 # Not showing&amp;#10;        y4 = 2 # Not showing&amp;#10;        if trial_side_left: # option on the left&amp;#10;            Mag1 = options_prac[practice_trials.thisN,2]&amp;#10;            P1 = options_prac[practice_trials.thisN,3]&amp;#10;            Mag2 = options_prac[practice_trials.thisN,0]&amp;#10;            P2 = options_prac[practice_trials.thisN,1]&amp;#10;        else: # option on the right&amp;#10;            Mag1 = options_prac[practice_trials.thisN,4]&amp;#10;            P1 = options_prac[practice_trials.thisN,5]&amp;#10;            Mag2 = options_prac[practice_trials.thisN,2]&amp;#10;            P2 = options_prac[practice_trials.thisN,3]&amp;#10;        Mag3 = 0&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="// Get current trial index&amp;#10;let trialN = practice_trials.thisN;&amp;#10;&amp;#10;// Grab the options for this trial and save to data&amp;#10;let trial_array = options_prac[trialN];&amp;#10;psychoJS.experiment.addData('options', trial_array);&amp;#10;&amp;#10;// Grab the float gamble result and save to data&amp;#10;let gamble_resulty = gamble_result_prac[trialN][0];&amp;#10;psychoJS.experiment.addData('gamble_result', gamble_resulty);&amp;#10;&amp;#10;// ---------------------------------------------------------&amp;#10;// Determine the type of trial using our global function&amp;#10;// ---------------------------------------------------------&amp;#10;let trial_results = window.trial_type(trial_array);&amp;#10;&amp;#10;sure_left = trial_results.sure_left;&amp;#10;forced_trial = trial_results.forced_trial;&amp;#10;trial_side_left = trial_results.trial_side_left;&amp;#10;forced_type_sure = trial_results.forced_type_sure;&amp;#10;&amp;#10;// ---------------------------------------------------------&amp;#10;// Determine the coordinates and components of the boxes&amp;#10;// ---------------------------------------------------------&amp;#10;&amp;#10;// We can safely use the global variables we declared in Begin Experiment&amp;#10;x1 = -width;&amp;#10;x2 = -width;&amp;#10;x3 = width;&amp;#10;x4 = width;&amp;#10;&amp;#10;if (!forced_trial) { // choice trial&amp;#10;    allowed_keys = [&quot;left&quot;, &quot;right&quot;, &quot;ArrowLeft&quot;, &quot;ArrowRight&quot;];&amp;#10;    &amp;#10;    if (sure_left) { // sure option on left side&amp;#10;        y1 = 0;&amp;#10;        y2 = 2; // Not showing&amp;#10;        y3 = height;&amp;#10;        y4 = -height;&amp;#10;        Mag1 = options_prac[trialN][0];&amp;#10;        P1 = 0;&amp;#10;        Mag2 = 0;&amp;#10;        P2 = 0;&amp;#10;        Mag3 = options_prac[trialN][4];&amp;#10;        P3 = options_prac[trialN][5];&amp;#10;        Mag4 = options_prac[trialN][2];&amp;#10;        P4 = options_prac[trialN][3];&amp;#10;    } else { // sure option on the right side&amp;#10;        y1 = height;&amp;#10;        y2 = -height;&amp;#10;        y3 = 0;&amp;#10;        y4 = 2; // Not showing&amp;#10;        Mag1 = options_prac[trialN][2];&amp;#10;        P1 = options_prac[trialN][3];&amp;#10;        Mag2 = options_prac[trialN][0];&amp;#10;        P2 = options_prac[trialN][1];&amp;#10;        Mag3 = options_prac[trialN][4];&amp;#10;        P3 = 0;&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    }&amp;#10;} else { // forced option&amp;#10;    if (forced_type_sure) { // Forced sure option&amp;#10;        if (trial_side_left) { // option on the left&amp;#10;            y1 = 0;&amp;#10;            y2 = 2; // Not showing&amp;#10;            y3 = 2; // Not showing&amp;#10;            y4 = 2; // Not showing&amp;#10;            Mag1 = options_prac[trialN][0];&amp;#10;            P1 = 0;&amp;#10;            Mag2 = 0;&amp;#10;            P2 = 0;&amp;#10;            Mag3 = 0;&amp;#10;            P3 = 0;&amp;#10;            Mag4 = 0;&amp;#10;            P4 = 0;&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;ArrowLeft&quot;];&amp;#10;        } else { // option on the right&amp;#10;            y3 = 0;&amp;#10;            y1 = 2; // Not showing&amp;#10;            y2 = 2; // Not showing&amp;#10;            y4 = 2; // Not showing&amp;#10;            Mag3 = options_prac[trialN][4];&amp;#10;            P3 = 0;&amp;#10;            Mag1 = 0;&amp;#10;            P1 = 0;&amp;#10;            Mag2 = 0;&amp;#10;            P2 = 0;&amp;#10;            Mag4 = 0;&amp;#10;            P4 = 0;&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;ArrowRight&quot;];&amp;#10;        }&amp;#10;    } else { // Forced gamble option&amp;#10;        if (trial_side_left) { // option on the left&amp;#10;            y1 = height;&amp;#10;            y2 = -height;&amp;#10;            y3 = 2; // Not showing&amp;#10;            y4 = 2; // Not showing&amp;#10;            Mag1 = options_prac[trialN][2];&amp;#10;            P1 = options_prac[trialN][3];&amp;#10;            Mag2 = options_prac[trialN][0];&amp;#10;            P2 = options_prac[trialN][1];&amp;#10;            Mag3 = 0;&amp;#10;            P3 = 0;&amp;#10;            Mag4 = 0;&amp;#10;            P4 = 0;&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;ArrowLeft&quot;];&amp;#10;        } else { // option on the right&amp;#10;            y1 = 2; // Not showing&amp;#10;            y2 = 2; // Not showing&amp;#10;            y3 = height;&amp;#10;            y4 = -height;&amp;#10;            Mag3 = options_prac[trialN][4];&amp;#10;            P3 = options_prac[trialN][5];&amp;#10;            Mag4 = options_prac[trialN][2];&amp;#10;            P4 = options_prac[trialN][3];&amp;#10;            Mag1 = 0;&amp;#10;            P1 = 0;&amp;#10;            Mag2 = 0;&amp;#10;            P2 = 0;&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;ArrowRight&quot;];&amp;#10;        }&amp;#10;    }&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="trial_array = options_prac[practice_trials.thisN,:]&amp;#10;thisExp.addData('options', trial_array)&amp;#10;gamble_resulty = gamble_result_prac[practice_trials.thisN]&amp;#10;thisExp.addData('gamble_result', gamble_resulty)&amp;#10;&amp;#10;# Determine the type of trial&amp;#10;&amp;#10;[sure_left, forced_trial, trial_side_left, forced_type_sure] = trial_type(trial_array)&amp;#10;&amp;#10;# Determine the coordonates and components of the boxes&amp;#10;&amp;#10;x1 = -width&amp;#10;x2 = -width&amp;#10;x3 = width&amp;#10;x4 = width&amp;#10;if not(forced_trial): # choice trial&amp;#10;    allowed_keys = [&quot;left&quot;, &quot;right&quot;]&amp;#10;    if sure_left: # sure option on left side&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        y3 = height&amp;#10;        y4 = -height&amp;#10;        Mag1 = options_prac[practice_trials.thisN,0]&amp;#10;        P1 = 0&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = options_prac[practice_trials.thisN,4]&amp;#10;        P3 = options_prac[practice_trials.thisN,5]&amp;#10;        Mag4 = options_prac[practice_trials.thisN,2]&amp;#10;        P4 = options_prac[practice_trials.thisN,3]&amp;#10;    else: # sure option on the right side&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        y3 = 0&amp;#10;        y4 = 2 # Not showing&amp;#10;        Mag1 = options_prac[practice_trials.thisN,2]&amp;#10;        P1 = options_prac[practice_trials.thisN,3]&amp;#10;        Mag2 = options_prac[practice_trials.thisN,0]&amp;#10;        P2 = options_prac[practice_trials.thisN,1]&amp;#10;        Mag3 = options_prac[practice_trials.thisN,4]&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;else: # forced option&amp;#10;    if forced_type_sure: # Forced sure option&amp;#10;        if trial_side_left: # option on the left&amp;#10;            y1 = 0&amp;#10;            y2 = 2 # Not showing&amp;#10;            y3 = 2 # Not showing&amp;#10;            y4 = 2 # Not showing&amp;#10;            Mag1 = options_prac[practice_trials.thisN,0]&amp;#10;            P1 = 0&amp;#10;            Mag2 = 0&amp;#10;            P2 = 0&amp;#10;            Mag3 = 0&amp;#10;            P3 = 0&amp;#10;            Mag4 = 0&amp;#10;            P4 = 0&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;left&quot;]&amp;#10;        else: # option on the right&amp;#10;            y3 = 0&amp;#10;            y1 = 2 # Not showing&amp;#10;            y2 = 2 # Not showing&amp;#10;            y4 = 2 # Not showing&amp;#10;            Mag3 = options_prac[practice_trials.thisN,4]&amp;#10;            P3 = 0&amp;#10;            Mag1 = 0&amp;#10;            P1 = 0&amp;#10;            Mag2 = 0&amp;#10;            P2 = 0&amp;#10;            Mag4 = 0&amp;#10;            P4 = 0&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;right&quot;]&amp;#10;&amp;#10;    else: # Forced gamble option&amp;#10;        if trial_side_left: # option on the left&amp;#10;            y1 = height&amp;#10;            y2 = -height&amp;#10;            y3 = 2 # Not showing&amp;#10;            y4 = 2 # Not showing&amp;#10;            Mag1 = options_prac[practice_trials.thisN,2]&amp;#10;            P1 = options_prac[practice_trials.thisN,3]&amp;#10;            Mag2 = options_prac[practice_trials.thisN,0]&amp;#10;            P2 = options_prac[practice_trials.thisN,1]&amp;#10;            Mag3 = 0&amp;#10;            P3 = 0&amp;#10;            Mag4 = 0&amp;#10;            P4 = 0&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;left&quot;]&amp;#10;        else: # option on the right&amp;#10;            y1 = 2 # Not showing&amp;#10;            y2 = 2 # Not showing&amp;#10;            y3 = height&amp;#10;            y4 = -height&amp;#10;            Mag3 = options_prac[practice_trials.thisN,4]&amp;#10;            P3 = options_prac[practice_trials.thisN,5]&amp;#10;            Mag4 = options_prac[practice_trials.thisN,2]&amp;#10;            P4 = options_prac[practice_trials.thisN,3]&amp;#10;            Mag1 = 0&amp;#10;            P1 = 0&amp;#10;            Mag2 = 0&amp;#10;            P2 = 0&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;right&quot;]&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -5720,7 +5774,7 @@
         <Param val="p_box1_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5728,7 +5782,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag1:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5747,7 +5801,7 @@
         <Param val="p_box1_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1-0.2, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5755,7 +5809,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P1*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5774,7 +5828,7 @@
         <Param val="p_box2_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5782,7 +5836,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag2:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5801,7 +5855,7 @@
         <Param val="p_box2_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2-0.2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5809,7 +5863,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P2*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5828,7 +5882,7 @@
         <Param val="p_box3_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5836,7 +5890,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag3:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5855,7 +5909,7 @@
         <Param val="p_box3_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3+0.2, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5863,7 +5917,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P3*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5882,7 +5936,7 @@
         <Param val="p_box4_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5890,7 +5944,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag4:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -5909,7 +5963,7 @@
         <Param val="p_box4_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4+0.2, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -5917,13 +5971,13 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P4*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="p_choice" plugin="None">
-        <Param val="'left', 'right'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="allowed_keys" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -5978,7 +6032,7 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="p_Late_input" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
@@ -5993,7 +6047,7 @@
         <Param val="Choose an option by pressing the left or right arrow" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
     </Routine>
     <Routine name="p_chosen_option">
@@ -6189,7 +6243,7 @@
         <Param val="p_box1_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6197,7 +6251,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag1:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6216,7 +6270,7 @@
         <Param val="p_box1_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1-0.2, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6224,7 +6278,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P1*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6243,7 +6297,7 @@
         <Param val="p_box2_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6251,7 +6305,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag2:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6270,7 +6324,7 @@
         <Param val="p_box2_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2-0.2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6278,7 +6332,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P2*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6297,7 +6351,7 @@
         <Param val="p_box3_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6305,7 +6359,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag3:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6324,7 +6378,7 @@
         <Param val="p_box3_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3+0.2, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6332,7 +6386,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P3*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6351,7 +6405,7 @@
         <Param val="p_box4_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6359,7 +6413,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag4:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6378,7 +6432,7 @@
         <Param val="p_box4_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4+0.2, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6386,7 +6440,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P4*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6441,8 +6495,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="// Reset the GLOBAL variables for this specific trial&amp;#10;sure_left = false;&amp;#10;forced_trial = false;&amp;#10;trial_side_left = false;&amp;#10;forced_type_sure = false;&amp;#10;&amp;#10;// Get current trial index (using the main 'trials' loop)&amp;#10;let trialN = trials.thisN;&amp;#10;&amp;#10;// Get the current row (pie options)&amp;#10;let pies = options[trialN];&amp;#10;psychoJS.experiment.addData('options', pies);&amp;#10;&amp;#10;// Get the current gamble result (using [0] because it's an array of arrays)&amp;#10;let gamble_resulty = gamble_result[trialN][0];&amp;#10;psychoJS.experiment.addData('gamble_result', gamble_resulty);&amp;#10;&amp;#10;&amp;#10;// Determine the type of trial&amp;#10;if ((options[trialN][1] === 1) &amp;&amp; (options[trialN][0] !== 0) &amp;&amp; (options[trialN][5] !== 0)) { &amp;#10;    // Choice sure left&amp;#10;    sure_left = true;&amp;#10;    forced_trial = false;&amp;#10;} &amp;#10;else if ((options[trialN][5] === 1) &amp;&amp; (options[trialN][4] !== 0) &amp;&amp; (options[trialN][3] !== 0)) {  &amp;#10;    // Choice sure right&amp;#10;    sure_left = false;&amp;#10;    forced_trial = false;&amp;#10;} &amp;#10;else if ((options[trialN][0] === 0) &amp;&amp; (options[trialN][1] === 1)) { &amp;#10;    // forced gamble right&amp;#10;    trial_side_left = false;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = false;&amp;#10;} &amp;#10;else if ((options[trialN][4] === 0) &amp;&amp; (options[trialN][5] === 1)) { &amp;#10;    // forced gamble left&amp;#10;    trial_side_left = true;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = false;&amp;#10;} &amp;#10;else if (options[trialN][1] === 1) { &amp;#10;    // forced sure left&amp;#10;    trial_side_left = true;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = true;&amp;#10;} &amp;#10;else { &amp;#10;    // forced sure right&amp;#10;    trial_side_left = false;&amp;#10;    forced_trial = true;&amp;#10;    forced_type_sure = true;&amp;#10;}&amp;#10;&amp;#10;&amp;#10;// Determine the coordinates and components of the boxes&amp;#10;if (!forced_trial) { &amp;#10;    // choice trial&amp;#10;    x1 = -width;&amp;#10;    x2 = -width;&amp;#10;    x3 = width;&amp;#10;    x4 = width;&amp;#10;    &amp;#10;    if (sure_left) { &amp;#10;        // sure option on left side&amp;#10;        y1 = 0;&amp;#10;        y2 = 2; // Not showing&amp;#10;        y3 = height;&amp;#10;        y4 = -height;&amp;#10;        Mag1 = options[trialN][0];&amp;#10;        P1 = 1;&amp;#10;        Mag2 = 0;&amp;#10;        P2 = 0;&amp;#10;        Mag3 = options[trialN][4];&amp;#10;        P3 = options[trialN][5];&amp;#10;        Mag4 = options[trialN][2];&amp;#10;        P4 = options[trialN][3];&amp;#10;    } else { &amp;#10;        // sure option on the right side&amp;#10;        y1 = height;&amp;#10;        y2 = -height;&amp;#10;        y3 = 0;&amp;#10;        y4 = 2; // Not showing&amp;#10;        Mag1 = options[trialN][2];&amp;#10;        P1 = options[trialN][3];&amp;#10;        Mag2 = options[trialN][0];&amp;#10;        P2 = options[trialN][1];&amp;#10;        Mag3 = options[trialN][4];&amp;#10;        P3 = options[trialN][5];&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    }&amp;#10;} &amp;#10;else { &amp;#10;    // forced option&amp;#10;    x1 = 0;&amp;#10;    x2 = 0;&amp;#10;    x3 = 0;&amp;#10;    x4 = 0;&amp;#10;    &amp;#10;    if (forced_type_sure) { &amp;#10;        // Forced sure option&amp;#10;        y1 = 0;&amp;#10;        y2 = 2; // Not showing&amp;#10;        y3 = 2; // Not showing&amp;#10;        y4 = 2; // Not showing&amp;#10;        &amp;#10;        if (trial_side_left) { &amp;#10;            // option on the left&amp;#10;            Mag1 = options[trialN][0];&amp;#10;            P1 = options[trialN][1];&amp;#10;        } else { &amp;#10;            // option on the right&amp;#10;            Mag1 = options[trialN][4];&amp;#10;            P1 = options[trialN][5];&amp;#10;        }&amp;#10;        Mag2 = 0;&amp;#10;        P2 = 0;&amp;#10;        Mag3 = 0;&amp;#10;        P3 = 0;&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    } &amp;#10;    else { &amp;#10;        // Forced gamble option&amp;#10;        y1 = height;&amp;#10;        y2 = -height;&amp;#10;        y3 = 2; // Not showing&amp;#10;        y4 = 2; // Not showing&amp;#10;        &amp;#10;        if (trial_side_left) { &amp;#10;            // option on the left&amp;#10;            Mag1 = options[trialN][2];&amp;#10;            P1 = options[trialN][3];&amp;#10;            Mag2 = options[trialN][0];&amp;#10;            P2 = options[trialN][1];&amp;#10;        } else { &amp;#10;            // option on the right&amp;#10;            Mag1 = options[trialN][4];&amp;#10;            P1 = options[trialN][5];&amp;#10;            Mag2 = options[trialN][2];&amp;#10;            P2 = options[trialN][3];&amp;#10;        }&amp;#10;        Mag3 = 0;&amp;#10;        P3 = 0;&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    }&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# Determine the type of trial&amp;#10;&amp;#10;pies = options[trials.thisN,:]&amp;#10;thisExp.addData('options', pies)&amp;#10;gamble_resulty = gamble_result[trials.thisN]&amp;#10;thisExp.addData('gamble_result', gamble_resulty)&amp;#10;&amp;#10;if (options[trials.thisN,1]==1) and (options[trials.thisN,0]!=0) and (options[trials.thisN,5]!=0): # Choice sure left&amp;#10;    sure_left = True&amp;#10;    forced_trial = False&amp;#10;elif (options[trials.thisN,5]==1) and (options[trials.thisN,4]!=0) and (options[trials.thisN,3]!=0):  # Choice sure right&amp;#10;    sure_left = False&amp;#10;    forced_trial = False&amp;#10;elif (options[trials.thisN,0]==0) and (options[trials.thisN,1]==1): # forced gamble right&amp;#10;    trial_side_left = False&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = False&amp;#10;elif (options[trials.thisN,4]==0) and (options[trials.thisN,5]==1): # forced gamble left&amp;#10;    trial_side_left = True&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = False&amp;#10;elif options[trials.thisN,1]==1: # forced sure left&amp;#10;    trial_side_left = True&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = True&amp;#10;else: # forced sure right&amp;#10;    trial_side_left = False&amp;#10;    forced_trial = True&amp;#10;    forced_type_sure = True&amp;#10;&amp;#10;&amp;#10;# Determine the coordonates and components of the boxes&amp;#10;&amp;#10;if not(forced_trial): # choice trial&amp;#10;    x1 = -width&amp;#10;    x2 = -width&amp;#10;    x3 = width&amp;#10;    x4 = width&amp;#10;    if sure_left: # sure option on left side&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        y3 = height&amp;#10;        y4 = -height&amp;#10;        Mag1 = options[trials.thisN,0]&amp;#10;        P1 = 1&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = options[trials.thisN,4]&amp;#10;        P3 = options[trials.thisN,5]&amp;#10;        Mag4 = options[trials.thisN,2]&amp;#10;        P4 = options[trials.thisN,3]&amp;#10;    else: # sure option on the right side&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        y3 = 0&amp;#10;        y4 = 2 # Not showing&amp;#10;        Mag1 = options[trials.thisN,2]&amp;#10;        P1 = options[trials.thisN,3]&amp;#10;        Mag2 = options[trials.thisN,0]&amp;#10;        P2 = options[trials.thisN,1]&amp;#10;        Mag3 = options[trials.thisN,4]&amp;#10;        P3 = options[trials.thisN,5]&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;else: # forced option&amp;#10;    x1 = 0&amp;#10;    x2 = 0&amp;#10;    x3 = 0&amp;#10;    x4 = 0&amp;#10;    if forced_type_sure: # Forced sure option&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        y3 = 2 # Not showing&amp;#10;        y4 = 2 # Not showing&amp;#10;        if trial_side_left: # option on the left&amp;#10;            Mag1 = options[trials.thisN,0]&amp;#10;            P1 = options[trials.thisN,1]&amp;#10;        else: # option on the right&amp;#10;            Mag1 = options[trials.thisN,4]&amp;#10;            P1 = options[trials.thisN,5]&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = 0&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;    else: # Forced gamble option&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        y3 = 2 # Not showing&amp;#10;        y4 = 2 # Not showing&amp;#10;        if trial_side_left: # option on the left&amp;#10;            Mag1 = options[trials.thisN,2]&amp;#10;            P1 = options[trials.thisN,3]&amp;#10;            Mag2 = options[trials.thisN,0]&amp;#10;            P2 = options[trials.thisN,1]&amp;#10;        else: # option on the right&amp;#10;            Mag1 = options[trials.thisN,4]&amp;#10;            P1 = options[trials.thisN,5]&amp;#10;            Mag2 = options[trials.thisN,2]&amp;#10;            P2 = options[trials.thisN,3]&amp;#10;        Mag3 = 0&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="// Get current trial index&amp;#10;let trialN = trials.thisN;&amp;#10;&amp;#10;// Grab the options for this trial and save to data&amp;#10;let trial_array = options[trialN];&amp;#10;psychoJS.experiment.addData('options', trial_array);&amp;#10;&amp;#10;// Grab the float gamble result and save to data&amp;#10;let gamble_resulty = gamble_result[trialN][0];&amp;#10;psychoJS.experiment.addData('gamble_result', gamble_resulty);&amp;#10;&amp;#10;// ---------------------------------------------------------&amp;#10;// Determine the type of trial using our global function&amp;#10;// ---------------------------------------------------------&amp;#10;let trial_results = window.trial_type(trial_array);&amp;#10;&amp;#10;sure_left = trial_results.sure_left;&amp;#10;forced_trial = trial_results.forced_trial;&amp;#10;trial_side_left = trial_results.trial_side_left;&amp;#10;forced_type_sure = trial_results.forced_type_sure;&amp;#10;&amp;#10;// ---------------------------------------------------------&amp;#10;// Determine the coordinates and components of the boxes&amp;#10;// ---------------------------------------------------------&amp;#10;&amp;#10;// We can safely use the global variables we declared in Begin Experiment&amp;#10;x1 = -width;&amp;#10;x2 = -width;&amp;#10;x3 = width;&amp;#10;x4 = width;&amp;#10;&amp;#10;if (!forced_trial) { // choice trial&amp;#10;    allowed_keys = [&quot;left&quot;, &quot;right&quot;, &quot;ArrowLeft&quot;, &quot;ArrowRight&quot;];&amp;#10;    &amp;#10;    if (sure_left) { // sure option on left side&amp;#10;        y1 = 0;&amp;#10;        y2 = 2; // Not showing&amp;#10;        y3 = height;&amp;#10;        y4 = -height;&amp;#10;        Mag1 = options[trialN][0];&amp;#10;        P1 = 0;&amp;#10;        Mag2 = 0;&amp;#10;        P2 = 0;&amp;#10;        Mag3 = options[trialN][4];&amp;#10;        P3 = options[trialN][5];&amp;#10;        Mag4 = options[trialN][2];&amp;#10;        P4 = options[trialN][3];&amp;#10;    } else { // sure option on the right side&amp;#10;        y1 = height;&amp;#10;        y2 = -height;&amp;#10;        y3 = 0;&amp;#10;        y4 = 2; // Not showing&amp;#10;        Mag1 = options[trialN][2];&amp;#10;        P1 = options[trialN][3];&amp;#10;        Mag2 = options[trialN][0];&amp;#10;        P2 = options[trialN][1];&amp;#10;        Mag3 = options[trialN][4];&amp;#10;        P3 = 0;&amp;#10;        Mag4 = 0;&amp;#10;        P4 = 0;&amp;#10;    }&amp;#10;} else { // forced option&amp;#10;    if (forced_type_sure) { // Forced sure option&amp;#10;        if (trial_side_left) { // option on the left&amp;#10;            y1 = 0;&amp;#10;            y2 = 2; // Not showing&amp;#10;            y3 = 2; // Not showing&amp;#10;            y4 = 2; // Not showing&amp;#10;            Mag1 = options[trialN][0];&amp;#10;            P1 = 0;&amp;#10;            Mag2 = 0;&amp;#10;            P2 = 0;&amp;#10;            Mag3 = 0;&amp;#10;            P3 = 0;&amp;#10;            Mag4 = 0;&amp;#10;            P4 = 0;&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;ArrowLeft&quot;];&amp;#10;        } else { // option on the right&amp;#10;            y3 = 0;&amp;#10;            y1 = 2; // Not showing&amp;#10;            y2 = 2; // Not showing&amp;#10;            y4 = 2; // Not showing&amp;#10;            Mag3 = options[trialN][4];&amp;#10;            P3 = 0;&amp;#10;            Mag1 = 0;&amp;#10;            P1 = 0;&amp;#10;            Mag2 = 0;&amp;#10;            P2 = 0;&amp;#10;            Mag4 = 0;&amp;#10;            P4 = 0;&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;ArrowRight&quot;];&amp;#10;        }&amp;#10;    } else { // Forced gamble option&amp;#10;        if (trial_side_left) { // option on the left&amp;#10;            y1 = height;&amp;#10;            y2 = -height;&amp;#10;            y3 = 2; // Not showing&amp;#10;            y4 = 2; // Not showing&amp;#10;            Mag1 = options[trialN][2];&amp;#10;            P1 = options[trialN][3];&amp;#10;            Mag2 = options[trialN][0];&amp;#10;            P2 = options[trialN][1];&amp;#10;            Mag3 = 0;&amp;#10;            P3 = 0;&amp;#10;            Mag4 = 0;&amp;#10;            P4 = 0;&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;ArrowLeft&quot;];&amp;#10;        } else { // option on the right&amp;#10;            y1 = 2; // Not showing&amp;#10;            y2 = 2; // Not showing&amp;#10;            y3 = height;&amp;#10;            y4 = -height;&amp;#10;            Mag3 = options[trialN][4];&amp;#10;            P3 = options[trialN][5];&amp;#10;            Mag4 = options[trialN][2];&amp;#10;            P4 = options[trialN][3];&amp;#10;            Mag1 = 0;&amp;#10;            P1 = 0;&amp;#10;            Mag2 = 0;&amp;#10;            P2 = 0;&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;ArrowRight&quot;];&amp;#10;        }&amp;#10;    }&amp;#10;}" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="trial_array = options[trials.thisN,:]&amp;#10;thisExp.addData('options', trial_array)&amp;#10;gamble_resulty = gamble_result[trials.thisN]&amp;#10;thisExp.addData('gamble_result', gamble_resulty)&amp;#10;&amp;#10;# Determine the type of trial&amp;#10;&amp;#10;[sure_left, forced_trial, trial_side_left, forced_type_sure] = trial_type(trial_array)&amp;#10;&amp;#10;# Determine the coordonates and components of the boxes&amp;#10;&amp;#10;x1 = -width&amp;#10;x2 = -width&amp;#10;x3 = width&amp;#10;x4 = width&amp;#10;if not(forced_trial): # choice trial&amp;#10;    allowed_keys = [&quot;left&quot;, &quot;right&quot;]&amp;#10;    if sure_left: # sure option on left side&amp;#10;        y1 = 0&amp;#10;        y2 = 2 # Not showing&amp;#10;        y3 = height&amp;#10;        y4 = -height&amp;#10;        Mag1 = options[trials.thisN,0]&amp;#10;        P1 = 0&amp;#10;        Mag2 = 0&amp;#10;        P2 = 0&amp;#10;        Mag3 = options[trials.thisN,4]&amp;#10;        P3 = options[trials.thisN,5]&amp;#10;        Mag4 = options[trials.thisN,2]&amp;#10;        P4 = options[trials.thisN,3]&amp;#10;    else: # sure option on the right side&amp;#10;        y1 = height&amp;#10;        y2 = -height&amp;#10;        y3 = 0&amp;#10;        y4 = 2 # Not showing&amp;#10;        Mag1 = options[trials.thisN,2]&amp;#10;        P1 = options[trials.thisN,3]&amp;#10;        Mag2 = options[trials.thisN,0]&amp;#10;        P2 = options[trials.thisN,1]&amp;#10;        Mag3 = options[trials.thisN,4]&amp;#10;        P3 = 0&amp;#10;        Mag4 = 0&amp;#10;        P4 = 0&amp;#10;else: # forced option&amp;#10;    if forced_type_sure: # Forced sure option&amp;#10;        if trial_side_left: # option on the left&amp;#10;            y1 = 0&amp;#10;            y2 = 2 # Not showing&amp;#10;            y3 = 2 # Not showing&amp;#10;            y4 = 2 # Not showing&amp;#10;            Mag1 = options[trials.thisN,0]&amp;#10;            P1 = 0&amp;#10;            Mag2 = 0&amp;#10;            P2 = 0&amp;#10;            Mag3 = 0&amp;#10;            P3 = 0&amp;#10;            Mag4 = 0&amp;#10;            P4 = 0&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;left&quot;]&amp;#10;        else: # option on the right&amp;#10;            y3 = 0&amp;#10;            y1 = 2 # Not showing&amp;#10;            y2 = 2 # Not showing&amp;#10;            y4 = 2 # Not showing&amp;#10;            Mag3 = options[trials.thisN,4]&amp;#10;            P3 = 0&amp;#10;            Mag1 = 0&amp;#10;            P1 = 0&amp;#10;            Mag2 = 0&amp;#10;            P2 = 0&amp;#10;            Mag4 = 0&amp;#10;            P4 = 0&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;right&quot;]&amp;#10;&amp;#10;    else: # Forced gamble option&amp;#10;        if trial_side_left: # option on the left&amp;#10;            y1 = height&amp;#10;            y2 = -height&amp;#10;            y3 = 2 # Not showing&amp;#10;            y4 = 2 # Not showing&amp;#10;            Mag1 = options[trials.thisN,2]&amp;#10;            P1 = options[trials.thisN,3]&amp;#10;            Mag2 = options[trials.thisN,0]&amp;#10;            P2 = options[trials.thisN,1]&amp;#10;            Mag3 = 0&amp;#10;            P3 = 0&amp;#10;            Mag4 = 0&amp;#10;            P4 = 0&amp;#10;            allowed_keys = [&quot;left&quot;, &quot;left&quot;]&amp;#10;        else: # option on the right&amp;#10;            y1 = 2 # Not showing&amp;#10;            y2 = 2 # Not showing&amp;#10;            y3 = height&amp;#10;            y4 = -height&amp;#10;            Mag3 = options[trials.thisN,4]&amp;#10;            P3 = options[trials.thisN,5]&amp;#10;            Mag4 = options[trials.thisN,2]&amp;#10;            P4 = options[trials.thisN,3]&amp;#10;            Mag1 = 0&amp;#10;            P1 = 0&amp;#10;            Mag2 = 0&amp;#10;            P2 = 0&amp;#10;            allowed_keys = [&quot;right&quot;, &quot;right&quot;]" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Both" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -6612,7 +6666,7 @@
         <Param val="box1_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6620,7 +6674,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag1:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6639,7 +6693,7 @@
         <Param val="box1_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1-0.2, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6647,7 +6701,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P1*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6666,7 +6720,7 @@
         <Param val="box2_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6674,7 +6728,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag2:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6693,7 +6747,7 @@
         <Param val="box2_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2-0.2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6701,7 +6755,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P2*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6720,7 +6774,7 @@
         <Param val="box3_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6728,7 +6782,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag3:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6747,7 +6801,7 @@
         <Param val="box3_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3+0.2, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6755,7 +6809,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P3*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6774,7 +6828,7 @@
         <Param val="box4_mag" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6782,7 +6836,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag4:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6801,7 +6855,7 @@
         <Param val="box4_P" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4+0.2, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -6809,7 +6863,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P4*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -6843,7 +6897,7 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="p_Late_input_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
@@ -6858,7 +6912,7 @@
         <Param val="Choose an option by pressing the left or right arrow" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
     </Routine>
     <Routine name="chosen_option">
@@ -7054,7 +7108,7 @@
         <Param val="box1_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7062,7 +7116,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag1:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7081,7 +7135,7 @@
         <Param val="box1_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x1, y1-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x1-0.2, y1)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7089,7 +7143,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P1*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P1)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7108,7 +7162,7 @@
         <Param val="box2_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7116,7 +7170,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag2:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7135,7 +7189,7 @@
         <Param val="box2_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x2, y2-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x2-0.2, y2)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7143,7 +7197,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P2*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P2)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7162,7 +7216,7 @@
         <Param val="box3_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7170,7 +7224,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag3:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7189,7 +7243,7 @@
         <Param val="box3_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x3, y3-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x3+0.2, y3)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7197,7 +7251,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P3*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P3)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7216,7 +7270,7 @@
         <Param val="box4_mag_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4+0.03)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7224,7 +7278,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;${Mag4:.2f}&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$mag(Mag4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7243,7 +7297,7 @@
         <Param val="box4_P_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(x4, y4-0.04)" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="(x4+0.2, y4)" valType="list" updates="set every repeat" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7251,7 +7305,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$f&quot;{P4*100:.0f}%&quot;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$prob(P4)" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
@@ -7464,11 +7518,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="p_next_trial_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7476,10 +7530,10 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Press the &lt;space bar&gt; to initiate the next trial. " valType="str" updates="constant" name="text"/>
+        <Param val="Press the &lt;space bar&gt; to initiate the next trial" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="p_next_trial_input" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
@@ -7681,11 +7735,11 @@
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Arial" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
         <Param val="next_trial_txt" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -7693,10 +7747,10 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Press the &lt;space bar&gt; to initiate the next trial." valType="str" updates="constant" name="text"/>
+        <Param val="Press the &lt;space bar&gt; to initiate the next trial" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="code" updates="None" name="validator"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+        <Param val="1.4" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
       <KeyboardComponent name="next_trial_input" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
