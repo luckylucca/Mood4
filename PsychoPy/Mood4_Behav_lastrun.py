@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2026.1.3),
-    on Mon Apr 27 17:10:34 2026
+    on Thu Apr 30 15:57:28 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -126,6 +126,11 @@ reward_vec = np.array([[0.15, 1.00, 0.00, 0.50, 0.25, 0.50],
  [0.00, 1.00, 0.00, 0.50, 0.50, 0.50]])
 
 reward_vec[:, [0, 2, 4]] = np.round(reward_vec[:, [0, 2, 4]] * reward_scaler, 2)
+
+intro_sure_mag = np.max(reward_vec[:,0])
+intro_gamble_mag = np.sort(np.unique(reward_vec[:,0]))[-2]
+intro_sure_mag2 = np.sort(np.unique(reward_vec[:,0]))[-3]
+intro_gamble_mag2 = np.sort(np.unique(reward_vec[:,0]))[-2]
 
 options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]
 options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
@@ -573,77 +578,77 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-1.0, interpolate=True)
+        opacity=None, depth=0.0, interpolate=True)
     intro_sure = visual.Rect(
         win=win, name='intro_sure',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
         ori=0.0, pos=(-width, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-2.0, interpolate=True)
+        opacity=None, depth=-1.0, interpolate=True)
     intro_sure_txt = visual.TextStim(win=win, name='intro_sure_txt',
         text='',
         font='Arial',
-        pos=(-width, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-3.0);
+        depth=-2.0);
     intro_gambletop = visual.Rect(
         win=win, name='intro_gambletop',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
         ori=0.0, pos=(width, height), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-4.0, interpolate=True)
+        opacity=None, depth=-3.0, interpolate=True)
     intro_gambletop_txt = visual.TextStim(win=win, name='intro_gambletop_txt',
         text='',
         font='Arial',
         pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-5.0);
+        depth=-4.0);
     intro_gambletop_p = visual.TextStim(win=win, name='intro_gambletop_p',
         text='',
         font='Arial',
         pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-6.0);
+        depth=-5.0);
     intro_gamblelow = visual.Rect(
         win=win, name='intro_gamblelow',
         width=(option_size, option_size)[0], height=(option_size, option_size)[1],
         ori=0.0, pos=(width, -height), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-7.0, interpolate=True)
+        opacity=None, depth=-6.0, interpolate=True)
     intro_gamblelow_txt = visual.TextStim(win=win, name='intro_gamblelow_txt',
         text=f"${0:.2f}",
         font='Arial',
         pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-8.0);
+        depth=-7.0);
     intro_gamblelow_p = visual.TextStim(win=win, name='intro_gamblelow_p',
         text='20%',
         font='Arial',
         pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-9.0);
+        depth=-8.0);
     Input_txt = visual.TextStim(win=win, name='Input_txt',
-        text='Press the <left arrow key> to select the $0.50',
+        text='',
         font='Arial',
         pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-10.0);
+        depth=-9.0);
     Guide_txt = visual.TextStim(win=win, name='Guide_txt',
-        text='On this trial, you can choose either a guaranteed $0.50 reward or an 80% chance to win $0.25.',
+        text='',
         font='Arial',
         pos=(0, 0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-11.0);
+        depth=-10.0);
     choice_inst_5a = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "instructions_t1_chosen_gamble" ---
@@ -671,7 +676,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "instructions_t1_outcome" ---
     total_prompt_inst_5a = visual.TextStim(win=win, name='total_prompt_inst_5a',
-        text=f"Current total: ${5.5:.2f}",
+        text='',
         font='Arial',
         pos=(0, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -692,7 +697,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-2.0);
     intro_outcome_text = visual.TextStim(win=win, name='intro_outcome_text',
-        text='+$0.50',
+        text='',
         font='Arial',
         pos=(0, -0.05), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -748,7 +753,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     intro_sure_txt_3 = visual.TextStim(win=win, name='intro_sure_txt_3',
         text='',
         font='Arial',
-        pos=(-width, 0), draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -774,7 +779,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-7.0);
     intro_gamblelow_p_2 = visual.TextStim(win=win, name='intro_gamblelow_p_2',
-        text='20%',
+        text='15%',
         font='Arial',
         pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -788,7 +793,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-9.0);
     Guide_txt_2 = visual.TextStim(win=win, name='Guide_txt_2',
-        text='On this trial, you can choose either a guaranteed $0.15 reward or an 80% chance to win $0.50.',
+        text='',
         font='Arial',
         pos=(0, 0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -840,7 +845,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-5.0);
     intro_gamblelow_p_3 = visual.TextStim(win=win, name='intro_gamblelow_p_3',
-        text='20%',
+        text='15%',
         font='Arial',
         pos=[0,0], draggable=False, height=0.04, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -849,7 +854,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "instructions_t2_outcome" ---
     total_prompt_inst_5a_2 = visual.TextStim(win=win, name='total_prompt_inst_5a_2',
-        text=f"Current total: ${5.5:.2f}",
+        text='',
         font='Arial',
         pos=(0, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -942,7 +947,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instrutions_text = visual.TextStim(win=win, name='instrutions_text',
         text='This is an example outcome screen for a win, also showing your current total and the progress bar (about half way through the session).\n\nPress <enter> to continue',
         font='Arial',
-        pos=(0.55, 0), draggable=False, height=0.04, wrapWidth=0.6, ori=0.0, 
+        pos=(0.48, 0), draggable=False, height=0.04, wrapWidth=0.55, ori=0.0, 
         color='blue', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
@@ -1211,7 +1216,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     practice_txt_2 = visual.TextStim(win=win, name='practice_txt_2',
         text='Practice',
         font='Arial',
-        pos=(-0.7, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.6, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-15.0);
@@ -1318,7 +1323,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     practice_txt_3 = visual.TextStim(win=win, name='practice_txt_3',
         text='Practice',
         font='Arial',
-        pos=(-0.7, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.6, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-14.0);
@@ -1336,7 +1341,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     practice_txt = visual.TextStim(win=win, name='practice_txt',
         text='Practice',
         font='Arial',
-        pos=(-0.7, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(-0.6, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-2.0);
@@ -2214,17 +2219,16 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t1_target_on_choice.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    # Run 'Begin Routine' code from code_2
-    Intro_sure = 0.5
-    Intro_gamble_mag = 0.25
-    Intro_gamble_p = 0.80
-    intro_sure_txt.setText(f"${Intro_sure:.2f}")
+    intro_sure_txt.setPos((-width, 0))
+    intro_sure_txt.setText(mag(intro_sure_mag))
     intro_gambletop_txt.setPos((width, height))
-    intro_gambletop_txt.setText(f"${Intro_gamble_mag:.2f}")
+    intro_gambletop_txt.setText(mag(intro_gamble_mag))
     intro_gambletop_p.setPos((width+0.2, height))
-    intro_gambletop_p.setText(f"{Intro_gamble_p*100:.0f}%")
+    intro_gambletop_p.setText(f"{0.80*100:.0f}%")
     intro_gamblelow_txt.setPos((width, -height))
     intro_gamblelow_p.setPos((width+0.2, -height))
+    Input_txt.setText(f'Press the <left arrow key> to select the {mag(intro_sure_mag)}')
+    Guide_txt.setText(f'On this trial, you can choose either a guaranteed {mag(intro_sure_mag)} reward or an 80% chance to win {mag(intro_gamble_mag)}.')
     # create starting attributes for choice_inst_5a
     choice_inst_5a.keys = []
     choice_inst_5a.rt = []
@@ -2571,7 +2575,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     continueRoutine = True
     # update component parameters for each repeat
     intro_sure_txt_2.setPos((-width, 0))
-    intro_sure_txt_2.setText(f"${Intro_sure:.2f}")
+    intro_sure_txt_2.setText(mag(intro_sure_mag))
     # store start times for instructions_t1_chosen_gamble
     instructions_t1_chosen_gamble.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     instructions_t1_chosen_gamble.tStart = globalClock.getTime(format='float')
@@ -2722,10 +2726,12 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t1_outcome.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    total_prompt_inst_5a.setText(f"Current total: ${5+intro_sure_mag:.2f}")
     p_outcome_square_2.setFillColor('green')
     p_outcome_square_2.setPos((0, 0))
     p_outcome_square_2.setSize((1.5*option_size, 1.5*option_size))
     p_outcome_square_2.setLineColor('green')
+    intro_outcome_text.setText(mag(intro_sure_mag))
     # create starting attributes for intro_next_trial_input_2
     intro_next_trial_input_2.keys = []
     intro_next_trial_input_2.rt = []
@@ -3061,13 +3067,15 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t2_target_on_choice.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    intro_sure_txt_3.setText('$0.15')
+    intro_sure_txt_3.setPos((-width, 0))
+    intro_sure_txt_3.setText(mag(intro_sure_mag2))
     intro_gambletop_txt_2.setPos((width, height))
-    intro_gambletop_txt_2.setText(f"${0.5:.2f}")
+    intro_gambletop_txt_2.setText(mag(intro_gamble_mag2))
     intro_gambletop_p_2.setPos((width+0.2, height))
-    intro_gambletop_p_2.setText(f"{80:.0f}%")
+    intro_gambletop_p_2.setText(f"{85:.0f}%")
     intro_gamblelow_txt_2.setPos((width, -height))
     intro_gamblelow_p_2.setPos((width+0.2, -height))
+    Guide_txt_2.setText(f'On this trial, you can choose either a guaranteed {mag(intro_sure_mag2)} reward or an 85% chance to win {mag(intro_gamble_mag2)}.')
     # create starting attributes for choice_inst_5b
     choice_inst_5b.keys = []
     choice_inst_5b.rt = []
@@ -3414,9 +3422,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     continueRoutine = True
     # update component parameters for each repeat
     intro_gambletop_txt_3.setPos((width, height))
-    intro_gambletop_txt_3.setText(f"${0.5:.2f}")
+    intro_gambletop_txt_3.setText(mag(intro_gamble_mag2))
     intro_gambletop_p_3.setPos((width+0.2, height))
-    intro_gambletop_p_3.setText(f"{80:.0f}%")
+    intro_gambletop_p_3.setText(f"{85:.0f}%")
     intro_gamblelow_txt_3.setPos((width, -height))
     intro_gamblelow_p_3.setPos((width+0.2, -height))
     # store start times for instructions_t2_chosen_gamble
@@ -3649,6 +3657,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t2_outcome.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
+    total_prompt_inst_5a_2.setText(f"Current total: ${5+intro_sure_mag:.2f}")
     p_outcome_square_3.setFillColor('red')
     p_outcome_square_3.setPos((0, 0))
     p_outcome_square_3.setSize((1.5*option_size, 1.5*option_size))
