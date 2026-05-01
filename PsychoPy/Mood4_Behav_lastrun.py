@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2026.1.3),
-    on Thu Apr 30 15:57:28 2026
+    on Thu Apr 30 16:31:22 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -892,7 +892,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "instructions6" ---
     instructions_text = visual.TextStim(win=win, name='instructions_text',
-        text='On the outcome screen, your total earnings will appear at the top, and a progress bar at the bottom will show how far along you are in the task.\n\nThe next screen will show you an example.',
+        text='While the reward amounts are small, you will complete about 200 trials, and these amounts will quickly add up.\n\nOn the outcome screen, your total earnings will appear at the top, and a progress bar at the bottom will show how far along you are in the task.\n\nThe next screen will show you an example.',
         font='Arial',
         pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -926,7 +926,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         win, name='prog_5',
         progress=0.55,
         pos=(-0.5, -0.45), size=(1, 0.03), anchor='center-left', units='height',
-        barColor='black', backColor=None, borderColor='black', colorSpace='rgb',
+        barColor='white', backColor=None, borderColor='white', colorSpace='rgb',
         lineWidth=4.0, opacity=1.0, ori=0.0,
         depth=-2
     )
@@ -966,6 +966,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='blue', fillColor='blue',
         opacity=None, depth=-8.0, interpolate=True)
+    left_progress_2 = visual.Rect(
+        win=win, name='left_progress_2',
+        width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
+        ori=0.0, pos=(-0.5, -0.45), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-9.0, interpolate=True)
+    right_progress_2 = visual.Rect(
+        win=win, name='right_progress_2',
+        width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
+        ori=0.0, pos=(0.5, -0.45), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-10.0, interpolate=True)
     
     # --- Initialize components for Routine "instructions8" ---
     instructions_text_3 = visual.TextStim(win=win, name='instructions_text_3',
@@ -1382,6 +1396,13 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=-7.0);
     p_next_trial_input = keyboard.Keyboard(deviceName='defaultKeyboard')
+    left_progress = visual.ShapeStim(
+        win=win, name='left_progress',
+        size=(0.05, 0.1), vertices='triangle',
+        ori=0.0, pos=(-0.5, -0.45), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-9.0, interpolate=True)
     
     # --- Initialize components for Routine "iti" ---
     text = visual.TextStim(win=win, name='text',
@@ -4047,7 +4068,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions7
     instructions7 = data.Routine(
         name='instructions7',
-        components=[total_prompt_inst_5a_3, fixation_inst_5a_6, prog_5, p_outcome_square_4, intro_outcome_text_4, instrutions_text, key_resp_inst_6, arrow1, arrow2],
+        components=[total_prompt_inst_5a_3, fixation_inst_5a_6, prog_5, p_outcome_square_4, intro_outcome_text_4, instrutions_text, key_resp_inst_6, arrow1, arrow2, left_progress_2, right_progress_2],
     )
     instructions7.status = NOT_STARTED
     continueRoutine = True
@@ -4276,6 +4297,46 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         
         # if arrow2 is active this frame...
         if arrow2.status == STARTED:
+            # update params
+            pass
+        
+        # *left_progress_2* updates
+        
+        # if left_progress_2 is starting this frame...
+        if left_progress_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            left_progress_2.frameNStart = frameN  # exact frame index
+            left_progress_2.tStart = t  # local t and not account for scr refresh
+            left_progress_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(left_progress_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'left_progress_2.started')
+            # update status
+            left_progress_2.status = STARTED
+            left_progress_2.setAutoDraw(True)
+        
+        # if left_progress_2 is active this frame...
+        if left_progress_2.status == STARTED:
+            # update params
+            pass
+        
+        # *right_progress_2* updates
+        
+        # if right_progress_2 is starting this frame...
+        if right_progress_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            right_progress_2.frameNStart = frameN  # exact frame index
+            right_progress_2.tStart = t  # local t and not account for scr refresh
+            right_progress_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(right_progress_2, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'right_progress_2.started')
+            # update status
+            right_progress_2.status = STARTED
+            right_progress_2.setAutoDraw(True)
+        
+        # if right_progress_2 is active this frame...
+        if right_progress_2.status == STARTED:
             # update params
             pass
         
@@ -6570,7 +6631,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine p_reward_outcome
         p_reward_outcome = data.Routine(
             name='p_reward_outcome',
-            components=[p_money_prompt, practice_txt, p_outcome_square, p_outcome_text, p_reward_txt, p_prog_bar, p_next_trial_txt, p_next_trial_input],
+            components=[p_money_prompt, practice_txt, p_outcome_square, p_outcome_text, p_reward_txt, p_prog_bar, p_next_trial_txt, p_next_trial_input, left_progress],
         )
         p_reward_outcome.status = NOT_STARTED
         continueRoutine = True
@@ -6865,6 +6926,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     p_next_trial_input.duration = _p_next_trial_input_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
+            
+            # *left_progress* updates
+            
+            # if left_progress is starting this frame...
+            if left_progress.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                left_progress.frameNStart = frameN  # exact frame index
+                left_progress.tStart = t  # local t and not account for scr refresh
+                left_progress.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(left_progress, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'left_progress.started')
+                # update status
+                left_progress.status = STARTED
+                left_progress.setAutoDraw(True)
+            
+            # if left_progress is active this frame...
+            if left_progress.status == STARTED:
+                # update params
+                pass
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
