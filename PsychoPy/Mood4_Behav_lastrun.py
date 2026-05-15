@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2026.1.3),
-    on Thu Apr 30 16:31:22 2026
+    on Fri May 15 11:29:07 2026
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -43,7 +43,7 @@ import sys
 # happyTrialIdx = np.ceil(np.linspace(2, 36*numBlocks, 12*numBlocks))
 # print(sys.version)
 
-start_money = 5 # Start amount
+start_money = 5.5 # Start amount
 option_size = 0.25
 width = 0.335
 height = 0.2
@@ -54,11 +54,11 @@ time_gamble_result = 1 # time after which they go to the next trial
 time_iti = 1
 
 numBlocks = 3
-happyTrialIdx = np.hstack((3*np.ones(14*numBlocks), 2*np.ones(12*numBlocks)))
+happyTrialIdx = np.hstack((3*np.ones(13*numBlocks), 2*np.ones(14*numBlocks)))
 happyTrialIdx = happyTrialIdx[np.random.permutation(len(happyTrialIdx))]
 happyTrialIdx = np.cumsum(happyTrialIdx)-1
 
-happyTrial = np.zeros(66*numBlocks)
+happyTrial = np.zeros(67*numBlocks)
 for i in happyTrialIdx:
     happyTrial[int(i)] = 1
 
@@ -75,8 +75,8 @@ for i in happyTrialIdx_prac:
 
 happyTrial_prac = (happyTrial_prac != 0)
 
-
-npractice_trials = 10   # Number of practice trails
+npractice_trials = 1   # Number of practice trails
+#npractice_trials = 10   # Number of practice trails
 ntrials          = 198    # Number of trails
 reward_scaler    = 0.2 # Compared to the juice amounts in the real exp
 #ntotal_trials  = ntrials + (npractice_trials*3) # Allow max 3 reapeats of the practice trials
@@ -87,7 +87,7 @@ reward_scaler    = 0.2 # Compared to the juice amounts in the real exp
 #reward_vec     = np.random.permutation(reward_vec)
 #sure_option    = reward_vec[0:ntotal_trials]
 #gambles        = np.concatenate((reward_vec[ntotal_trials:ntotal_trials*2], proba_vec), axis=1)
-gamble_result  = np.random.randint(101, size=(ntrials,1))/100
+gamble_result  = np.random.randint(101, size=((ntrials+2),1))/100
 gamble_result_prac = np.random.randint(101, size=(npractice_trials*3,1))/100
 #sure_side      = np.random.randint(2, size=(ntotal_trials,1))
 
@@ -127,13 +127,28 @@ reward_vec = np.array([[0.15, 1.00, 0.00, 0.50, 0.25, 0.50],
 
 reward_vec[:, [0, 2, 4]] = np.round(reward_vec[:, [0, 2, 4]] * reward_scaler, 2)
 
+# Catch trial indexes:
+
+catch_trials_indices = [2,4]
+#catch_trials_indices = [np.random.randint(34), np.random.randint(34) + 33] # We want them to be in the 1st block, in each half of the block
+catch_trials_options = [[0.06, 1.00, 0.00, 0.70, 0.00, 0.30], [0.00, 0.30, 0.07, 0.70, 0.00, 1.00]]
+
+# Intro trials
+
 intro_sure_mag = np.max(reward_vec[:,0])
 intro_gamble_mag = np.sort(np.unique(reward_vec[:,0]))[-2]
 intro_sure_mag2 = np.sort(np.unique(reward_vec[:,0]))[-3]
 intro_gamble_mag2 = np.sort(np.unique(reward_vec[:,0]))[-2]
 
+# Final option array with trial permutation
+
 options_vec_reversed = reward_vec[:,[2, 3, 4, 5, 0, 1]]
 options1 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
+print(options1)
+print(np.shape(options1))
+options1 = np.insert(options1, catch_trials_indices, catch_trials_options, axis=0)
+print(options1)
+print(np.shape(options1))
 options2 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
 options3 = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))
 options_prac = np.random.permutation(np.vstack((reward_vec,options_vec_reversed)))[1:31]
@@ -553,6 +568,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # Run 'Begin Experiment' code from initialize_variables
     startTime = time.strftime("%Y-%m-%d_%H.%M.%S")
     thisExp.addData("dateTime", startTime) 
+    thisExp.addData('catch_trials_indices', catch_trials_indices)
     
     # --- Initialize components for Routine "instructions1" ---
     Intro_text_show = visual.TextStim(win=win, name='Intro_text_show',
@@ -951,35 +967,35 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='blue', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-5.0);
-    key_resp_inst_6 = keyboard.Keyboard(deviceName='defaultKeyboard')
     arrow1 = visual.ShapeStim(
         win=win, name='arrow1', vertices='arrow',
         size=(0.1, 0.2),
         ori=-50.0, pos=(0.17, 0.3), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='blue', fillColor='blue',
-        opacity=None, depth=-7.0, interpolate=True)
+        opacity=None, depth=-6.0, interpolate=True)
     arrow2 = visual.ShapeStim(
         win=win, name='arrow2', vertices='arrow',
         size=(0.1, 0.2),
         ori=-150.0, pos=(0.2, -0.3), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='blue', fillColor='blue',
-        opacity=None, depth=-8.0, interpolate=True)
+        opacity=None, depth=-7.0, interpolate=True)
     left_progress_2 = visual.Rect(
         win=win, name='left_progress_2',
         width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
         ori=0.0, pos=(-0.5, -0.45), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-9.0, interpolate=True)
+        opacity=None, depth=-8.0, interpolate=True)
     right_progress_2 = visual.Rect(
         win=win, name='right_progress_2',
         width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
         ori=0.0, pos=(0.5, -0.45), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-10.0, interpolate=True)
+        opacity=None, depth=-9.0, interpolate=True)
+    key_resp_inst_6 = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "instructions8" ---
     instructions_text_3 = visual.TextStim(win=win, name='instructions_text_3',
@@ -1135,112 +1151,112 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         depth=0.0);
     
     # --- Initialize components for Routine "p_options_show" ---
-    p_fixation_cross_4 = visual.ShapeStim(
-        win=win, name='p_fixation_cross_4', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-1.0, interpolate=True)
-    p_box1 = visual.Rect(
-        win=win, name='p_box1',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-2.0, interpolate=True)
-    p_box2 = visual.Rect(
-        win=win, name='p_box2',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-3.0, interpolate=True)
-    p_box3 = visual.Rect(
-        win=win, name='p_box3',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-4.0, interpolate=True)
-    p_box4 = visual.Rect(
-        win=win, name='p_box4',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-5.0, interpolate=True)
-    p_box1_mag = visual.TextStim(win=win, name='p_box1_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-6.0);
-    p_box1_P = visual.TextStim(win=win, name='p_box1_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-7.0);
-    p_box2_mag = visual.TextStim(win=win, name='p_box2_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-8.0);
-    p_box2_P = visual.TextStim(win=win, name='p_box2_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-9.0);
-    p_box3_mag = visual.TextStim(win=win, name='p_box3_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-10.0);
-    p_box3_P = visual.TextStim(win=win, name='p_box3_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-11.0);
-    p_box4_mag = visual.TextStim(win=win, name='p_box4_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-12.0);
-    p_box4_P = visual.TextStim(win=win, name='p_box4_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-13.0);
-    p_choice = keyboard.Keyboard(deviceName='defaultKeyboard')
     practice_txt_2 = visual.TextStim(win=win, name='practice_txt_2',
         text='Practice',
         font='Arial',
         pos=(-0.6, 0.4), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-15.0);
+        depth=-1.0);
+    p_fixation_cross_4 = visual.ShapeStim(
+        win=win, name='p_fixation_cross_4', vertices='cross',
+        size=(0.03, 0.03),
+        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='black', fillColor='black',
+        opacity=None, depth=-2.0, interpolate=True)
+    p_box1 = visual.Rect(
+        win=win, name='p_box1',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-3.0, interpolate=True)
+    p_box2 = visual.Rect(
+        win=win, name='p_box2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-4.0, interpolate=True)
+    p_box3 = visual.Rect(
+        win=win, name='p_box3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-5.0, interpolate=True)
+    p_box4 = visual.Rect(
+        win=win, name='p_box4',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-6.0, interpolate=True)
+    p_box1_mag = visual.TextStim(win=win, name='p_box1_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-7.0);
+    p_box1_P = visual.TextStim(win=win, name='p_box1_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-8.0);
+    p_box2_mag = visual.TextStim(win=win, name='p_box2_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-9.0);
+    p_box2_P = visual.TextStim(win=win, name='p_box2_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-10.0);
+    p_box3_mag = visual.TextStim(win=win, name='p_box3_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-11.0);
+    p_box3_P = visual.TextStim(win=win, name='p_box3_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-12.0);
+    p_box4_mag = visual.TextStim(win=win, name='p_box4_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-13.0);
+    p_box4_P = visual.TextStim(win=win, name='p_box4_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-14.0);
     p_Late_input = visual.TextStim(win=win, name='p_Late_input',
         text='Choose an option by pressing the left or right arrow',
         font='Arial',
         pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-16.0);
+        depth=-15.0);
+    p_choice = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "p_chosen_option" ---
     fixation_5 = visual.ShapeStim(
@@ -1384,7 +1400,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         win, name='p_prog_bar',
         progress=0.0,
         pos=(-0.5, -0.45), size=(1, 0.03), anchor='center-left', units='height',
-        barColor='black', backColor=None, borderColor='black', colorSpace='rgb',
+        barColor='white', backColor=None, borderColor='white', colorSpace='rgb',
         lineWidth=4.0, opacity=1.0, ori=0.0,
         depth=-6
     )
@@ -1395,14 +1411,21 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-7.0);
-    p_next_trial_input = keyboard.Keyboard(deviceName='defaultKeyboard')
-    left_progress = visual.ShapeStim(
+    left_progress = visual.Rect(
         win=win, name='left_progress',
-        size=(0.05, 0.1), vertices='triangle',
+        width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
         ori=0.0, pos=(-0.5, -0.45), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-8.0, interpolate=True)
+    right_progress = visual.Rect(
+        win=win, name='right_progress',
+        width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
+        ori=0.0, pos=(0.5, -0.45), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=-9.0, interpolate=True)
+    p_next_trial_input = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "iti" ---
     text = visual.TextStim(win=win, name='text',
@@ -1499,105 +1522,105 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         depth=0.0);
     
     # --- Initialize components for Routine "options_show" ---
-    fixation_cross_2 = visual.ShapeStim(
-        win=win, name='fixation_cross_2', vertices='cross',
-        size=(0.03, 0.03),
-        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='black', fillColor='black',
-        opacity=None, depth=-1.0, interpolate=True)
-    box1 = visual.Rect(
-        win=win, name='box1',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-2.0, interpolate=True)
-    box2 = visual.Rect(
-        win=win, name='box2',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-3.0, interpolate=True)
-    box3 = visual.Rect(
-        win=win, name='box3',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-4.0, interpolate=True)
-    box4 = visual.Rect(
-        win=win, name='box4',
-        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
-        ori=0.0, pos=[0,0], draggable=False, anchor='center',
-        lineWidth=1.0,
-        colorSpace='rgb', lineColor='white', fillColor='white',
-        opacity=None, depth=-5.0, interpolate=True)
-    box1_mag = visual.TextStim(win=win, name='box1_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-6.0);
-    box1_P = visual.TextStim(win=win, name='box1_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-7.0);
-    box2_mag = visual.TextStim(win=win, name='box2_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-8.0);
-    box2_P = visual.TextStim(win=win, name='box2_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-9.0);
-    box3_mag = visual.TextStim(win=win, name='box3_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-10.0);
-    box3_P = visual.TextStim(win=win, name='box3_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-11.0);
-    box4_mag = visual.TextStim(win=win, name='box4_mag',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-12.0);
-    box4_P = visual.TextStim(win=win, name='box4_P',
-        text='',
-        font='Arial',
-        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
-        color='black', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
-        depth=-13.0);
-    user_choice = keyboard.Keyboard(deviceName='defaultKeyboard')
     p_Late_input_2 = visual.TextStim(win=win, name='p_Late_input_2',
         text='Choose an option by pressing the left or right arrow',
         font='Arial',
         pos=(0, -0.4), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
-        depth=-15.0);
+        depth=-1.0);
+    fixation_cross_2 = visual.ShapeStim(
+        win=win, name='fixation_cross_2', vertices='cross',
+        size=(0.03, 0.03),
+        ori=0.0, pos=(0, 0), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='black', fillColor='black',
+        opacity=None, depth=-2.0, interpolate=True)
+    box1 = visual.Rect(
+        win=win, name='box1',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-3.0, interpolate=True)
+    box2 = visual.Rect(
+        win=win, name='box2',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-4.0, interpolate=True)
+    box3 = visual.Rect(
+        win=win, name='box3',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-5.0, interpolate=True)
+    box4 = visual.Rect(
+        win=win, name='box4',
+        width=(option_size, option_size)[0], height=(option_size, option_size)[1],
+        ori=0.0, pos=[0,0], draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-6.0, interpolate=True)
+    box1_mag = visual.TextStim(win=win, name='box1_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-7.0);
+    box1_P = visual.TextStim(win=win, name='box1_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-8.0);
+    box2_mag = visual.TextStim(win=win, name='box2_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-9.0);
+    box2_P = visual.TextStim(win=win, name='box2_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-10.0);
+    box3_mag = visual.TextStim(win=win, name='box3_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-11.0);
+    box3_P = visual.TextStim(win=win, name='box3_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-12.0);
+    box4_mag = visual.TextStim(win=win, name='box4_mag',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-13.0);
+    box4_P = visual.TextStim(win=win, name='box4_P',
+        text='',
+        font='Arial',
+        pos=[0,0], draggable=False, height=0.055, wrapWidth=None, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=-14.0);
+    user_choice = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "chosen_option" ---
     fixation_7 = visual.ShapeStim(
@@ -1725,7 +1748,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         win, name='prog_bar',
         progress=0.0,
         pos=(-0.5, -0.45), size=(1, 0.03), anchor='center-left', units='height',
-        barColor='black', backColor=None, borderColor='black', colorSpace='rgb',
+        barColor='white', backColor=None, borderColor='white', colorSpace='rgb',
         lineWidth=4.0, opacity=1.0, ori=0.0,
         depth=-5
     )
@@ -1736,6 +1759,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='black', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-6.0);
+    left_progress_3 = visual.Rect(
+        win=win, name='left_progress_3',
+        width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
+        ori=0.0, pos=(-0.5, -0.45), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-7.0, interpolate=True)
+    right_progress_3 = visual.Rect(
+        win=win, name='right_progress_3',
+        width=(0.004, 0.04)[0], height=(0.004, 0.04)[1],
+        ori=0.0, pos=(0.5, -0.45), draggable=False, anchor='center',
+        lineWidth=1.0,
+        colorSpace='rgb', lineColor='white', fillColor='white',
+        opacity=None, depth=-8.0, interpolate=True)
     next_trial_input = keyboard.Keyboard(deviceName='defaultKeyboard')
     
     # --- Initialize components for Routine "iti" ---
@@ -1813,9 +1850,19 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         languageStyle='LTR',
         depth=0.0);
     
+    # --- Initialize components for Routine "Failed_end" ---
+    thankYouText_failed = visual.TextStim(win=win, name='thankYouText_failed',
+        text='You have missed two attention checks.\n\nDue to our strict data quality guidelines, your participation in this experiment has been ended. You will automatically be redirected to the Prolific website and will not receive compensation for this study.\n\nIf this page doesn’t close automatically, please note the following completion code: C11KEBP2, and press <enter> to exit the experiment.',
+        font='Arial',
+        pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
+        color='black', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
+    key_resp_12 = keyboard.Keyboard(deviceName='defaultKeyboard')
+    
     # --- Initialize components for Routine "Thank_you" ---
     thankYouText = visual.TextStim(win=win, name='thankYouText',
-        text='You have completed the task. Thank you for your participation!\n\nPlease do not close your browser until the screen says to do so.\n\nThe page should automatically redirect you to Prolific once you exit the experiment. In case there is an error, please note the following completion code: C1D29EVY.\n\nPress <enter> to exit the experiment',
+        text='You have completed the task. Thank you for your participation!\n\nPlease do not close your browser until the screen says to do so.\n\nThe page should automatically redirect you to Prolific once you exit the experiment. In case there is an error, please note the following completion code: C11KEBP2.\n\nPress <enter> to exit the experiment',
         font='Arial',
         pos=(0, 0), draggable=False, height=0.04, wrapWidth=1.4, ori=0.0, 
         color='black', colorSpace='rgb', opacity=None, 
@@ -1866,6 +1913,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     button.reset()
     # Run 'Begin Routine' code from initialize_variables
     current_money = start_money
+    failed_check = 0
+    failed_final_loop = 0
+    normal_final_loop = 1
     # store start times for consent
     consent.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     consent.tStart = globalClock.getTime(format='float')
@@ -2747,7 +2797,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t1_outcome.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    total_prompt_inst_5a.setText(f"Current total: ${5+intro_sure_mag:.2f}")
+    total_prompt_inst_5a.setText(f"Current total: ${5.50+intro_sure_mag:.2f}")
     p_outcome_square_2.setFillColor('green')
     p_outcome_square_2.setPos((0, 0))
     p_outcome_square_2.setSize((1.5*option_size, 1.5*option_size))
@@ -3678,7 +3728,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     instructions_t2_outcome.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    total_prompt_inst_5a_2.setText(f"Current total: ${5+intro_sure_mag:.2f}")
+    total_prompt_inst_5a_2.setText(f"Current total: ${5.50+intro_sure_mag:.2f}")
     p_outcome_square_3.setFillColor('red')
     p_outcome_square_3.setPos((0, 0))
     p_outcome_square_3.setSize((1.5*option_size, 1.5*option_size))
@@ -4068,7 +4118,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine instructions7
     instructions7 = data.Routine(
         name='instructions7',
-        components=[total_prompt_inst_5a_3, fixation_inst_5a_6, prog_5, p_outcome_square_4, intro_outcome_text_4, instrutions_text, key_resp_inst_6, arrow1, arrow2, left_progress_2, right_progress_2],
+        components=[total_prompt_inst_5a_3, fixation_inst_5a_6, prog_5, p_outcome_square_4, intro_outcome_text_4, instrutions_text, arrow1, arrow2, left_progress_2, right_progress_2, key_resp_inst_6],
     )
     instructions7.status = NOT_STARTED
     continueRoutine = True
@@ -4232,34 +4282,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *key_resp_inst_6* updates
-        waitOnFlip = False
-        
-        # if key_resp_inst_6 is starting this frame...
-        if key_resp_inst_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            key_resp_inst_6.frameNStart = frameN  # exact frame index
-            key_resp_inst_6.tStart = t  # local t and not account for scr refresh
-            key_resp_inst_6.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(key_resp_inst_6, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'key_resp_inst_6.started')
-            # update status
-            key_resp_inst_6.status = STARTED
-            # keyboard checking is just starting
-            waitOnFlip = True
-            win.callOnFlip(key_resp_inst_6.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(key_resp_inst_6.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        if key_resp_inst_6.status == STARTED and not waitOnFlip:
-            theseKeys = key_resp_inst_6.getKeys(keyList=['return'], ignoreKeys=["escape"], waitRelease=False)
-            _key_resp_inst_6_allKeys.extend(theseKeys)
-            if len(_key_resp_inst_6_allKeys):
-                key_resp_inst_6.keys = _key_resp_inst_6_allKeys[-1].name  # just the last key pressed
-                key_resp_inst_6.rt = _key_resp_inst_6_allKeys[-1].rt
-                key_resp_inst_6.duration = _key_resp_inst_6_allKeys[-1].duration
-                # a response ends the routine
-                continueRoutine = False
-        
         # *arrow1* updates
         
         # if arrow1 is starting this frame...
@@ -4339,6 +4361,34 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if right_progress_2.status == STARTED:
             # update params
             pass
+        
+        # *key_resp_inst_6* updates
+        waitOnFlip = False
+        
+        # if key_resp_inst_6 is starting this frame...
+        if key_resp_inst_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            key_resp_inst_6.frameNStart = frameN  # exact frame index
+            key_resp_inst_6.tStart = t  # local t and not account for scr refresh
+            key_resp_inst_6.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(key_resp_inst_6, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'key_resp_inst_6.started')
+            # update status
+            key_resp_inst_6.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(key_resp_inst_6.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(key_resp_inst_6.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if key_resp_inst_6.status == STARTED and not waitOnFlip:
+            theseKeys = key_resp_inst_6.getKeys(keyList=['return'], ignoreKeys=["escape"], waitRelease=False)
+            _key_resp_inst_6_allKeys.extend(theseKeys)
+            if len(_key_resp_inst_6_allKeys):
+                key_resp_inst_6.keys = _key_resp_inst_6_allKeys[-1].name  # just the last key pressed
+                key_resp_inst_6.rt = _key_resp_inst_6_allKeys[-1].rt
+                key_resp_inst_6.duration = _key_resp_inst_6_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -5662,7 +5712,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine p_options_show
         p_options_show = data.Routine(
             name='p_options_show',
-            components=[p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_choice, practice_txt_2, p_Late_input],
+            components=[practice_txt_2, p_fixation_cross_4, p_box1, p_box2, p_box3, p_box4, p_box1_mag, p_box1_P, p_box2_mag, p_box2_P, p_box3_mag, p_box3_P, p_box4_mag, p_box4_P, p_Late_input, p_choice],
         )
         p_options_show.status = NOT_STARTED
         continueRoutine = True
@@ -5832,6 +5882,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
+            
+            # *practice_txt_2* updates
+            
+            # if practice_txt_2 is starting this frame...
+            if practice_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                practice_txt_2.frameNStart = frameN  # exact frame index
+                practice_txt_2.tStart = t  # local t and not account for scr refresh
+                practice_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(practice_txt_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'practice_txt_2.started')
+                # update status
+                practice_txt_2.status = STARTED
+                practice_txt_2.setAutoDraw(True)
+            
+            # if practice_txt_2 is active this frame...
+            if practice_txt_2.status == STARTED:
+                # update params
+                pass
             
             # *p_fixation_cross_4* updates
             
@@ -6093,6 +6163,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *p_Late_input* updates
+            
+            # if p_Late_input is starting this frame...
+            if p_Late_input.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+                # keep track of start time/frame for later
+                p_Late_input.frameNStart = frameN  # exact frame index
+                p_Late_input.tStart = t  # local t and not account for scr refresh
+                p_Late_input.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_Late_input, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_Late_input.started')
+                # update status
+                p_Late_input.status = STARTED
+                p_Late_input.setAutoDraw(True)
+            
+            # if p_Late_input is active this frame...
+            if p_Late_input.status == STARTED:
+                # update params
+                pass
+            
             # *p_choice* updates
             waitOnFlip = False
             
@@ -6128,46 +6218,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     p_choice.duration = _p_choice_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # *practice_txt_2* updates
-            
-            # if practice_txt_2 is starting this frame...
-            if practice_txt_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                practice_txt_2.frameNStart = frameN  # exact frame index
-                practice_txt_2.tStart = t  # local t and not account for scr refresh
-                practice_txt_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(practice_txt_2, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'practice_txt_2.started')
-                # update status
-                practice_txt_2.status = STARTED
-                practice_txt_2.setAutoDraw(True)
-            
-            # if practice_txt_2 is active this frame...
-            if practice_txt_2.status == STARTED:
-                # update params
-                pass
-            
-            # *p_Late_input* updates
-            
-            # if p_Late_input is starting this frame...
-            if p_Late_input.status == NOT_STARTED and tThisFlip >= 5-frameTolerance:
-                # keep track of start time/frame for later
-                p_Late_input.frameNStart = frameN  # exact frame index
-                p_Late_input.tStart = t  # local t and not account for scr refresh
-                p_Late_input.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_Late_input, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_Late_input.started')
-                # update status
-                p_Late_input.status = STARTED
-                p_Late_input.setAutoDraw(True)
-            
-            # if p_Late_input is active this frame...
-            if p_Late_input.status == STARTED:
-                # update params
-                pass
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -6631,7 +6681,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine p_reward_outcome
         p_reward_outcome = data.Routine(
             name='p_reward_outcome',
-            components=[p_money_prompt, practice_txt, p_outcome_square, p_outcome_text, p_reward_txt, p_prog_bar, p_next_trial_txt, p_next_trial_input, left_progress],
+            components=[p_money_prompt, practice_txt, p_outcome_square, p_outcome_text, p_reward_txt, p_prog_bar, p_next_trial_txt, left_progress, right_progress, p_next_trial_input],
         )
         p_reward_outcome.status = NOT_STARTED
         continueRoutine = True
@@ -6899,6 +6949,46 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # *left_progress* updates
+            
+            # if left_progress is starting this frame...
+            if left_progress.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                left_progress.frameNStart = frameN  # exact frame index
+                left_progress.tStart = t  # local t and not account for scr refresh
+                left_progress.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(left_progress, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'left_progress.started')
+                # update status
+                left_progress.status = STARTED
+                left_progress.setAutoDraw(True)
+            
+            # if left_progress is active this frame...
+            if left_progress.status == STARTED:
+                # update params
+                pass
+            
+            # *right_progress* updates
+            
+            # if right_progress is starting this frame...
+            if right_progress.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                right_progress.frameNStart = frameN  # exact frame index
+                right_progress.tStart = t  # local t and not account for scr refresh
+                right_progress.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(right_progress, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'right_progress.started')
+                # update status
+                right_progress.status = STARTED
+                right_progress.setAutoDraw(True)
+            
+            # if right_progress is active this frame...
+            if right_progress.status == STARTED:
+                # update params
+                pass
+            
             # *p_next_trial_input* updates
             waitOnFlip = False
             
@@ -6926,26 +7016,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     p_next_trial_input.duration = _p_next_trial_input_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # *left_progress* updates
-            
-            # if left_progress is starting this frame...
-            if left_progress.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                left_progress.frameNStart = frameN  # exact frame index
-                left_progress.tStart = t  # local t and not account for scr refresh
-                left_progress.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(left_progress, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'left_progress.started')
-                # update status
-                left_progress.status = STARTED
-                left_progress.setAutoDraw(True)
-            
-            # if left_progress is active this frame...
-            if left_progress.status == STARTED:
-                # update params
-                pass
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -7768,6 +7838,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # update component parameters for each repeat
     # Run 'Begin Routine' code from money_reset
     current_money = start_money
+    progVal = 1
     # create starting attributes for key_resp_inst_10
     key_resp_inst_10.keys = []
     key_resp_inst_10.rt = []
@@ -8053,7 +8124,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine options_show
         options_show = data.Routine(
             name='options_show',
-            components=[fixation_cross_2, box1, box2, box3, box4, box1_mag, box1_P, box2_mag, box2_P, box3_mag, box3_P, box4_mag, box4_P, user_choice, p_Late_input_2],
+            components=[p_Late_input_2, fixation_cross_2, box1, box2, box3, box4, box1_mag, box1_P, box2_mag, box2_P, box3_mag, box3_P, box4_mag, box4_P, user_choice],
         )
         options_show.status = NOT_STARTED
         continueRoutine = True
@@ -8067,6 +8138,24 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Determine the type of trial
         
         [sure_left, forced_trial, trial_side_left, forced_type_sure] = trial_type(trial_array)
+        
+        # If this a catch trial (only on block 1): choice trial
+        catch_trial = False
+        if (trials.thisN) == catch_trials_indices[0]:
+            forced_trial = False
+            sure_left = True
+            catch_trial = True
+            correct_side = 0 # left
+        elif (trials.thisN) == (catch_trials_indices[1]+1):
+            forced_trial = False
+            sure_left = False
+            catch_trial = True
+            correct_side = 0 # left
+        
+        print("trial this N", trials.thisN)
+        print("catch trial", catch_trial)
+        print("forced trial", forced_trial)
+        print("sure left", sure_left)
         
         # Determine the coordonates and components of the boxes
         
@@ -8186,6 +8275,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         user_choice.keys = []
         user_choice.rt = []
         _user_choice_allKeys = []
+        # allowedKeys looks like a variable, so make sure it exists locally
+        if 'allowed_keys' in globals():
+            allowed_keys = globals()['allowed_keys']
         # store start times for options_show
         options_show.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         options_show.tStart = globalClock.getTime(format='float')
@@ -8219,6 +8311,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
+            
+            # *p_Late_input_2* updates
+            
+            # if p_Late_input_2 is starting this frame...
+            if p_Late_input_2.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+                # keep track of start time/frame for later
+                p_Late_input_2.frameNStart = frameN  # exact frame index
+                p_Late_input_2.tStart = t  # local t and not account for scr refresh
+                p_Late_input_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(p_Late_input_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'p_Late_input_2.started')
+                # update status
+                p_Late_input_2.status = STARTED
+                p_Late_input_2.setAutoDraw(True)
+            
+            # if p_Late_input_2 is active this frame...
+            if p_Late_input_2.status == STARTED:
+                # update params
+                pass
             
             # *fixation_cross_2* updates
             
@@ -8494,12 +8606,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 thisExp.timestampOnFlip(win, 'user_choice.started')
                 # update status
                 user_choice.status = STARTED
+                # allowed keys looks like a variable named `allowed_keys`
+                if not type(allowed_keys) in [list, tuple, np.ndarray]:
+                    if not isinstance(allowed_keys, str):
+                        allowed_keys = str(allowed_keys)
+                    elif not ',' in allowed_keys:
+                        allowed_keys = (allowed_keys,)
+                    else:
+                        allowed_keys = eval(allowed_keys)
                 # keyboard checking is just starting
                 waitOnFlip = True
                 win.callOnFlip(user_choice.clock.reset)  # t=0 on next screen flip
                 win.callOnFlip(user_choice.clearEvents, eventType='keyboard')  # clear events on next screen flip
             if user_choice.status == STARTED and not waitOnFlip:
-                theseKeys = user_choice.getKeys(keyList=['left', 'right'], ignoreKeys=["escape"], waitRelease=False)
+                theseKeys = user_choice.getKeys(keyList=list(allowed_keys), ignoreKeys=["escape"], waitRelease=False)
                 _user_choice_allKeys.extend(theseKeys)
                 if len(_user_choice_allKeys):
                     user_choice.keys = _user_choice_allKeys[-1].name  # just the last key pressed
@@ -8507,26 +8627,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     user_choice.duration = _user_choice_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            
-            # *p_Late_input_2* updates
-            
-            # if p_Late_input_2 is starting this frame...
-            if p_Late_input_2.status == NOT_STARTED and tThisFlip >= 5-frameTolerance:
-                # keep track of start time/frame for later
-                p_Late_input_2.frameNStart = frameN  # exact frame index
-                p_Late_input_2.tStart = t  # local t and not account for scr refresh
-                p_Late_input_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(p_Late_input_2, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'p_Late_input_2.started')
-                # update status
-                p_Late_input_2.status = STARTED
-                p_Late_input_2.setAutoDraw(True)
-            
-            # if p_Late_input_2 is active this frame...
-            if p_Late_input_2.status == STARTED:
-                # update params
-                pass
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -8970,7 +9070,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine reward_outcome
         reward_outcome = data.Routine(
             name='reward_outcome',
-            components=[money_prompt, outcome_square, outcome_text_3, reward_txt, prog_bar, next_trial_txt, next_trial_input],
+            components=[money_prompt, outcome_square, outcome_text_3, reward_txt, prog_bar, next_trial_txt, left_progress_3, right_progress_3, next_trial_input],
         )
         reward_outcome.status = NOT_STARTED
         continueRoutine = True
@@ -8982,6 +9082,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         event.clearEvents()
         
         thisExp.addData('current_money', current_money)
+        
+        if catch_trial == True:
+            if choice != correct_side:
+                failed_check += 1
+                if failed_check == 2:
+                    failed_final_loop = 1
+                    normal_final_loop = 0
+                    trials.finished = True
         
         added_money = 0
         if p_userchoice == 'left':
@@ -9214,6 +9322,46 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             # if next_trial_txt is active this frame...
             if next_trial_txt.status == STARTED:
+                # update params
+                pass
+            
+            # *left_progress_3* updates
+            
+            # if left_progress_3 is starting this frame...
+            if left_progress_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                left_progress_3.frameNStart = frameN  # exact frame index
+                left_progress_3.tStart = t  # local t and not account for scr refresh
+                left_progress_3.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(left_progress_3, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'left_progress_3.started')
+                # update status
+                left_progress_3.status = STARTED
+                left_progress_3.setAutoDraw(True)
+            
+            # if left_progress_3 is active this frame...
+            if left_progress_3.status == STARTED:
+                # update params
+                pass
+            
+            # *right_progress_3* updates
+            
+            # if right_progress_3 is starting this frame...
+            if right_progress_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                right_progress_3.frameNStart = frameN  # exact frame index
+                right_progress_3.tStart = t  # local t and not account for scr refresh
+                right_progress_3.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(right_progress_3, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'right_progress_3.started')
+                # update status
+                right_progress_3.status = STARTED
+                right_progress_3.setAutoDraw(True)
+            
+            # if right_progress_3 is active this frame...
+            if right_progress_3.status == STARTED:
                 # update params
                 pass
             
@@ -9779,7 +9927,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         thisExp.addData('trial_break.started', trial_break.tStart)
         trial_break.maxDuration = None
         # skip Routine trial_break if its 'Skip if' condition is True
-        trial_break.skipped = continueRoutine and not (((trials.thisN+1) % 66 != 0) | (trials.thisN+1 == ntrials))
+        trial_break.skipped = continueRoutine and not (((trials.thisN-1) % 66 != 0) | (trials.thisN-1 == ntrials))
         continueRoutine = trial_break.skipped
         # keep track of which components have finished
         trial_breakComponents = trial_break.components
@@ -9925,7 +10073,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         thisExp.addData('repeat_iti_2.started', repeat_iti_2.tStart)
         repeat_iti_2.maxDuration = time_iti
         # skip Routine repeat_iti_2 if its 'Skip if' condition is True
-        repeat_iti_2.skipped = continueRoutine and not (((trials.thisN+1) % 66 != 0) | (trials.thisN+1 == ntrials))
+        repeat_iti_2.skipped = continueRoutine and not (((trials.thisN-1) % 66 != 0) | (trials.thisN-1 == ntrials))
         continueRoutine = repeat_iti_2.skipped
         # keep track of which components have finished
         repeat_iti_2Components = repeat_iti_2.components
@@ -10045,150 +10193,411 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # if running in a Session with a Liaison client, send data up to now
         thisSession.sendExperimentData()
     
-    # --- Prepare to start Routine "Thank_you" ---
-    # create an object to store info about Routine Thank_you
-    Thank_you = data.Routine(
-        name='Thank_you',
-        components=[thankYouText, key_resp_11],
+    # set up handler to look after randomisation of conditions etc
+    failed_final = data.TrialHandler2(
+        name='failed_final',
+        nReps=failed_final_loop, 
+        method='random', 
+        extraInfo=expInfo, 
+        originPath=-1, 
+        trialList=[None], 
+        seed=None, 
+        isTrials=True, 
     )
-    Thank_you.status = NOT_STARTED
-    continueRoutine = True
-    # update component parameters for each repeat
-    # create starting attributes for key_resp_11
-    key_resp_11.keys = []
-    key_resp_11.rt = []
-    _key_resp_11_allKeys = []
-    # store start times for Thank_you
-    Thank_you.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-    Thank_you.tStart = globalClock.getTime(format='float')
-    Thank_you.status = STARTED
-    thisExp.addData('Thank_you.started', Thank_you.tStart)
-    Thank_you.maxDuration = None
-    # keep track of which components have finished
-    Thank_youComponents = Thank_you.components
-    for thisComponent in Thank_you.components:
-        thisComponent.tStart = None
-        thisComponent.tStop = None
-        thisComponent.tStartRefresh = None
-        thisComponent.tStopRefresh = None
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    # reset timers
-    t = 0
-    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-    frameN = -1
+    thisExp.addLoop(failed_final)  # add the loop to the experiment
+    thisFailed_final = failed_final.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisFailed_final.rgb)
+    if thisFailed_final != None:
+        for paramName in thisFailed_final:
+            globals()[paramName] = thisFailed_final[paramName]
+    if thisSession is not None:
+        # if running in a Session with a Liaison client, send data up to now
+        thisSession.sendExperimentData()
     
-    # --- Run Routine "Thank_you" ---
-    thisExp.currentRoutine = Thank_you
-    Thank_you.forceEnded = routineForceEnded = not continueRoutine
-    while continueRoutine:
-        # get current time
-        t = routineTimer.getTime()
-        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
-        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
+    for thisFailed_final in failed_final:
+        failed_final.status = STARTED
+        if hasattr(thisFailed_final, 'status'):
+            thisFailed_final.status = STARTED
+        currentLoop = failed_final
+        thisExp.timestampOnFlip(win, 'thisRow.t', format=globalClock.format)
+        if thisSession is not None:
+            # if running in a Session with a Liaison client, send data up to now
+            thisSession.sendExperimentData()
+        # abbreviate parameter names if possible (e.g. rgb = thisFailed_final.rgb)
+        if thisFailed_final != None:
+            for paramName in thisFailed_final:
+                globals()[paramName] = thisFailed_final[paramName]
         
-        # *thankYouText* updates
+        # --- Prepare to start Routine "Failed_end" ---
+        # create an object to store info about Routine Failed_end
+        Failed_end = data.Routine(
+            name='Failed_end',
+            components=[thankYouText_failed, key_resp_12],
+        )
+        Failed_end.status = NOT_STARTED
+        continueRoutine = True
+        # update component parameters for each repeat
+        # create starting attributes for key_resp_12
+        key_resp_12.keys = []
+        key_resp_12.rt = []
+        _key_resp_12_allKeys = []
+        # store start times for Failed_end
+        Failed_end.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        Failed_end.tStart = globalClock.getTime(format='float')
+        Failed_end.status = STARTED
+        thisExp.addData('Failed_end.started', Failed_end.tStart)
+        Failed_end.maxDuration = None
+        # keep track of which components have finished
+        Failed_endComponents = Failed_end.components
+        for thisComponent in Failed_end.components:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        frameN = -1
         
-        # if thankYouText is starting this frame...
-        if thankYouText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            thankYouText.frameNStart = frameN  # exact frame index
-            thankYouText.tStart = t  # local t and not account for scr refresh
-            thankYouText.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(thankYouText, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'thankYouText.started')
-            # update status
-            thankYouText.status = STARTED
-            thankYouText.setAutoDraw(True)
-        
-        # if thankYouText is active this frame...
-        if thankYouText.status == STARTED:
-            # update params
-            pass
-        
-        # *key_resp_11* updates
-        waitOnFlip = False
-        
-        # if key_resp_11 is starting this frame...
-        if key_resp_11.status == NOT_STARTED and tThisFlip >= 3-frameTolerance:
-            # keep track of start time/frame for later
-            key_resp_11.frameNStart = frameN  # exact frame index
-            key_resp_11.tStart = t  # local t and not account for scr refresh
-            key_resp_11.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(key_resp_11, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'key_resp_11.started')
-            # update status
-            key_resp_11.status = STARTED
-            # keyboard checking is just starting
-            waitOnFlip = True
-            win.callOnFlip(key_resp_11.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(key_resp_11.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        if key_resp_11.status == STARTED and not waitOnFlip:
-            theseKeys = key_resp_11.getKeys(keyList=['return'], ignoreKeys=["escape"], waitRelease=False)
-            _key_resp_11_allKeys.extend(theseKeys)
-            if len(_key_resp_11_allKeys):
-                key_resp_11.keys = _key_resp_11_allKeys[-1].name  # just the last key pressed
-                key_resp_11.rt = _key_resp_11_allKeys[-1].rt
-                key_resp_11.duration = _key_resp_11_allKeys[-1].duration
-                # a response ends the routine
+        # --- Run Routine "Failed_end" ---
+        thisExp.currentRoutine = Failed_end
+        Failed_end.forceEnded = routineForceEnded = not continueRoutine
+        while continueRoutine:
+            # if trial has changed, end Routine now
+            if hasattr(thisFailed_final, 'status') and thisFailed_final.status == STOPPING:
                 continueRoutine = False
+            # get current time
+            t = routineTimer.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *thankYouText_failed* updates
+            
+            # if thankYouText_failed is starting this frame...
+            if thankYouText_failed.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                thankYouText_failed.frameNStart = frameN  # exact frame index
+                thankYouText_failed.tStart = t  # local t and not account for scr refresh
+                thankYouText_failed.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(thankYouText_failed, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'thankYouText_failed.started')
+                # update status
+                thankYouText_failed.status = STARTED
+                thankYouText_failed.setAutoDraw(True)
+            
+            # if thankYouText_failed is active this frame...
+            if thankYouText_failed.status == STARTED:
+                # update params
+                pass
+            
+            # *key_resp_12* updates
+            waitOnFlip = False
+            
+            # if key_resp_12 is starting this frame...
+            if key_resp_12.status == NOT_STARTED and tThisFlip >= 3-frameTolerance:
+                # keep track of start time/frame for later
+                key_resp_12.frameNStart = frameN  # exact frame index
+                key_resp_12.tStart = t  # local t and not account for scr refresh
+                key_resp_12.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(key_resp_12, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'key_resp_12.started')
+                # update status
+                key_resp_12.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(key_resp_12.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(key_resp_12.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if key_resp_12.status == STARTED and not waitOnFlip:
+                theseKeys = key_resp_12.getKeys(keyList=['return'], ignoreKeys=["escape"], waitRelease=False)
+                _key_resp_12_allKeys.extend(theseKeys)
+                if len(_key_resp_12_allKeys):
+                    key_resp_12.keys = _key_resp_12_allKeys[-1].name  # just the last key pressed
+                    key_resp_12.rt = _key_resp_12_allKeys[-1].rt
+                    key_resp_12.duration = _key_resp_12_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
+            
+            # check for quit (typically the Esc key)
+            if defaultKeyboard.getKeys(keyList=["escape"]):
+                thisExp.status = FINISHED
+            if thisExp.status == FINISHED or endExpNow:
+                endExperiment(thisExp, win=win)
+                return
+            # pause experiment here if requested
+            if thisExp.status == PAUSED:
+                pauseExperiment(
+                    thisExp=thisExp, 
+                    win=win, 
+                    timers=[routineTimer, globalClock], 
+                    currentRoutine=Failed_end,
+                )
+                # skip the frame we paused on
+                continue
+            
+            # has a Component requested the Routine to end?
+            if not continueRoutine:
+                Failed_end.forceEnded = routineForceEnded = True
+            # has the Routine been forcibly ended?
+            if Failed_end.forceEnded or routineForceEnded:
+                break
+            # has every Component finished?
+            continueRoutine = False
+            for thisComponent in Failed_end.components:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
         
-        # check for quit (typically the Esc key)
-        if defaultKeyboard.getKeys(keyList=["escape"]):
-            thisExp.status = FINISHED
-        if thisExp.status == FINISHED or endExpNow:
-            endExperiment(thisExp, win=win)
-            return
-        # pause experiment here if requested
-        if thisExp.status == PAUSED:
+        # --- Ending Routine "Failed_end" ---
+        for thisComponent in Failed_end.components:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # store stop times for Failed_end
+        Failed_end.tStop = globalClock.getTime(format='float')
+        Failed_end.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('Failed_end.stopped', Failed_end.tStop)
+        # check responses
+        if key_resp_12.keys in ['', [], None]:  # No response was made
+            key_resp_12.keys = None
+        failed_final.addData('key_resp_12.keys',key_resp_12.keys)
+        if key_resp_12.keys != None:  # we had a response
+            failed_final.addData('key_resp_12.rt', key_resp_12.rt)
+            failed_final.addData('key_resp_12.duration', key_resp_12.duration)
+        # the Routine "Failed_end" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
+        # mark thisFailed_final as finished
+        if hasattr(thisFailed_final, 'status'):
+            thisFailed_final.status = FINISHED
+        # if awaiting a pause, pause now
+        if failed_final.status == PAUSED:
+            thisExp.status = PAUSED
             pauseExperiment(
                 thisExp=thisExp, 
                 win=win, 
-                timers=[routineTimer, globalClock], 
-                currentRoutine=Thank_you,
+                timers=[globalClock], 
             )
-            # skip the frame we paused on
-            continue
+            # once done pausing, restore running status
+            failed_final.status = STARTED
+        thisExp.nextEntry()
         
-        # has a Component requested the Routine to end?
-        if not continueRoutine:
-            Thank_you.forceEnded = routineForceEnded = True
-        # has the Routine been forcibly ended?
-        if Thank_you.forceEnded or routineForceEnded:
-            break
-        # has every Component finished?
-        continueRoutine = False
-        for thisComponent in Thank_you.components:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
+    # completed failed_final_loop repeats of 'failed_final'
+    failed_final.status = FINISHED
     
-    # --- Ending Routine "Thank_you" ---
-    for thisComponent in Thank_you.components:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    # store stop times for Thank_you
-    Thank_you.tStop = globalClock.getTime(format='float')
-    Thank_you.tStopRefresh = tThisFlipGlobal
-    thisExp.addData('Thank_you.stopped', Thank_you.tStop)
-    # check responses
-    if key_resp_11.keys in ['', [], None]:  # No response was made
-        key_resp_11.keys = None
-    thisExp.addData('key_resp_11.keys',key_resp_11.keys)
-    if key_resp_11.keys != None:  # we had a response
-        thisExp.addData('key_resp_11.rt', key_resp_11.rt)
-        thisExp.addData('key_resp_11.duration', key_resp_11.duration)
-    thisExp.nextEntry()
-    # the Routine "Thank_you" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
+    if thisSession is not None:
+        # if running in a Session with a Liaison client, send data up to now
+        thisSession.sendExperimentData()
+    
+    # set up handler to look after randomisation of conditions etc
+    final = data.TrialHandler2(
+        name='final',
+        nReps=normal_final_loop, 
+        method='random', 
+        extraInfo=expInfo, 
+        originPath=-1, 
+        trialList=[None], 
+        seed=None, 
+        isTrials=True, 
+    )
+    thisExp.addLoop(final)  # add the loop to the experiment
+    thisFinal = final.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisFinal.rgb)
+    if thisFinal != None:
+        for paramName in thisFinal:
+            globals()[paramName] = thisFinal[paramName]
+    if thisSession is not None:
+        # if running in a Session with a Liaison client, send data up to now
+        thisSession.sendExperimentData()
+    
+    for thisFinal in final:
+        final.status = STARTED
+        if hasattr(thisFinal, 'status'):
+            thisFinal.status = STARTED
+        currentLoop = final
+        thisExp.timestampOnFlip(win, 'thisRow.t', format=globalClock.format)
+        if thisSession is not None:
+            # if running in a Session with a Liaison client, send data up to now
+            thisSession.sendExperimentData()
+        # abbreviate parameter names if possible (e.g. rgb = thisFinal.rgb)
+        if thisFinal != None:
+            for paramName in thisFinal:
+                globals()[paramName] = thisFinal[paramName]
+        
+        # --- Prepare to start Routine "Thank_you" ---
+        # create an object to store info about Routine Thank_you
+        Thank_you = data.Routine(
+            name='Thank_you',
+            components=[thankYouText, key_resp_11],
+        )
+        Thank_you.status = NOT_STARTED
+        continueRoutine = True
+        # update component parameters for each repeat
+        # create starting attributes for key_resp_11
+        key_resp_11.keys = []
+        key_resp_11.rt = []
+        _key_resp_11_allKeys = []
+        # store start times for Thank_you
+        Thank_you.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        Thank_you.tStart = globalClock.getTime(format='float')
+        Thank_you.status = STARTED
+        thisExp.addData('Thank_you.started', Thank_you.tStart)
+        Thank_you.maxDuration = None
+        # keep track of which components have finished
+        Thank_youComponents = Thank_you.components
+        for thisComponent in Thank_you.components:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        frameN = -1
+        
+        # --- Run Routine "Thank_you" ---
+        thisExp.currentRoutine = Thank_you
+        Thank_you.forceEnded = routineForceEnded = not continueRoutine
+        while continueRoutine:
+            # if trial has changed, end Routine now
+            if hasattr(thisFinal, 'status') and thisFinal.status == STOPPING:
+                continueRoutine = False
+            # get current time
+            t = routineTimer.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *thankYouText* updates
+            
+            # if thankYouText is starting this frame...
+            if thankYouText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                thankYouText.frameNStart = frameN  # exact frame index
+                thankYouText.tStart = t  # local t and not account for scr refresh
+                thankYouText.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(thankYouText, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'thankYouText.started')
+                # update status
+                thankYouText.status = STARTED
+                thankYouText.setAutoDraw(True)
+            
+            # if thankYouText is active this frame...
+            if thankYouText.status == STARTED:
+                # update params
+                pass
+            
+            # *key_resp_11* updates
+            waitOnFlip = False
+            
+            # if key_resp_11 is starting this frame...
+            if key_resp_11.status == NOT_STARTED and tThisFlip >= 3-frameTolerance:
+                # keep track of start time/frame for later
+                key_resp_11.frameNStart = frameN  # exact frame index
+                key_resp_11.tStart = t  # local t and not account for scr refresh
+                key_resp_11.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(key_resp_11, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'key_resp_11.started')
+                # update status
+                key_resp_11.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(key_resp_11.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(key_resp_11.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if key_resp_11.status == STARTED and not waitOnFlip:
+                theseKeys = key_resp_11.getKeys(keyList=['return'], ignoreKeys=["escape"], waitRelease=False)
+                _key_resp_11_allKeys.extend(theseKeys)
+                if len(_key_resp_11_allKeys):
+                    key_resp_11.keys = _key_resp_11_allKeys[-1].name  # just the last key pressed
+                    key_resp_11.rt = _key_resp_11_allKeys[-1].rt
+                    key_resp_11.duration = _key_resp_11_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
+            
+            # check for quit (typically the Esc key)
+            if defaultKeyboard.getKeys(keyList=["escape"]):
+                thisExp.status = FINISHED
+            if thisExp.status == FINISHED or endExpNow:
+                endExperiment(thisExp, win=win)
+                return
+            # pause experiment here if requested
+            if thisExp.status == PAUSED:
+                pauseExperiment(
+                    thisExp=thisExp, 
+                    win=win, 
+                    timers=[routineTimer, globalClock], 
+                    currentRoutine=Thank_you,
+                )
+                # skip the frame we paused on
+                continue
+            
+            # has a Component requested the Routine to end?
+            if not continueRoutine:
+                Thank_you.forceEnded = routineForceEnded = True
+            # has the Routine been forcibly ended?
+            if Thank_you.forceEnded or routineForceEnded:
+                break
+            # has every Component finished?
+            continueRoutine = False
+            for thisComponent in Thank_you.components:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # --- Ending Routine "Thank_you" ---
+        for thisComponent in Thank_you.components:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # store stop times for Thank_you
+        Thank_you.tStop = globalClock.getTime(format='float')
+        Thank_you.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('Thank_you.stopped', Thank_you.tStop)
+        # check responses
+        if key_resp_11.keys in ['', [], None]:  # No response was made
+            key_resp_11.keys = None
+        final.addData('key_resp_11.keys',key_resp_11.keys)
+        if key_resp_11.keys != None:  # we had a response
+            final.addData('key_resp_11.rt', key_resp_11.rt)
+            final.addData('key_resp_11.duration', key_resp_11.duration)
+        # the Routine "Thank_you" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
+        # mark thisFinal as finished
+        if hasattr(thisFinal, 'status'):
+            thisFinal.status = FINISHED
+        # if awaiting a pause, pause now
+        if final.status == PAUSED:
+            thisExp.status = PAUSED
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[globalClock], 
+            )
+            # once done pausing, restore running status
+            final.status = STARTED
+        thisExp.nextEntry()
+        
+    # completed normal_final_loop repeats of 'final'
+    final.status = FINISHED
+    
+    if thisSession is not None:
+        # if running in a Session with a Liaison client, send data up to now
+        thisSession.sendExperimentData()
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)
